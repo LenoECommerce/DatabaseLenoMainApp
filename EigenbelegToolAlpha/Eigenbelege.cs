@@ -15,9 +15,9 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace EigenbelegToolAlpha
 {
-    public partial class Hauptmenü : Form
+    public partial class Eigenbelege : Form
     {
-        public Hauptmenü()
+        public Eigenbelege()
         {
             InitializeComponent();
             ShowEigenbelege();
@@ -211,7 +211,7 @@ namespace EigenbelegToolAlpha
         {
             if (lastSelectedProductKey == 0)
             {
-                MessageBox.Show("Bitte wähle zuerst ein Produkt aus");
+                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
                 return;
             }
             string query = string.Format("delete from eigenbelege where Id={0};", lastSelectedProductKey);
@@ -351,16 +351,19 @@ namespace EigenbelegToolAlpha
             File.WriteAllText("config2.txt", imagesFolderPath);
         }
 
-        private void comboBox_fileEnding_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            File.WriteAllText("config3.txt", comboBox_fileEnding.Text);
-        }
-
+    
         private void btn_ImageLocPath_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
             imagesFolderPath = folderBrowserDialog1.SelectedPath;
             File.WriteAllText("config2.txt", imagesFolderPath);
+        }
+
+        private void button2_Click_3(object sender, EventArgs e)
+        {
+            Reparaturen reparaturen = new Reparaturen();
+            reparaturen.Show();
+            this.Hide();
         }
     }
 }

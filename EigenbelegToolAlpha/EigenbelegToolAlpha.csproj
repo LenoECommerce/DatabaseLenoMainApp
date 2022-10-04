@@ -75,18 +75,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hauptmenü.cs">
+    <Compile Include="Eigenbelege.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Hauptmenü.Designer.cs">
-      <DependentUpon>Hauptmenü.cs</DependentUpon>
+    <Compile Include="Eigenbelege.Designer.cs">
+      <DependentUpon>Eigenbelege.cs</DependentUpon>
     </Compile>
     <Compile Include="pdfDocument.cs" />
     <Compile Include="pdfDocumentStorno.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Hauptmenü.resx">
-      <DependentUpon>Hauptmenü.cs</DependentUpon>
+    <Compile Include="Reparaturen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reparaturen.Designer.cs">
+      <DependentUpon>Reparaturen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReparaturenEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReparaturenEdit.Designer.cs">
+      <DependentUpon>ReparaturenEdit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Eigenbelege.resx">
+      <DependentUpon>Eigenbelege.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -97,6 +109,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reparaturen.resx">
+      <DependentUpon>Reparaturen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReparaturenEdit.resx">
+      <DependentUpon>ReparaturenEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

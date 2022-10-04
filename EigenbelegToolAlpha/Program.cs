@@ -16,7 +16,7 @@ namespace EigenbelegToolAlpha
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Hauptmenü());
+            Application.Run(new Reparaturen());
         }
     }
 }
