@@ -12,6 +12,8 @@ using Microsoft.Office.Interop.Excel;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Contexts;
 using _Excel = Microsoft.Office.Interop.Excel;
+using MySql.Data.MySqlClient;
+using System.Collections;
 
 namespace EigenbelegToolAlpha
 {
@@ -23,13 +25,31 @@ namespace EigenbelegToolAlpha
             ShowEigenbelege();
         }
 
-        //SQL Verbindung zu Datenbank
-        private SqlConnection databaseConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\lenna\Documents\Eigenbelege.mdf;Integrated Security = True; Connect Timeout = 30");
+        //SQL Verbindung zu 
+        public static MySqlConnection conn;
+        public static string connString = "SERVER=sql11.freesqldatabase.com;PORT=3306;Initial Catalog='sql11525524';username=sql11525524;password=d3ByMHVgie";
+
         public string path = "";
         public string destPath = "mainfile.xlsx";
         public static string pdfSaveDestPath = "";
-        public int lastSelectedProductKey;
+        public static int lastSelectedProductKey;
         public static string imagesFolderPath = "";
+
+        public static string eigenbelegNumber = "";
+        public static string sellerName = "";
+        public static string reference = "";
+        public static string model = "";
+        public static string dateBought= "";
+        public static string transactionAmount= "";
+        public static string mail = "";
+        public static string platform = "";
+        public static string paymentMethod = "";
+        public static string address = "";
+        public static string created = "";
+        public static string arrived = "";
+        public static string transactionText = "";
+        public static string storage = "";
+        public static string defect = "";
 
         private void Hauptmenü_Load(object sender, EventArgs e)
         {
@@ -82,12 +102,17 @@ namespace EigenbelegToolAlpha
 
         private void ShowEigenbelege()
         {
-            databaseConnection.Open();
+            conn = new MySqlConnection();
+            conn.ConnectionString = connString;
+            conn.Open();
 
-            string query = "select * from Eigenbelege";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, databaseConnection);
+            string query = "SELECT * FROM `Eigenbelege`";
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, conn);
 
-            //Datensatz
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+
+            ////Datensatz
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
 
@@ -97,32 +122,33 @@ namespace EigenbelegToolAlpha
             //Column verstecken
 
             eigenbelegeDGV.Columns[0].Visible = false;
-
-
-            databaseConnection.Close();
+            conn.Close();
         }
 
-        private void ExecuteQuery(string query)
+        public static void ExecuteQuery(string query)
         {
-            databaseConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand(query, databaseConnection);
-            sqlCommand.ExecuteNonQuery();
-            databaseConnection.Close();
+            try
+            {
+                conn = new MySqlConnection();
+                conn.ConnectionString = connString;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void ClearAllFields()
+        
+
+        private void PayPalDataImport()
         {
-            textBox_eigenbelegArticle.Text = "";
-            textBox_eigenbelegDateBought.Text = "";
-            textBox_eigenbelegNumber.Text = "";
-            textBox_eigenbelegPaymentMethod.Text = "";
-            textBox_eigenbelegPlatform.Text = "";
-            textBox_eigenbelegSellerAdress.Text = "";
-            textBox_eigenbelegSellerName.Text = "";
-            textBox_eigenbelegTransactionAmount.Text = "";
+
         }
-
-
 
 
 
@@ -149,62 +175,31 @@ namespace EigenbelegToolAlpha
 
         private void eigenbelegeDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            textBox_eigenbelegNumber.Text = eigenbelegeDGV.SelectedRows[0].Cells[1].Value.ToString();
-            textBox_eigenbelegSellerName.Text = eigenbelegeDGV.SelectedRows[0].Cells[2].Value.ToString();
-            textBox_eigenbelegDateBought.Text = eigenbelegeDGV.SelectedRows[0].Cells[3].Value.ToString();
-            textBox_eigenbelegTransactionAmount.Text = eigenbelegeDGV.SelectedRows[0].Cells[4].Value.ToString();
-            textBox_eigenbelegArticle.Text = eigenbelegeDGV.SelectedRows[0].Cells[5].Value.ToString();
-            textBox_eigenbelegPlatform.Text = eigenbelegeDGV.SelectedRows[0].Cells[6].Value.ToString();
-            textBox_eigenbelegPaymentMethod.Text = eigenbelegeDGV.SelectedRows[0].Cells[7].Value.ToString();
-            textBox_eigenbelegSellerAdress.Text = eigenbelegeDGV.SelectedRows[0].Cells[8].Value.ToString();
+            eigenbelegNumber = eigenbelegeDGV.SelectedRows[0].Cells[1].Value.ToString();
+            sellerName = eigenbelegeDGV.SelectedRows[0].Cells[2].Value.ToString();
+            reference = eigenbelegeDGV.SelectedRows[0].Cells[3].Value.ToString();
+            model = eigenbelegeDGV.SelectedRows[0].Cells[4].Value.ToString();
+            dateBought = eigenbelegeDGV.SelectedRows[0].Cells[5].Value.ToString();
+            transactionAmount = eigenbelegeDGV.SelectedRows[0].Cells[6].Value.ToString();
+            mail = eigenbelegeDGV.SelectedRows[0].Cells[7].Value.ToString();
+            platform = eigenbelegeDGV.SelectedRows[0].Cells[8].Value.ToString();
+            paymentMethod = eigenbelegeDGV.SelectedRows[0].Cells[9].Value.ToString();
+            address = eigenbelegeDGV.SelectedRows[0].Cells[10].Value.ToString();
+            created = eigenbelegeDGV.SelectedRows[0].Cells[11].Value.ToString();
+            arrived = eigenbelegeDGV.SelectedRows[0].Cells[12].Value.ToString();
+            transactionText = eigenbelegeDGV.SelectedRows[0].Cells[13].Value.ToString();
+            storage = eigenbelegeDGV.SelectedRows[0].Cells[14].Value.ToString();
 
             lastSelectedProductKey = (int)eigenbelegeDGV.SelectedRows[0].Cells[0].Value;
 
         }
 
-        private void btn_ClearFields_Click(object sender, EventArgs e)
-        {
-            ClearAllFields();
-        }
+       
 
         private void btn_eigenbelegCreate_Click(object sender, EventArgs e)
         {
-            if (textBox_eigenbelegArticle.Text == ""
-                || textBox_eigenbelegDateBought.Text == ""
-                || textBox_eigenbelegNumber.Text == ""
-                || textBox_eigenbelegPaymentMethod.Text == ""
-                || textBox_eigenbelegPlatform.Text == ""
-                || textBox_eigenbelegSellerAdress.Text == ""
-                || textBox_eigenbelegSellerName.Text == ""
-                || textBox_eigenbelegTransactionAmount.Text == "")
-            {
-                MessageBox.Show("Bitte alle Felder ausfüllen.");
-                return;
-            }
-
-            //alte Variablen
-            //int eigenbelegNumber = int.Parse(textBox_eigenbelegNumber.Text);
-            //float transactionAmount = float.Parse(textBox_eigenbelegTransactionAmount.Text);
-
-
-            string eigenbelegNumber = textBox_eigenbelegNumber.Text;
-            string sellerName = textBox_eigenbelegSellerName.Text;
-            string dateBought = textBox_eigenbelegDateBought.Text;
-            string transactionAmount = textBox_eigenbelegTransactionAmount.Text;
-            string article = textBox_eigenbelegArticle.Text;
-            string platform = textBox_eigenbelegPlatform.Text;
-            string paymentMethod = textBox_eigenbelegPaymentMethod.Text;
-            string sellerAddress = textBox_eigenbelegSellerAdress.Text;
-
-            string query = string.Format("insert into Eigenbelege values('{0}','{1}','{2}',{3},'{4}','{5}','{6}','{7}')",eigenbelegNumber, sellerName, dateBought, transactionAmount, article, platform, paymentMethod, sellerAddress);
-
-            ExecuteQuery(query);
-            ClearAllFields();
-            ShowEigenbelege();
-
-
-
+            EigenbelegCreate eigenbelegCreate = new EigenbelegCreate();
+            eigenbelegCreate.Show();
         }
 
         private void btn_eigenbelegRemove_Click(object sender, EventArgs e)
@@ -214,10 +209,8 @@ namespace EigenbelegToolAlpha
                 MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
                 return;
             }
-            string query = string.Format("delete from eigenbelege where Id={0};", lastSelectedProductKey);
+            string query = string.Format("DELETE FROM `Eigenbelege` WHERE `Id` = {0} ;", lastSelectedProductKey);
             ExecuteQuery(query);
-
-            ClearAllFields();
             ShowEigenbelege();
         }
 
@@ -229,20 +222,8 @@ namespace EigenbelegToolAlpha
                 return;
             }
 
-            string eigenbelegNumber = textBox_eigenbelegNumber.Text;
-            string sellerName = textBox_eigenbelegSellerName.Text;
-            string dateBought = textBox_eigenbelegDateBought.Text;
-            string transactionAmount = textBox_eigenbelegTransactionAmount.Text;
-            string article = textBox_eigenbelegArticle.Text;
-            string platform = textBox_eigenbelegPlatform.Text;
-            string paymentMethod = textBox_eigenbelegPaymentMethod.Text;
-            string sellerAddress = textBox_eigenbelegSellerAdress.Text;
-
-            string query = string.Format("update eigenbelege set Eigenbelegnummer = '{0}',Verkäufername = '{1}',Kaufdatum = '{2}',Kaufbetrag = '{3}',Artikel = '{4}',Plattform = '{5}',Zahlungsmethode = '{6}',Adresse = '{7}' where Id={8}"
-                , eigenbelegNumber, sellerName, dateBought, transactionAmount, article, platform, paymentMethod, sellerAddress, lastSelectedProductKey);
-
-            ExecuteQuery(query);
-            ShowEigenbelege();
+            EigenbelegEdit eigenbelegEdit = new EigenbelegEdit();
+            eigenbelegEdit.Show();
 
         }
 
@@ -307,7 +288,7 @@ namespace EigenbelegToolAlpha
 
         private void btn_DeleteAll_Click(object sender, EventArgs e)
         {
-            string query = "delete from eigenbelege";
+            string query = "DELETE FROM `Eigenbelege`";
             ExecuteQuery(query);
             ShowEigenbelege();
         }
@@ -364,6 +345,52 @@ namespace EigenbelegToolAlpha
             Reparaturen reparaturen = new Reparaturen();
             reparaturen.Show();
             this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PayPalDataImport();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_PushToRep_Click(object sender, EventArgs e)
+        {
+            if (eigenbelegeDGV.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Bitte wähle zuerst mind. einen Eintrag aus.");
+                return;
+            }
+
+
+            //Abfrage ob PayPal Datenimport
+            if (transactionText.Contains("Ebay Kleinanzeigen"))
+            {
+                var posTrenn2 = transactionText.IndexOf("trenn2");
+                var defekt = transactionText.IndexOf("defekt");
+                defect = transactionText.Substring(posTrenn2+7,defekt-posTrenn2-7);
+            }
+
+
+
+            int intern = Convert.ToInt32(File.ReadAllText("config3.txt"))+1;
+            File.WriteAllText("config3.txt",intern.ToString());
+
+
+            string query = string.Format("INSERT INTO `Reparaturen`(`Intern`,`Kaufdatum`,`Geraet`,`Kaufbetrag`,`Speicher`,`Defekt`,`Reparaturstatus`,`Quelle`,`EBReferenz`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
+            , intern.ToString(), dateBought, model, transactionAmount, storage, defect, "Entgegengenommen" ,platform, eigenbelegNumber);
+            
+            ExecuteQuery(query);
+            MessageBox.Show("Die Reparatur wurde erfolgreich erfasst.");
+            ShowEigenbelege();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            ShowEigenbelege();
         }
     }
 }

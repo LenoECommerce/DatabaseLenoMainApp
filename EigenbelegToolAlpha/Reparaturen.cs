@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +15,14 @@ namespace EigenbelegToolAlpha
     public partial class Reparaturen : Form
     {
         //SQL Verbindung zu Datenbank
-        public static SqlConnection databaseConnection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\lenna\Documents\Eigenbelege.mdf;Integrated Security = True; Connect Timeout = 30");
+        public static MySqlConnection conn;
+        public static string connString = "SERVER=sql11.freesqldatabase.com;PORT=3306;Initial Catalog='sql11525524';username=sql11525524;password=d3ByMHVgie";
         public static int lastSelectedProductKey;
         public static string internalNumber = "";
         public static string dateBought = "";
         public static string device = "";
         public static string make = "";
         public static string storage = "";
-        public static string color = "";
         public static string defect = "";
         public static string transactionAmount = "";
         public static string imei = "";
@@ -31,6 +32,13 @@ namespace EigenbelegToolAlpha
         public static string riskLevel = "";
         public static string worthIt = "";
         public static string referenceToEB = "";
+        public static string notifications = "";
+        public static string tested = "";
+        public static string state = "";
+
+
+
+
         public Reparaturen()
         {
             InitializeComponent();
@@ -39,12 +47,17 @@ namespace EigenbelegToolAlpha
 
         private void ShowReparaturen()
         {
-            databaseConnection.Open();
+            conn = new MySqlConnection();
+            conn.ConnectionString = connString;
+            conn.Open();
 
-            string query = "select * from Reparaturen";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, databaseConnection);
+            string query = "SELECT * FROM `Reparaturen`";
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, conn);
 
-            //Datensatz
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+
+            ////Datensatz
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
 
@@ -54,17 +67,25 @@ namespace EigenbelegToolAlpha
             //Column verstecken
 
             reparaturenDGV.Columns[0].Visible = false;
-
-
-            databaseConnection.Close();
+            conn.Close();
         }
 
         public static void ExecuteQuery(string query)
         {
-            databaseConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand(query, databaseConnection);
-            sqlCommand.ExecuteNonQuery();
-            databaseConnection.Close();
+            try
+            {
+                conn = new MySqlConnection();
+                conn.ConnectionString = connString;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -76,18 +97,20 @@ namespace EigenbelegToolAlpha
             internalNumber = reparaturenDGV.SelectedRows[0].Cells[1].Value.ToString();
             dateBought = reparaturenDGV.SelectedRows[0].Cells[2].Value.ToString();
             device = reparaturenDGV.SelectedRows[0].Cells[3].Value.ToString();
-            make = reparaturenDGV.SelectedRows[0].Cells[4].Value.ToString();
-            storage = reparaturenDGV.SelectedRows[0].Cells[5].Value.ToString();
-            color = reparaturenDGV.SelectedRows[0].Cells[6].Value.ToString();
-            defect = reparaturenDGV.SelectedRows[0].Cells[7].Value.ToString();
-            transactionAmount = reparaturenDGV.SelectedRows[0].Cells[8].Value.ToString();
-            imei = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
-            externalCosts = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
-            comment = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
-            source = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
-            riskLevel = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
-            worthIt = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
-            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
+            transactionAmount = reparaturenDGV.SelectedRows[0].Cells[4].Value.ToString();
+            imei = reparaturenDGV.SelectedRows[0].Cells[5].Value.ToString();
+            make = reparaturenDGV.SelectedRows[0].Cells[6].Value.ToString();
+            storage = reparaturenDGV.SelectedRows[0].Cells[7].Value.ToString();
+            defect = reparaturenDGV.SelectedRows[0].Cells[8].Value.ToString();
+            externalCosts = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
+            comment = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
+            notifications = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
+            tested = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
+            state = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
+            source = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
+            riskLevel = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
+            worthIt = reparaturenDGV.SelectedRows[0].Cells[16].Value.ToString();
+            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[17].Value.ToString();
 
 
             lastSelectedProductKey = (int)reparaturenDGV.SelectedRows[0].Cells[0].Value;
@@ -109,7 +132,7 @@ namespace EigenbelegToolAlpha
                 MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
                 return;
             }
-            string query = string.Format("delete from reparturen where Id={0};", lastSelectedProductKey);
+            string query = string.Format("DELETE FROM `Reparaturen` WHERE `Id` = {0} ;", lastSelectedProductKey);
             ExecuteQuery(query);
 
             ShowReparaturen();
@@ -129,7 +152,7 @@ namespace EigenbelegToolAlpha
 
         private void btn_DeleteAll_Click(object sender, EventArgs e)
         {
-            string query = "delete from Reparaturen";
+            string query = "DELETE FROM `Reparaturen`";
             ExecuteQuery(query);
             ShowReparaturen();
         }
@@ -158,6 +181,12 @@ namespace EigenbelegToolAlpha
         private void button1_Click(object sender, EventArgs e)
         {
             ShowReparaturen();
+        }
+
+        private void btn_reparaturenCreate_Click(object sender, EventArgs e)
+        {
+            ReparaturCreate reparaturenCreate= new ReparaturCreate();
+            reparaturenCreate.Show();
         }
     }
 }

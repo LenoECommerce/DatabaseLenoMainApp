@@ -123,6 +123,7 @@
             this.btn_reparaturenCreate.TabIndex = 32;
             this.btn_reparaturenCreate.Text = "Erstellen";
             this.btn_reparaturenCreate.UseVisualStyleBackColor = false;
+            this.btn_reparaturenCreate.Click += new System.EventHandler(this.btn_reparaturenCreate_Click);
             // 
             // btn_reparaturenDelete
             // 
