@@ -35,12 +35,16 @@ namespace EigenbelegToolAlpha
             string transactionText = textBox_eigenbelegTransactionText.Text;
             string storage = comboBox_eigenbelegStorage.Text;
 
+            //Sync mit Reparaturtabelle
+            Eigenbelege.dataSync("Reparaturen", model, transactionAmount, storage, eigenbelegNumber);
             string query = string.Format("UPDATE `Eigenbelege` SET `Eigenbelegnummer` = '{0}',`Verkaeufername` = '{1}', `Referenz` = '{2}', `Modell` = '{3}', `Kaufdatum` = '{4}', `Kaufbetrag` = '{5}', `E-Mail` = '{6}', `Plattform` = '{7}', `Zahlungsmethode` = '{8}', `Adresse` = '{9}', `Erstellt?` = '{10}', `Angekommen?` = '{11}', `Transaktionstext` = '{12}', `Speicher` = '{13}' WHERE `Id` = {14}"
                 , eigenbelegNumber, sellerName, reference, model, dateBought, transactionAmount, mail, platform, paymentMethod, address, created,
                   arrived, transactionText, storage, Eigenbelege.lastSelectedProductKey);
 
             Eigenbelege.ExecuteQuery(query);
             MessageBox.Show("Deine Änderungen wurden erfolgreich gespeichert.");
+            Eigenbelege window = new Eigenbelege();
+            window.ShowEigenbelege();
             this.Close();
         }
 

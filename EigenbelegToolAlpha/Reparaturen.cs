@@ -35,7 +35,7 @@ namespace EigenbelegToolAlpha
         public static string notifications = "";
         public static string tested = "";
         public static string state = "";
-
+        public static string maindefects = "";
 
 
 
@@ -45,7 +45,7 @@ namespace EigenbelegToolAlpha
             ShowReparaturen();
         }
 
-        private void ShowReparaturen()
+        public void ShowReparaturen()
         {
             conn = new MySqlConnection();
             conn.ConnectionString = connString;
@@ -88,7 +88,51 @@ namespace EigenbelegToolAlpha
             }
         }
 
+        public static double ExecuteQueryWithResult(string query)
+        {
+            try
+            {
+                conn = new MySqlConnection();
+                conn.ConnectionString = connString;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                //zwischenspeichern und danach umformen um Fehlerquelle zu vermeiden
+                var firstValueGetBack = cmd.ExecuteScalar();
+                double result = Convert.ToDouble(firstValueGetBack);
+                conn.Close();
+                return result;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
 
+
+
+
+        public void SelectReparaturFromEigenbelege(string relatedNumber)
+        {
+            int rowIndex = -1;
+            foreach (DataGridViewRow row in reparaturenDGV.Rows)
+            {
+                if (row.Cells[17].Value.Equals(relatedNumber))
+                {
+                    rowIndex = row.Index;
+                }   
+            }
+            if (rowIndex != -1)
+            {
+                reparaturenDGV.ClearSelection();
+                reparaturenDGV.Rows[rowIndex].Selected = true;
+            }
+            else
+            {
+                MessageBox.Show("Es konnte kein Eintrag gefunden werden.");
+            }
+
+        }
 
 
         private void reparaturenDGV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -102,15 +146,16 @@ namespace EigenbelegToolAlpha
             make = reparaturenDGV.SelectedRows[0].Cells[6].Value.ToString();
             storage = reparaturenDGV.SelectedRows[0].Cells[7].Value.ToString();
             defect = reparaturenDGV.SelectedRows[0].Cells[8].Value.ToString();
-            externalCosts = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
-            comment = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
-            notifications = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
-            tested = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
-            state = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
-            source = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
-            riskLevel = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
-            worthIt = reparaturenDGV.SelectedRows[0].Cells[16].Value.ToString();
-            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[17].Value.ToString();
+            maindefects = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
+            externalCosts = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
+            comment = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
+            notifications = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
+            tested = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
+            state = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
+            source = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
+            riskLevel = reparaturenDGV.SelectedRows[0].Cells[16].Value.ToString();
+            worthIt = reparaturenDGV.SelectedRows[0].Cells[17].Value.ToString();
+            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[18].Value.ToString();
 
 
             lastSelectedProductKey = (int)reparaturenDGV.SelectedRows[0].Cells[0].Value;
@@ -187,6 +232,29 @@ namespace EigenbelegToolAlpha
         {
             ReparaturCreate reparaturenCreate= new ReparaturCreate();
             reparaturenCreate.Show();
+        }
+
+        internal class GetReparaturenDGV : DataGridView
+        {
+        }
+
+        private void btn_SwitchToRelatedEigenbeleg_Click(object sender, EventArgs e)
+        {
+            if (lastSelectedProductKey == 0)
+            {
+                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
+                return;
+            }
+            Eigenbelege eigenbelege = new Eigenbelege();
+            eigenbelege.Show();
+            this.Hide();
+            eigenbelege.SelectEigenbelegeFromReparatur(referenceToEB);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        { 
+            Settings window = new Settings();
+            window.Show();
         }
     }
 }

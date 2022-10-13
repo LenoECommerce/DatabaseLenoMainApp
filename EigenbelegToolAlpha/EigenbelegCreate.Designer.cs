@@ -105,6 +105,7 @@
             this.comboBox_eigenbelegPlatform.Name = "comboBox_eigenbelegPlatform";
             this.comboBox_eigenbelegPlatform.Size = new System.Drawing.Size(205, 21);
             this.comboBox_eigenbelegPlatform.TabIndex = 50;
+            this.comboBox_eigenbelegPlatform.SelectedIndexChanged += new System.EventHandler(this.comboBox_eigenbelegPlatform_SelectedIndexChanged);
             // 
             // textBox_eigenbelegTransactionText
             // 
@@ -135,6 +136,7 @@
             this.textBox_eigenbelegTransactionAmount.Name = "textBox_eigenbelegTransactionAmount";
             this.textBox_eigenbelegTransactionAmount.Size = new System.Drawing.Size(205, 20);
             this.textBox_eigenbelegTransactionAmount.TabIndex = 46;
+            this.textBox_eigenbelegTransactionAmount.TextChanged += new System.EventHandler(this.textBox_eigenbelegTransactionAmount_TextChanged);
             // 
             // textBox_eigenbelegDateBought
             // 
@@ -390,7 +392,7 @@
         private System.Windows.Forms.TextBox textBox_eigenbelegTransactionText;
         private System.Windows.Forms.TextBox textBox_eigenbelegAdress;
         private System.Windows.Forms.TextBox textBox_eigenbelegMail;
-        private System.Windows.Forms.TextBox textBox_eigenbelegTransactionAmount;
+        public System.Windows.Forms.TextBox textBox_eigenbelegTransactionAmount;
         private System.Windows.Forms.TextBox textBox_eigenbelegDateBought;
         private System.Windows.Forms.TextBox textBox_eigenbelegModel;
         private System.Windows.Forms.TextBox textBox_eigenbelegReference;

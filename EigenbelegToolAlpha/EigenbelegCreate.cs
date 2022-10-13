@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace EigenbelegToolAlpha
 {
@@ -17,6 +18,8 @@ namespace EigenbelegToolAlpha
             InitializeComponent();
 
         }
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -42,12 +45,32 @@ namespace EigenbelegToolAlpha
             
             Eigenbelege.ExecuteQuery(query);
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
+            Eigenbelege window = new Eigenbelege();
+            window.ShowEigenbelege();
             this.Close();
         }
 
         private void EigenbelegCreate_Load(object sender, EventArgs e)
         {
-           
+            textBox_eigenbelegNumber.Text = File.ReadAllText("config4.txt");
+            comboBox_eigenbelegArrived.Text = "Ja";
+            comboBox_eigenbelegCreated.Text = "Nein";
+        }
+    
+
+        private void comboBox_eigenbelegPlatform_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_eigenbelegPlatform.Text.Equals("BackMarket"))
+            {
+                EigenbelegBuyBackPriceCalculation window = new EigenbelegBuyBackPriceCalculation();
+                window.Show();
+                this.Hide();
+            }
+        }
+
+        private void textBox_eigenbelegTransactionAmount_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

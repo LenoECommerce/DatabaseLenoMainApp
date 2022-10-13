@@ -100,7 +100,7 @@ namespace EigenbelegToolAlpha
         }
 
 
-        private void ShowEigenbelege()
+        public void ShowEigenbelege()
         {
             conn = new MySqlConnection();
             conn.ConnectionString = connString;
@@ -143,7 +143,23 @@ namespace EigenbelegToolAlpha
             }
         }
 
-        
+        public static void dataSync(string destTable,string syncModel, string syncTransactionAmount, string syncStorage, string syncEigenbelegNumber)
+        {
+            //Abfrage welche Tabelle geupdatet wird
+            if (destTable == "Reparaturen")
+            {
+                string query = string.Format("UPDATE `" + destTable + "` SET `Geraet` = '{0}', `Kaufbetrag` = '{1}', `Speicher` = '{2}' WHERE `EBReferenz` = {3}",
+                           syncModel, syncTransactionAmount, syncStorage, syncEigenbelegNumber);
+                ExecuteQuery(query);
+            }
+            else
+            {
+                string query = string.Format("UPDATE `" + destTable + "` SET `Modell` = '{0}', `Kaufbetrag` = '{1}', `Speicher` = '{2}' WHERE `Eigenbelegnummer` = {3}",
+                           syncModel, syncTransactionAmount, syncStorage, syncEigenbelegNumber);
+                ExecuteQuery(query);
+            }
+            
+        }
 
         private void PayPalDataImport()
         {
@@ -157,21 +173,6 @@ namespace EigenbelegToolAlpha
             dataImport();
         }
 
-
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            dataImport();
-        }
-
-        
-
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void eigenbelegeDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -366,13 +367,13 @@ namespace EigenbelegToolAlpha
             }
 
 
-            //Abfrage ob PayPal Datenimport
-            if (transactionText.Contains("Ebay Kleinanzeigen"))
-            {
-                var posTrenn2 = transactionText.IndexOf("trenn2");
-                var defekt = transactionText.IndexOf("defekt");
-                defect = transactionText.Substring(posTrenn2+7,defekt-posTrenn2-7);
-            }
+            ////Abfrage ob PayPal Datenimport
+            //if (transactionText.Contains("Ebay Kleinanzeigen"))
+            //{
+            //    var posTrenn2 = transactionText.IndexOf("trenn2");
+            //    var defekt = transactionText.IndexOf("defekt");
+            //    defect = transactionText.Substring(posTrenn2+7,defekt-posTrenn2-7);
+            //}
 
 
 
@@ -391,6 +392,39 @@ namespace EigenbelegToolAlpha
         private void button5_Click_1(object sender, EventArgs e)
         {
             ShowEigenbelege();
+        }
+
+        public void btn_SwitchToRelatedReparatur_Click(object sender, EventArgs e)
+        {
+            if (lastSelectedProductKey == 0)
+            {
+                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
+                return;
+            }
+            Reparaturen reparaturen = new Reparaturen();
+            reparaturen.Show();
+            this.Hide();
+            reparaturen.SelectReparaturFromEigenbelege(eigenbelegNumber);
+        }
+
+        public void SelectEigenbelegeFromReparatur (string relatedNumber)
+        {
+            int rowIndex = -1;
+            foreach (DataGridViewRow row in eigenbelegeDGV.Rows)
+            {
+                if (row.Cells[1].Value.Equals(relatedNumber))
+                {
+                    rowIndex = row.Index;
+                }
+            }
+            eigenbelegeDGV.ClearSelection();
+            eigenbelegeDGV.Rows[rowIndex].Selected = true;
+        }
+
+        private void btn_settings2_Click(object sender, EventArgs e)
+        {
+            Settings window = new Settings();
+            window.Show();
         }
     }
 }

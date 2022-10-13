@@ -37,6 +37,8 @@
             this.btn_reparaturenCreate = new System.Windows.Forms.Button();
             this.btn_reparaturenDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_SwitchToRelatedEigenbeleg = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,12 +152,40 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btn_SwitchToRelatedEigenbeleg
+            // 
+            this.btn_SwitchToRelatedEigenbeleg.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_SwitchToRelatedEigenbeleg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SwitchToRelatedEigenbeleg.ForeColor = System.Drawing.Color.Black;
+            this.btn_SwitchToRelatedEigenbeleg.Location = new System.Drawing.Point(389, 103);
+            this.btn_SwitchToRelatedEigenbeleg.Name = "btn_SwitchToRelatedEigenbeleg";
+            this.btn_SwitchToRelatedEigenbeleg.Size = new System.Drawing.Size(180, 26);
+            this.btn_SwitchToRelatedEigenbeleg.TabIndex = 39;
+            this.btn_SwitchToRelatedEigenbeleg.Text = "Zu Eigenbeleg springen";
+            this.btn_SwitchToRelatedEigenbeleg.UseVisualStyleBackColor = false;
+            this.btn_SwitchToRelatedEigenbeleg.Click += new System.EventHandler(this.btn_SwitchToRelatedEigenbeleg_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(1143, 93);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(98, 26);
+            this.button2.TabIndex = 40;
+            this.button2.Text = "Einstellungen";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Reparaturen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_SwitchToRelatedEigenbeleg);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_reparaturenDelete);
             this.Controls.Add(this.btn_reparaturenEdit);
@@ -184,5 +214,7 @@
         private System.Windows.Forms.Button btn_reparaturenCreate;
         private System.Windows.Forms.Button btn_reparaturenDelete;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_SwitchToRelatedEigenbeleg;
+        private System.Windows.Forms.Button button2;
     }
 }

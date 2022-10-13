@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace EigenbelegToolAlpha
 {
@@ -19,7 +20,8 @@ namespace EigenbelegToolAlpha
 
         private void ReparaturCreate_Load(object sender, EventArgs e)
         {
-            
+            textBox_ReparaturenInternalNumber.Text = File.ReadAllText("config3.txt");
+            comboBox_ReparaturenReparaturStatus.Text = "Entgegengenommen";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,7 +49,14 @@ namespace EigenbelegToolAlpha
 
             Reparaturen.ExecuteQuery(query);
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
+            Reparaturen window = new Reparaturen();
+            window.ShowReparaturen();
             this.Close();
+        }
+
+        private void textBox_reparaturenTransactionAmount_TextChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

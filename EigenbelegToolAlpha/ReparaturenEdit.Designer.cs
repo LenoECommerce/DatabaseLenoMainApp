@@ -44,7 +44,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox_ReparaturenInternalNumber = new System.Windows.Forms.TextBox();
             this.textBox_reparaturenDateBought = new System.Windows.Forms.TextBox();
-            this.textBox_reparaturenDevice = new System.Windows.Forms.TextBox();
             this.textBox__reparaturenDefect = new System.Windows.Forms.TextBox();
             this.textBox_reparaturenTransactionAmount = new System.Windows.Forms.TextBox();
             this.textBox__reparaturenIMEI = new System.Windows.Forms.TextBox();
@@ -63,6 +62,13 @@
             this.comboBox_ReparaturenGetestet = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listBox_ReparaturenEditMainParts = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox_reparaturenEditDevice = new System.Windows.Forms.ComboBox();
+            this.btn_reparaturenAddNewExternalCosts = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox_ReparaturEditAddNewExternalCosts = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -146,7 +152,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(442, 188);
+            this.label9.Location = new System.Drawing.Point(444, 212);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 18);
             this.label9.TabIndex = 8;
@@ -234,14 +240,6 @@
             this.textBox_reparaturenDateBought.Size = new System.Drawing.Size(256, 20);
             this.textBox_reparaturenDateBought.TabIndex = 16;
             this.textBox_reparaturenDateBought.TextChanged += new System.EventHandler(this.textBox_reparaturenDateBought_TextChanged);
-            // 
-            // textBox_reparaturenDevice
-            // 
-            this.textBox_reparaturenDevice.Location = new System.Drawing.Point(160, 70);
-            this.textBox_reparaturenDevice.Name = "textBox_reparaturenDevice";
-            this.textBox_reparaturenDevice.Size = new System.Drawing.Size(256, 20);
-            this.textBox_reparaturenDevice.TabIndex = 17;
-            this.textBox_reparaturenDevice.TextChanged += new System.EventHandler(this.textBox_reparaturenDevice_TextChanged);
             // 
             // textBox__reparaturenDefect
             // 
@@ -347,7 +345,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(694, 349);
+            this.button1.Location = new System.Drawing.Point(694, 391);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 29);
             this.button1.TabIndex = 31;
@@ -360,6 +358,7 @@
             this.comboBox_ReparaturenReparaturStatus.FormattingEnabled = true;
             this.comboBox_ReparaturenReparaturStatus.Items.AddRange(new object[] {
             "Entgegengenommen",
+            "BackMarket Gegenangebot",
             "Getestet",
             "Reparatur",
             "Warten auf Teil",
@@ -423,11 +422,115 @@
             this.label18.TabIndex = 70;
             this.label18.Text = "Meldungen?";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(13, 326);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 18);
+            this.label5.TabIndex = 74;
+            this.label5.Text = "Hauptteile";
+            // 
+            // listBox_ReparaturenEditMainParts
+            // 
+            this.listBox_ReparaturenEditMainParts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox_ReparaturenEditMainParts.FormattingEnabled = true;
+            this.listBox_ReparaturenEditMainParts.ItemHeight = 18;
+            this.listBox_ReparaturenEditMainParts.Items.AddRange(new object[] {
+            "Display",
+            "Display Glas",
+            "Akku",
+            "BC Glas",
+            "BC komplett"});
+            this.listBox_ReparaturenEditMainParts.Location = new System.Drawing.Point(160, 326);
+            this.listBox_ReparaturenEditMainParts.Name = "listBox_ReparaturenEditMainParts";
+            this.listBox_ReparaturenEditMainParts.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox_ReparaturenEditMainParts.Size = new System.Drawing.Size(137, 94);
+            this.listBox_ReparaturenEditMainParts.TabIndex = 75;
+            this.listBox_ReparaturenEditMainParts.SelectedIndexChanged += new System.EventHandler(this.listBox_ReparaturenEditMainParts_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(319, 326);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 21);
+            this.button2.TabIndex = 76;
+            this.button2.Text = "Speichern";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // comboBox_reparaturenEditDevice
+            // 
+            this.comboBox_reparaturenEditDevice.FormattingEnabled = true;
+            this.comboBox_reparaturenEditDevice.Items.AddRange(new object[] {
+            "SE 1. Gen",
+            "6S",
+            "6S Plus",
+            "7",
+            "7 Plus",
+            "8",
+            "8 Plus",
+            "SE 2020",
+            "X",
+            "XR",
+            "XS",
+            "XS Max",
+            "11",
+            "11 Pro",
+            "11 Pro Max",
+            "12 Mini",
+            "12",
+            "12 Pro",
+            "12 Pro Max",
+            "13 Mini",
+            "13",
+            "13 Pro",
+            "13 Pro Max"});
+            this.comboBox_reparaturenEditDevice.Location = new System.Drawing.Point(160, 73);
+            this.comboBox_reparaturenEditDevice.Name = "comboBox_reparaturenEditDevice";
+            this.comboBox_reparaturenEditDevice.Size = new System.Drawing.Size(256, 21);
+            this.comboBox_reparaturenEditDevice.TabIndex = 77;
+            // 
+            // btn_reparaturenAddNewExternalCosts
+            // 
+            this.btn_reparaturenAddNewExternalCosts.Location = new System.Drawing.Point(749, 326);
+            this.btn_reparaturenAddNewExternalCosts.Name = "btn_reparaturenAddNewExternalCosts";
+            this.btn_reparaturenAddNewExternalCosts.Size = new System.Drawing.Size(97, 21);
+            this.btn_reparaturenAddNewExternalCosts.TabIndex = 78;
+            this.btn_reparaturenAddNewExternalCosts.Text = "Hinzufügen";
+            this.btn_reparaturenAddNewExternalCosts.UseVisualStyleBackColor = true;
+            this.btn_reparaturenAddNewExternalCosts.Click += new System.EventHandler(this.btn_reparaturenAddNewExternalCosts_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(447, 329);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(107, 18);
+            this.label19.TabIndex = 79;
+            this.label19.Text = "Weitere Teile";
+            // 
+            // textBox_ReparaturEditAddNewExternalCosts
+            // 
+            this.textBox_ReparaturEditAddNewExternalCosts.Location = new System.Drawing.Point(590, 327);
+            this.textBox_ReparaturEditAddNewExternalCosts.Name = "textBox_ReparaturEditAddNewExternalCosts";
+            this.textBox_ReparaturEditAddNewExternalCosts.Size = new System.Drawing.Size(153, 20);
+            this.textBox_ReparaturEditAddNewExternalCosts.TabIndex = 80;
+            // 
             // ReparaturenEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 413);
+            this.ClientSize = new System.Drawing.Size(868, 445);
+            this.Controls.Add(this.textBox_ReparaturEditAddNewExternalCosts);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.btn_reparaturenAddNewExternalCosts);
+            this.Controls.Add(this.comboBox_reparaturenEditDevice);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.listBox_ReparaturenEditMainParts);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox_ReparaturenMeldungen);
             this.Controls.Add(this.comboBox_ReparaturenGetestet);
             this.Controls.Add(this.label17);
@@ -446,7 +549,6 @@
             this.Controls.Add(this.textBox__reparaturenIMEI);
             this.Controls.Add(this.textBox_reparaturenTransactionAmount);
             this.Controls.Add(this.textBox__reparaturenDefect);
-            this.Controls.Add(this.textBox_reparaturenDevice);
             this.Controls.Add(this.textBox_reparaturenDateBought);
             this.Controls.Add(this.textBox_ReparaturenInternalNumber);
             this.Controls.Add(this.label15);
@@ -491,7 +593,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox_ReparaturenInternalNumber;
         private System.Windows.Forms.TextBox textBox_reparaturenDateBought;
-        private System.Windows.Forms.TextBox textBox_reparaturenDevice;
         private System.Windows.Forms.TextBox textBox__reparaturenDefect;
         private System.Windows.Forms.TextBox textBox_reparaturenTransactionAmount;
         private System.Windows.Forms.TextBox textBox__reparaturenIMEI;
@@ -510,5 +611,12 @@
         private System.Windows.Forms.ComboBox comboBox_ReparaturenGetestet;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBox_ReparaturenEditMainParts;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox_reparaturenEditDevice;
+        private System.Windows.Forms.Button btn_reparaturenAddNewExternalCosts;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox_ReparaturEditAddNewExternalCosts;
     }
 }

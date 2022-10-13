@@ -105,6 +105,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EigenbelegBuyBackPriceCalculation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EigenbelegBuyBackPriceCalculation.Designer.cs">
+      <DependentUpon>EigenbelegBuyBackPriceCalculation.cs</DependentUpon>
+    </Compile>
     <Compile Include="EigenbelegCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,15 @@
     <Compile Include="ReparaturenEdit.Designer.cs">
       <DependentUpon>ReparaturenEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EigenbelegBuyBackPriceCalculation.resx">
+      <DependentUpon>EigenbelegBuyBackPriceCalculation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EigenbelegCreate.resx">
       <DependentUpon>EigenbelegCreate.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReparaturenEdit.resx">
       <DependentUpon>ReparaturenEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

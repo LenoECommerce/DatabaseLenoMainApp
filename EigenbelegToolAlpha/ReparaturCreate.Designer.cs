@@ -158,6 +158,7 @@
             this.textBox_reparaturenTransactionAmount.Name = "textBox_reparaturenTransactionAmount";
             this.textBox_reparaturenTransactionAmount.Size = new System.Drawing.Size(256, 20);
             this.textBox_reparaturenTransactionAmount.TabIndex = 51;
+            this.textBox_reparaturenTransactionAmount.TextChanged += new System.EventHandler(this.textBox_reparaturenTransactionAmount_TextChanged);
             // 
             // textBox__reparaturenDefect
             // 
@@ -362,6 +363,7 @@
             this.comboBox_ReparaturenReparaturStatus.FormattingEnabled = true;
             this.comboBox_ReparaturenReparaturStatus.Items.AddRange(new object[] {
             "Entgegengenommen",
+            "BackMarket Gegenangebot",
             "Getestet",
             "Reparatur",
             "Warten auf Teil",
