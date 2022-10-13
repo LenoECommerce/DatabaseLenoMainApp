@@ -28,7 +28,7 @@ namespace EigenbelegToolAlpha
         {
             string tempInternalNumber = textBox_ReparaturenInternalNumber.Text;
             string tempDateBought = textBox_reparaturenDateBought.Text;
-            string tempDevice = textBox_reparaturenDevice.Text;
+            string tempDevice = comboBox_reparaturenCreateDevice.Text;
             string tempTransactionAmount = textBox_reparaturenTransactionAmount.Text;
             string tempMake = comboBox_reparaturenMake.Text;
             string tempStorage = comboBox__reparaturenStorage.Text;
@@ -43,14 +43,17 @@ namespace EigenbelegToolAlpha
             string tempRiskLevel = textBox_reparaturenRiskLevel.Text;
             string tempWorthIt = textBox_reparaturenWorthIt.Text;
             string tempReferenceToEB = textBox_reparaturenReferenceToEB.Text;
+            string tempColor = comboBox_ReparaturCreateColor.Text;
+            string tempTaxes = comboBox_ReparaturCreateTaxes.Text;
+            string tempCondition = comboBox_ReparaturCreateCondition.Text;
 
-            string query = string.Format("INSERT INTO `Reparaturen`(`Intern`,`Kaufdatum`,`Geraet`,`Kaufbetrag`,`IMEI`,`Marke`,`Speicher`,`Defekt`,`ExterneKosten`,`Kommentar`,`Meldungen?`,`Getestet?`,`Reparaturstatus`,`Quelle`,`Risikostufe`,`LohntSich?`,`EBReferenz`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')"
-            ,tempInternalNumber, tempDateBought, tempDevice, tempTransactionAmount, tempImei, tempMake, tempStorage, tempDefect, tempExternalCosts, tempComment, tempNotifications, tempTested, tempStatus, tempSource, tempRiskLevel, tempWorthIt, tempReferenceToEB);
+
+            string query = string.Format("INSERT INTO `Reparaturen`(`Intern`,`Kaufdatum`,`Geraet`,`Kaufbetrag`,`IMEI`,`Marke`,`Speicher`,`Defekt`,`ExterneKosten`,`Kommentar`,`Meldungen?`,`Getestet?`,`Reparaturstatus`,`Quelle`,`Risikostufe`,`LohntSich?`,`EBReferenz`,`Farbe`,`Besteuerung`,`Zustand`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}')"
+            , tempInternalNumber, tempDateBought, tempDevice, tempTransactionAmount, tempImei, tempMake, tempStorage, tempDefect, tempExternalCosts, tempComment, tempNotifications, tempTested, tempStatus, tempSource, tempRiskLevel, tempWorthIt, tempReferenceToEB, tempColor, tempTaxes, tempCondition);
 
             Reparaturen.ExecuteQuery(query);
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
-            Reparaturen window = new Reparaturen();
-            window.ShowReparaturen();
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 

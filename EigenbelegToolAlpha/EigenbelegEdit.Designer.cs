@@ -44,7 +44,6 @@
             this.textBox_eigenbelegNumber = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegSellerName = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegReference = new System.Windows.Forms.TextBox();
-            this.textBox_eigenbelegModel = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegDateBought = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegTransactionAmount = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegMail = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@
             this.btn_EigenbelegCreateSaveChanges = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.comboBox_eigenbelegStorage = new System.Windows.Forms.ComboBox();
+            this.comboBox_eigenbelegeEditDevice = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -210,13 +210,6 @@
             this.textBox_eigenbelegReference.Size = new System.Drawing.Size(205, 20);
             this.textBox_eigenbelegReference.TabIndex = 17;
             // 
-            // textBox_eigenbelegModel
-            // 
-            this.textBox_eigenbelegModel.Location = new System.Drawing.Point(169, 112);
-            this.textBox_eigenbelegModel.Name = "textBox_eigenbelegModel";
-            this.textBox_eigenbelegModel.Size = new System.Drawing.Size(205, 20);
-            this.textBox_eigenbelegModel.TabIndex = 18;
-            // 
             // textBox_eigenbelegDateBought
             // 
             this.textBox_eigenbelegDateBought.Location = new System.Drawing.Point(169, 143);
@@ -337,11 +330,44 @@
             this.comboBox_eigenbelegStorage.Size = new System.Drawing.Size(205, 21);
             this.comboBox_eigenbelegStorage.TabIndex = 68;
             // 
+            // comboBox_eigenbelegeEditDevice
+            // 
+            this.comboBox_eigenbelegeEditDevice.FormattingEnabled = true;
+            this.comboBox_eigenbelegeEditDevice.Items.AddRange(new object[] {
+            "SE 1. Gen",
+            "6S",
+            "6S Plus",
+            "7",
+            "7 Plus",
+            "8",
+            "8 Plus",
+            "SE 2020",
+            "X",
+            "XR",
+            "XS",
+            "XS Max",
+            "11",
+            "11 Pro",
+            "11 Pro Max",
+            "12 Mini",
+            "12",
+            "12 Pro",
+            "12 Pro Max",
+            "13 Mini",
+            "13",
+            "13 Pro",
+            "13 Pro Max"});
+            this.comboBox_eigenbelegeEditDevice.Location = new System.Drawing.Point(169, 111);
+            this.comboBox_eigenbelegeEditDevice.Name = "comboBox_eigenbelegeEditDevice";
+            this.comboBox_eigenbelegeEditDevice.Size = new System.Drawing.Size(205, 21);
+            this.comboBox_eigenbelegeEditDevice.TabIndex = 94;
+            // 
             // EigenbelegEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 347);
+            this.Controls.Add(this.comboBox_eigenbelegeEditDevice);
             this.Controls.Add(this.comboBox_eigenbelegStorage);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.btn_EigenbelegCreateSaveChanges);
@@ -354,7 +380,6 @@
             this.Controls.Add(this.textBox_eigenbelegMail);
             this.Controls.Add(this.textBox_eigenbelegTransactionAmount);
             this.Controls.Add(this.textBox_eigenbelegDateBought);
-            this.Controls.Add(this.textBox_eigenbelegModel);
             this.Controls.Add(this.textBox_eigenbelegReference);
             this.Controls.Add(this.textBox_eigenbelegSellerName);
             this.Controls.Add(this.textBox_eigenbelegNumber);
@@ -399,7 +424,6 @@
         private System.Windows.Forms.TextBox textBox_eigenbelegNumber;
         private System.Windows.Forms.TextBox textBox_eigenbelegSellerName;
         private System.Windows.Forms.TextBox textBox_eigenbelegReference;
-        private System.Windows.Forms.TextBox textBox_eigenbelegModel;
         private System.Windows.Forms.TextBox textBox_eigenbelegDateBought;
         private System.Windows.Forms.TextBox textBox_eigenbelegTransactionAmount;
         private System.Windows.Forms.TextBox textBox_eigenbelegMail;
@@ -412,5 +436,6 @@
         private System.Windows.Forms.Button btn_EigenbelegCreateSaveChanges;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox comboBox_eigenbelegStorage;
+        private System.Windows.Forms.ComboBox comboBox_eigenbelegeEditDevice;
     }
 }

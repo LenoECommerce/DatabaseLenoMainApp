@@ -12,12 +12,16 @@ namespace EigenbelegToolAlpha
 {
     public partial class EigenbelegBuyBackPriceCalculation : Form
     {
+        
         public EigenbelegBuyBackPriceCalculation()
         {
             InitializeComponent();
+            
         }
-        public string price = "";
+        public string price;
         public double sumup;
+
+        
         
         private void textBox_BuyBackPrice_TextChanged(object sender, EventArgs e)
         {
@@ -27,12 +31,9 @@ namespace EigenbelegToolAlpha
         public void GivePrice()
         {
             sumup = Convert.ToInt32(price) + Convert.ToInt32(price) * 0.1 + 9.2;
-            this.Hide();;
-            EigenbelegCreate handle = new EigenbelegCreate();
-            handle.textBox_eigenbelegTransactionAmount.Text = sumup.ToString()+"€";
-            handle.Show();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
-
 
 
         public void button1_Click(object sender, EventArgs e)

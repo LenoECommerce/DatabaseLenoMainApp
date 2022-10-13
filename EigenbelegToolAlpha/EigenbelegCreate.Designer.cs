@@ -37,7 +37,6 @@
             this.textBox_eigenbelegMail = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegTransactionAmount = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegDateBought = new System.Windows.Forms.TextBox();
-            this.textBox_eigenbelegModel = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegReference = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegSellerName = new System.Windows.Forms.TextBox();
             this.textBox_eigenbelegNumber = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.comboBox_eigenbelegStorage = new System.Windows.Forms.ComboBox();
+            this.comboBox_eigenbelegeCreateDevice = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // comboBox_eigenbelegArrived
@@ -145,13 +145,6 @@
             this.textBox_eigenbelegDateBought.Size = new System.Drawing.Size(205, 20);
             this.textBox_eigenbelegDateBought.TabIndex = 45;
             // 
-            // textBox_eigenbelegModel
-            // 
-            this.textBox_eigenbelegModel.Location = new System.Drawing.Point(180, 111);
-            this.textBox_eigenbelegModel.Name = "textBox_eigenbelegModel";
-            this.textBox_eigenbelegModel.Size = new System.Drawing.Size(205, 20);
-            this.textBox_eigenbelegModel.TabIndex = 44;
-            // 
             // textBox_eigenbelegReference
             // 
             this.textBox_eigenbelegReference.Location = new System.Drawing.Point(180, 81);
@@ -165,6 +158,7 @@
             this.textBox_eigenbelegSellerName.Name = "textBox_eigenbelegSellerName";
             this.textBox_eigenbelegSellerName.Size = new System.Drawing.Size(205, 20);
             this.textBox_eigenbelegSellerName.TabIndex = 42;
+            this.textBox_eigenbelegSellerName.TextChanged += new System.EventHandler(this.textBox_eigenbelegSellerName_TextChanged);
             // 
             // textBox_eigenbelegNumber
             // 
@@ -172,6 +166,7 @@
             this.textBox_eigenbelegNumber.Name = "textBox_eigenbelegNumber";
             this.textBox_eigenbelegNumber.Size = new System.Drawing.Size(205, 20);
             this.textBox_eigenbelegNumber.TabIndex = 41;
+            this.textBox_eigenbelegNumber.TextChanged += new System.EventHandler(this.textBox_eigenbelegNumber_TextChanged);
             // 
             // label2
             // 
@@ -339,11 +334,44 @@
             this.comboBox_eigenbelegStorage.Size = new System.Drawing.Size(205, 21);
             this.comboBox_eigenbelegStorage.TabIndex = 70;
             // 
+            // comboBox_eigenbelegeCreateDevice
+            // 
+            this.comboBox_eigenbelegeCreateDevice.FormattingEnabled = true;
+            this.comboBox_eigenbelegeCreateDevice.Items.AddRange(new object[] {
+            "SE 1. Gen",
+            "6S",
+            "6S Plus",
+            "7",
+            "7 Plus",
+            "8",
+            "8 Plus",
+            "SE 2020",
+            "X",
+            "XR",
+            "XS",
+            "XS Max",
+            "11",
+            "11 Pro",
+            "11 Pro Max",
+            "12 Mini",
+            "12",
+            "12 Pro",
+            "12 Pro Max",
+            "13 Mini",
+            "13",
+            "13 Pro",
+            "13 Pro Max"});
+            this.comboBox_eigenbelegeCreateDevice.Location = new System.Drawing.Point(180, 113);
+            this.comboBox_eigenbelegeCreateDevice.Name = "comboBox_eigenbelegeCreateDevice";
+            this.comboBox_eigenbelegeCreateDevice.Size = new System.Drawing.Size(205, 21);
+            this.comboBox_eigenbelegeCreateDevice.TabIndex = 93;
+            // 
             // EigenbelegCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 361);
+            this.Controls.Add(this.comboBox_eigenbelegeCreateDevice);
             this.Controls.Add(this.comboBox_eigenbelegStorage);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button1);
@@ -356,7 +384,6 @@
             this.Controls.Add(this.textBox_eigenbelegMail);
             this.Controls.Add(this.textBox_eigenbelegTransactionAmount);
             this.Controls.Add(this.textBox_eigenbelegDateBought);
-            this.Controls.Add(this.textBox_eigenbelegModel);
             this.Controls.Add(this.textBox_eigenbelegReference);
             this.Controls.Add(this.textBox_eigenbelegSellerName);
             this.Controls.Add(this.textBox_eigenbelegNumber);
@@ -394,7 +421,6 @@
         private System.Windows.Forms.TextBox textBox_eigenbelegMail;
         public System.Windows.Forms.TextBox textBox_eigenbelegTransactionAmount;
         private System.Windows.Forms.TextBox textBox_eigenbelegDateBought;
-        private System.Windows.Forms.TextBox textBox_eigenbelegModel;
         private System.Windows.Forms.TextBox textBox_eigenbelegReference;
         private System.Windows.Forms.TextBox textBox_eigenbelegSellerName;
         private System.Windows.Forms.TextBox textBox_eigenbelegNumber;
@@ -414,5 +440,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox comboBox_eigenbelegStorage;
+        private System.Windows.Forms.ComboBox comboBox_eigenbelegeCreateDevice;
     }
 }

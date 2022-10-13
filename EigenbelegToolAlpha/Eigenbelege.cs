@@ -195,12 +195,16 @@ namespace EigenbelegToolAlpha
 
         }
 
-       
-
         private void btn_eigenbelegCreate_Click(object sender, EventArgs e)
         {
-            EigenbelegCreate eigenbelegCreate = new EigenbelegCreate();
-            eigenbelegCreate.Show();
+            using (var form = new EigenbelegCreate())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowEigenbelege();
+                }
+            }
         }
 
         private void btn_eigenbelegRemove_Click(object sender, EventArgs e)
@@ -222,14 +226,21 @@ namespace EigenbelegToolAlpha
                 MessageBox.Show("Bitte wähle zuerst ein Produkt aus");
                 return;
             }
+            using (var form = new EigenbelegEdit())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowEigenbelege();
+                }
+            }
 
-            EigenbelegEdit eigenbelegEdit = new EigenbelegEdit();
-            eigenbelegEdit.Show();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             if (eigenbelegeDGV.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Bitte wähle zuerst mind. einen Eintrag aus.");

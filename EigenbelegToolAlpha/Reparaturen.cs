@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using PdfSharp.Internal;
 
 namespace EigenbelegToolAlpha
 {
@@ -36,6 +38,10 @@ namespace EigenbelegToolAlpha
         public static string tested = "";
         public static string state = "";
         public static string maindefects = "";
+        public static string color = "";
+        public static string taxes = "";
+        public static string condition = "";
+
 
 
 
@@ -117,7 +123,7 @@ namespace EigenbelegToolAlpha
             int rowIndex = -1;
             foreach (DataGridViewRow row in reparaturenDGV.Rows)
             {
-                if (row.Cells[17].Value.Equals(relatedNumber))
+                if (row.Cells[21].Value.Equals(relatedNumber))
                 {
                     rowIndex = row.Index;
                 }   
@@ -144,23 +150,40 @@ namespace EigenbelegToolAlpha
             transactionAmount = reparaturenDGV.SelectedRows[0].Cells[4].Value.ToString();
             imei = reparaturenDGV.SelectedRows[0].Cells[5].Value.ToString();
             make = reparaturenDGV.SelectedRows[0].Cells[6].Value.ToString();
-            storage = reparaturenDGV.SelectedRows[0].Cells[7].Value.ToString();
-            defect = reparaturenDGV.SelectedRows[0].Cells[8].Value.ToString();
-            maindefects = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
-            externalCosts = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
-            comment = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
-            notifications = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
-            tested = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
-            state = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
-            source = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
-            riskLevel = reparaturenDGV.SelectedRows[0].Cells[16].Value.ToString();
-            worthIt = reparaturenDGV.SelectedRows[0].Cells[17].Value.ToString();
-            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[18].Value.ToString();
+            color = reparaturenDGV.SelectedRows[0].Cells[7].Value.ToString();
+            storage = reparaturenDGV.SelectedRows[0].Cells[8].Value.ToString();
+            taxes = reparaturenDGV.SelectedRows[0].Cells[9].Value.ToString();
+            condition = reparaturenDGV.SelectedRows[0].Cells[10].Value.ToString();
+            defect = reparaturenDGV.SelectedRows[0].Cells[11].Value.ToString();
+            maindefects = reparaturenDGV.SelectedRows[0].Cells[12].Value.ToString();
+            externalCosts = reparaturenDGV.SelectedRows[0].Cells[13].Value.ToString();
+            comment = reparaturenDGV.SelectedRows[0].Cells[14].Value.ToString();
+            notifications = reparaturenDGV.SelectedRows[0].Cells[15].Value.ToString();
+            tested = reparaturenDGV.SelectedRows[0].Cells[16].Value.ToString();
+            state = reparaturenDGV.SelectedRows[0].Cells[17].Value.ToString();
+            source = reparaturenDGV.SelectedRows[0].Cells[18].Value.ToString();
+            riskLevel = reparaturenDGV.SelectedRows[0].Cells[19].Value.ToString();
+            worthIt = reparaturenDGV.SelectedRows[0].Cells[20].Value.ToString();
+            referenceToEB = reparaturenDGV.SelectedRows[0].Cells[21].Value.ToString();
 
 
             lastSelectedProductKey = (int)reparaturenDGV.SelectedRows[0].Cells[0].Value;
 
         }
+
+        private bool checkIfSelected()
+        {
+            if (lastSelectedProductKey == 0)
+            {
+                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
 
         private void btn_settings_Click(object sender, EventArgs e)
@@ -172,9 +195,8 @@ namespace EigenbelegToolAlpha
 
         private void btn_reparaturenDelete_Click(object sender, EventArgs e)
         {
-            if (lastSelectedProductKey == 0)
+            if (checkIfSelected() == false)
             {
-                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
                 return;
             }
             string query = string.Format("DELETE FROM `Reparaturen` WHERE `Id` = {0} ;", lastSelectedProductKey);
@@ -204,13 +226,18 @@ namespace EigenbelegToolAlpha
 
         private void btn_reparaturenEdit_Click(object sender, EventArgs e)
         {
-            if (lastSelectedProductKey == 0)
+            if (checkIfSelected() == false)
             {
-                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus.");
                 return;
             }
-            ReparaturenEdit reparaturenEdit = new ReparaturenEdit();
-            reparaturenEdit.Show();
+            using (var form = new ReparaturenEdit())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowReparaturen();
+                }
+            }
         }
 
         private void Reparaturen_Load(object sender, EventArgs e)
@@ -230,8 +257,14 @@ namespace EigenbelegToolAlpha
 
         private void btn_reparaturenCreate_Click(object sender, EventArgs e)
         {
-            ReparaturCreate reparaturenCreate= new ReparaturCreate();
-            reparaturenCreate.Show();
+            using (var form = new ReparaturCreate())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowReparaturen();
+                }
+            }
         }
 
         internal class GetReparaturenDGV : DataGridView
@@ -240,9 +273,8 @@ namespace EigenbelegToolAlpha
 
         private void btn_SwitchToRelatedEigenbeleg_Click(object sender, EventArgs e)
         {
-            if (lastSelectedProductKey == 0)
+            if (checkIfSelected() == false)
             {
-                MessageBox.Show("Bitte wähle zuerst einen Eintrag aus");
                 return;
             }
             Eigenbelege eigenbelege = new Eigenbelege();
@@ -255,6 +287,99 @@ namespace EigenbelegToolAlpha
         { 
             Settings window = new Settings();
             window.Show();
+        }
+
+        public void BrotherPrintThisModell(int quantityOfCopies)
+        {
+            if (checkIfSelected() == false)
+            {
+                return;
+            }
+            try
+            {
+                string internPrefix = "";
+                string zero = "0";
+                string barcodeSKU = "APL/10.1/B64C/DIFF";
+                string path = "";
+                try
+                {
+                    path = File.ReadAllText("modell.txt");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bitte setze in den Einstellungen dein Template fest; Fehlermeldung:"+ex.Message);
+                }
+                
+                //Abfrage wie lang interne Nummer, dann prefix anpassen!
+                int lengthIntern = internalNumber.Length;
+                int freeDigits = 5 - lengthIntern;
+                for (int i = 0; i < freeDigits; i++)
+                {
+                    internPrefix = internPrefix + "0";
+                }
+
+                //SKU Generator in andere Klasse auslagern!
+                SKUGeneration newObject = new SKUGeneration();
+                barcodeSKU = newObject.SKUGenerationMethod(device, color, condition, taxes, storage);
+
+                string barcodeIMEICombo = internPrefix + internalNumber + "/" + imei;
+                
+                bpac.Document doc = new bpac.Document();
+                doc.Open(path);
+                bool test = doc.SetPrinter("Brother QL-600", true);
+
+                var temp = doc.GetBarcodeIndex("SKU");
+                var temp2 = doc.GetBarcodeIndex("IMEICombo");
+                doc.SetBarcodeData(temp, barcodeSKU);
+                doc.SetBarcodeData(temp2, barcodeIMEICombo);
+
+                doc.StartPrint("", bpac.PrintOptionConstants.bpoDefault);
+                doc.PrintOut(1, bpac.PrintOptionConstants.bpoDefault);
+                doc.EndPrint();
+                doc.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Print Error: " + ex.Message);
+            }
+        }
+
+        private void platinenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hauptetikettToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BrotherPrintThisModell(1);
+        }
+
+        private void btn_WorkWithSpecificReparatur_Click(object sender, EventArgs e)
+        {
+            using (var form = new WorkWithSpecificRep())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    int rowIndex = -1;
+                    foreach (DataGridViewRow row in reparaturenDGV.Rows)
+                    {
+                        if (row.Cells[5].Value.Equals(form.matchingValue))
+                        {
+                            rowIndex = row.Index;
+                        }
+                    }
+                    if (rowIndex != -1)
+                    {
+                        reparaturenDGV.ClearSelection();
+                        reparaturenDGV.Rows[rowIndex].Selected = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Es konnte kein Eintrag gefunden werden.");
+                    }
+                }
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ namespace EigenbelegToolAlpha
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             string internalNumber = textBox_ReparaturenInternalNumber.Text;
             string dateBought = textBox_reparaturenDateBought.Text;
             string device = comboBox_reparaturenEditDevice.Text;
@@ -41,6 +40,10 @@ namespace EigenbelegToolAlpha
             string tested = comboBox_ReparaturenGetestet.Text;
             string state = comboBox_ReparaturenReparaturStatus.Text;
             string maindefects = "";
+            string color = comboBox_ReparaturEditColor.Text;
+            string condition = comboBox_ReparaturEditCondition.Text;
+            string taxes = comboBox_ReparaturEditTaxes.Text;
+
             //Speichern der Elemente in der Listbox Maindefekte
             foreach(object items in listBox_ReparaturenEditMainParts.SelectedItems)
             {
@@ -61,8 +64,8 @@ namespace EigenbelegToolAlpha
             {
                 try
                 {
-                    string query = string.Format("UPDATE `Reparaturen` SET `Intern` = '{0}',`Kaufdatum` = '{1}', `Geraet` = '{2}', `Kaufbetrag` = '{3}', `IMEI` = '{4}', `Marke` = '{5}', `Speicher` = '{6}', `Defekt` = '{7}', `ExterneKosten` = '{8}', `Kommentar` = '{9}', `Meldungen?` = '{10}', `Getestet?` = '{11}', `Reparaturstatus` = '{12}', `Quelle` = '{13}', `Risikostufe` = '{14}', `LohntSich?` = '{15}', `EBReferenz` = '{16}' , `Hauptteile` = '{17}' WHERE `Id` = {18}"
-                , internalNumber, dateBought, device, transactionAmount, imei, make, storage, defect, externalCosts, comment, notifications, tested, state, source, riskLevel, worthIt, referenceToEB, maindefects,Reparaturen.lastSelectedProductKey);
+                    string query = string.Format("UPDATE `Reparaturen` SET `Intern` = '{0}',`Kaufdatum` = '{1}', `Geraet` = '{2}', `Kaufbetrag` = '{3}', `IMEI` = '{4}', `Marke` = '{5}', `Speicher` = '{6}', `Defekt` = '{7}', `ExterneKosten` = '{8}', `Kommentar` = '{9}', `Meldungen?` = '{10}', `Getestet?` = '{11}', `Reparaturstatus` = '{12}', `Quelle` = '{13}', `Risikostufe` = '{14}', `LohntSich?` = '{15}', `EBReferenz` = '{16}' , `Hauptteile` = '{17}', `Farbe` = '{18}', `Besteuerung` = '{19}', `Zustand` = '{20}' WHERE `Id` = {21}"
+                , internalNumber, dateBought, device, transactionAmount, imei, make, storage, defect, externalCosts, comment, notifications, tested, state, source, riskLevel, worthIt, referenceToEB, maindefects, color, taxes, condition, Reparaturen.lastSelectedProductKey);
                     Reparaturen.ExecuteQuery(query);
                 }
                 catch (Exception ex)
@@ -70,11 +73,11 @@ namespace EigenbelegToolAlpha
                     MessageBox.Show(ex.Message);
                 }
                 MessageBox.Show("Deine Änderungen wurden erfolgreich gespeichert.");
-                Reparaturen window = new Reparaturen();
-                window.ShowReparaturen();
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
+
 
         private void ReparaturenEdit_Load(object sender, EventArgs e)
         {
@@ -95,6 +98,17 @@ namespace EigenbelegToolAlpha
             comboBox_ReparaturenGetestet.Text = Reparaturen.tested;
             comboBox_ReparaturenMeldungen.Text = Reparaturen.notifications;
             comboBox_ReparaturenReparaturStatus.Text = Reparaturen.state;
+            comboBox_ReparaturEditColor.Text = Reparaturen.color;
+            comboBox_ReparaturEditTaxes.Text = Reparaturen.taxes;
+            comboBox_ReparaturEditCondition.Text = Reparaturen.condition;
+
+            //Externe Kosten Feld nicht leer lassen, da sonst Fehlermeldung bei Kosten hinzufügen.
+            if (textBox_reparaturenExternalCosts.Text.Equals(""))
+            {
+                textBox_reparaturenExternalCosts.Text = "0€";
+            }
+
+
             //Umständlich gebaut aber ja
             if (Reparaturen.maindefects.Contains("Display"))
             {
@@ -116,6 +130,68 @@ namespace EigenbelegToolAlpha
             {
                 listBox_ReparaturenEditMainParts.SelectedIndex = listBox_ReparaturenEditMainParts.FindString("BC komplett");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            double price = 0;
+            double currentValue;
+            double sumValue;
+
+            foreach (object items in listBox_ReparaturenEditMainParts.SelectedItems)
+            {
+                string mainpart = items.ToString();
+                string model = comboBox_reparaturenEditDevice.Text;
+                string query = "SELECT `" + mainpart + "` FROM `Ersatzteile` WHERE `Modell`= '" + model + "'";
+                double newValue = Reparaturen.ExecuteQueryWithResult(query);
+                if (newValue != 0)
+                {
+                    price = price + newValue;
+                }
+            }
+            MessageBox.Show(price.ToString() + " wurden zu den externen Kosten hinzugefügt.");
+            //Unterscheidung, ob im Textfeld ein € Zeichen ist
+            if (textBox_reparaturenExternalCosts.Text.Contains("€"))
+            {
+                var actualLength = textBox_reparaturenExternalCosts.TextLength;
+                var fixedField = textBox_reparaturenExternalCosts.Text.Substring(0, actualLength - 1);
+                currentValue = Convert.ToDouble(fixedField);
+                sumValue = currentValue += price;
+                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
+            }
+            else
+            {
+                //Momentanen Wert festhalten in Textbox
+                currentValue = Convert.ToDouble(textBox_reparaturenExternalCosts.Text);
+                sumValue = currentValue += price;
+                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
+            }
+
+        }
+
+        private void btn_reparaturenAddNewExternalCosts_Click(object sender, EventArgs e)
+        {
+            //Unterscheidung, ob im Textfeld ein € Zeichen ist
+            double currentValue;
+            double sumValue;
+            double newCosts = Convert.ToDouble(textBox_ReparaturEditAddNewExternalCosts.Text);
+            if (textBox_reparaturenExternalCosts.Text.Contains("€"))
+            {
+                var actualLength = textBox_reparaturenExternalCosts.TextLength;
+                var fixedField = textBox_reparaturenExternalCosts.Text.Substring(0, actualLength - 1);
+                currentValue = Convert.ToDouble(fixedField);
+                sumValue = currentValue + newCosts;
+                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
+            }
+            else
+            {
+                //Momentanen Wert festhalten in Textbox
+                currentValue = Convert.ToDouble(textBox_reparaturenExternalCosts.Text);
+                sumValue = currentValue + newCosts;
+                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
+            }
+            textBox_ReparaturEditAddNewExternalCosts.Text = "";
+            MessageBox.Show("Es wurden " + newCosts + "€ hinzugefügt");
         }
 
         private void comboBox_reparaturenColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -273,66 +349,6 @@ namespace EigenbelegToolAlpha
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            double price = 0;
-            double currentValue;
-            double sumValue;
-
-            foreach (object items in listBox_ReparaturenEditMainParts.SelectedItems)
-            {
-                string mainpart = items.ToString();
-                string model = comboBox_reparaturenEditDevice.Text;
-                string query = "SELECT `" + mainpart + "` FROM `Ersatzteile` WHERE `Modell`= '" + model + "'";
-                double newValue = Reparaturen.ExecuteQueryWithResult(query);
-                if (newValue != 0)
-                {
-                    price = price + newValue;
-                }
-            }
-            MessageBox.Show(price.ToString()+" wurden zu den externen Kosten hinzugefügt.");
-            //Unterscheidung, ob im Textfeld ein € Zeichen ist
-            if (textBox_reparaturenExternalCosts.Text.Contains("€"))
-            {
-                var actualLength = textBox_reparaturenExternalCosts.TextLength;
-                var fixedField = textBox_reparaturenExternalCosts.Text.Substring(0, actualLength - 1);
-                currentValue = Convert.ToDouble(fixedField);
-                sumValue = currentValue += price;
-                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
-            }
-            else
-            {
-                //Momentanen Wert festhalten in Textbox
-                currentValue = Convert.ToDouble(textBox_reparaturenExternalCosts.Text);
-                sumValue = currentValue += price;
-                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
-            }
-
-        }
-
-        private void btn_reparaturenAddNewExternalCosts_Click(object sender, EventArgs e)
-        {
-            //Unterscheidung, ob im Textfeld ein € Zeichen ist
-            double currentValue;
-            double sumValue;
-            double newCosts = Convert.ToDouble(textBox_ReparaturEditAddNewExternalCosts.Text);
-            if (textBox_reparaturenExternalCosts.Text.Contains("€"))
-            {
-                var actualLength = textBox_reparaturenExternalCosts.TextLength;
-                var fixedField = textBox_reparaturenExternalCosts.Text.Substring(0, actualLength - 1);
-                currentValue = Convert.ToDouble(fixedField);
-                sumValue = currentValue + newCosts;
-                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
-            }
-            else
-            {
-                //Momentanen Wert festhalten in Textbox
-                currentValue = Convert.ToDouble(textBox_reparaturenExternalCosts.Text);
-                sumValue = currentValue + newCosts;
-                textBox_reparaturenExternalCosts.Text = sumValue.ToString() + "€";
-            }
-            textBox_ReparaturEditAddNewExternalCosts.Text = "";
-            MessageBox.Show("Es wurden "+sumValue+"€ hinzugefügt");
-        }
+       
     }
 }

@@ -39,7 +39,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btn_SwitchToRelatedEigenbeleg = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.etikettenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hauptetikettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.platinenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sonstigeTeileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_settings
@@ -47,7 +58,7 @@
             this.btn_settings.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings.Location = new System.Drawing.Point(1143, 29);
+            this.btn_settings.Location = new System.Drawing.Point(1109, 88);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.Size = new System.Drawing.Size(98, 26);
             this.btn_settings.TabIndex = 28;
@@ -82,7 +93,7 @@
             this.btn_DeleteAll.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_DeleteAll.ForeColor = System.Drawing.Color.Black;
-            this.btn_DeleteAll.Location = new System.Drawing.Point(232, 103);
+            this.btn_DeleteAll.Location = new System.Drawing.Point(1073, 250);
             this.btn_DeleteAll.Name = "btn_DeleteAll";
             this.btn_DeleteAll.Size = new System.Drawing.Size(134, 26);
             this.btn_DeleteAll.TabIndex = 31;
@@ -95,7 +106,7 @@
             this.btn_SelectAllRows.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SelectAllRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SelectAllRows.ForeColor = System.Drawing.Color.Black;
-            this.btn_SelectAllRows.Location = new System.Drawing.Point(71, 103);
+            this.btn_SelectAllRows.Location = new System.Drawing.Point(915, 250);
             this.btn_SelectAllRows.Name = "btn_SelectAllRows";
             this.btn_SelectAllRows.Size = new System.Drawing.Size(134, 26);
             this.btn_SelectAllRows.TabIndex = 30;
@@ -107,7 +118,7 @@
             // 
             this.btn_reparaturenEdit.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_reparaturenEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_reparaturenEdit.Location = new System.Drawing.Point(232, 29);
+            this.btn_reparaturenEdit.Location = new System.Drawing.Point(232, 250);
             this.btn_reparaturenEdit.Name = "btn_reparaturenEdit";
             this.btn_reparaturenEdit.Size = new System.Drawing.Size(134, 26);
             this.btn_reparaturenEdit.TabIndex = 34;
@@ -119,7 +130,7 @@
             // 
             this.btn_reparaturenCreate.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_reparaturenCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_reparaturenCreate.Location = new System.Drawing.Point(71, 29);
+            this.btn_reparaturenCreate.Location = new System.Drawing.Point(71, 250);
             this.btn_reparaturenCreate.Name = "btn_reparaturenCreate";
             this.btn_reparaturenCreate.Size = new System.Drawing.Size(134, 26);
             this.btn_reparaturenCreate.TabIndex = 32;
@@ -131,7 +142,7 @@
             // 
             this.btn_reparaturenDelete.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_reparaturenDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_reparaturenDelete.Location = new System.Drawing.Point(389, 29);
+            this.btn_reparaturenDelete.Location = new System.Drawing.Point(389, 250);
             this.btn_reparaturenDelete.Name = "btn_reparaturenDelete";
             this.btn_reparaturenDelete.Size = new System.Drawing.Size(134, 26);
             this.btn_reparaturenDelete.TabIndex = 35;
@@ -144,7 +155,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(1143, 61);
+            this.button1.Location = new System.Drawing.Point(1109, 120);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 26);
             this.button1.TabIndex = 36;
@@ -157,7 +168,7 @@
             this.btn_SwitchToRelatedEigenbeleg.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SwitchToRelatedEigenbeleg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SwitchToRelatedEigenbeleg.ForeColor = System.Drawing.Color.Black;
-            this.btn_SwitchToRelatedEigenbeleg.Location = new System.Drawing.Point(389, 103);
+            this.btn_SwitchToRelatedEigenbeleg.Location = new System.Drawing.Point(71, 88);
             this.btn_SwitchToRelatedEigenbeleg.Name = "btn_SwitchToRelatedEigenbeleg";
             this.btn_SwitchToRelatedEigenbeleg.Size = new System.Drawing.Size(180, 26);
             this.btn_SwitchToRelatedEigenbeleg.TabIndex = 39;
@@ -170,7 +181,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(1143, 93);
+            this.button2.Location = new System.Drawing.Point(1109, 152);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 26);
             this.button2.TabIndex = 40;
@@ -178,12 +189,114 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.etikettenToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip1.TabIndex = 41;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // etikettenToolStripMenuItem
+            // 
+            this.etikettenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hauptetikettToolStripMenuItem,
+            this.platinenToolStripMenuItem,
+            this.displayToolStripMenuItem,
+            this.sonstigeTeileToolStripMenuItem});
+            this.etikettenToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.etikettenToolStripMenuItem.Name = "etikettenToolStripMenuItem";
+            this.etikettenToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.etikettenToolStripMenuItem.Text = "Etiketten";
+            // 
+            // hauptetikettToolStripMenuItem
+            // 
+            this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
+            this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
+            // 
+            // platinenToolStripMenuItem
+            // 
+            this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.platinenToolStripMenuItem.Text = "Platinen";
+            this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
+            // 
+            // displayToolStripMenuItem
+            // 
+            this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.displayToolStripMenuItem.Text = "Display";
+            // 
+            // sonstigeTeileToolStripMenuItem
+            // 
+            this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(66, 197);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 28);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Hauptfunktionen";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(66, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(227, 28);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Erweiterte Funktionen";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(1068, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 28);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "Einstellungen";
+            // 
+            // btn_WorkWithSpecificReparatur
+            // 
+            this.btn_WorkWithSpecificReparatur.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_WorkWithSpecificReparatur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_WorkWithSpecificReparatur.ForeColor = System.Drawing.Color.Black;
+            this.btn_WorkWithSpecificReparatur.Location = new System.Drawing.Point(279, 88);
+            this.btn_WorkWithSpecificReparatur.Name = "btn_WorkWithSpecificReparatur";
+            this.btn_WorkWithSpecificReparatur.Size = new System.Drawing.Size(180, 26);
+            this.btn_WorkWithSpecificReparatur.TabIndex = 45;
+            this.btn_WorkWithSpecificReparatur.Text = "Reparatur bearbeiten";
+            this.btn_WorkWithSpecificReparatur.UseVisualStyleBackColor = false;
+            this.btn_WorkWithSpecificReparatur.Click += new System.EventHandler(this.btn_WorkWithSpecificReparatur_Click);
+            // 
             // Reparaturen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
+            this.Controls.Add(this.btn_WorkWithSpecificReparatur);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_SwitchToRelatedEigenbeleg);
             this.Controls.Add(this.button1);
@@ -194,13 +307,18 @@
             this.Controls.Add(this.btn_SelectAllRows);
             this.Controls.Add(this.reparaturenDGV);
             this.Controls.Add(this.btn_settings);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Reparaturen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reparaturen";
             this.Load += new System.EventHandler(this.Reparaturen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,5 +334,15 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_SwitchToRelatedEigenbeleg;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem etikettenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hauptetikettToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem platinenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sonstigeTeileToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_WorkWithSpecificReparatur;
     }
 }

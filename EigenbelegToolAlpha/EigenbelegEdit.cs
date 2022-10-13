@@ -23,7 +23,7 @@ namespace EigenbelegToolAlpha
             string eigenbelegNumber = textBox_eigenbelegNumber.Text;
             string sellerName = textBox_eigenbelegSellerName.Text;
             string reference = textBox_eigenbelegReference.Text;
-            string model = textBox_eigenbelegModel.Text;
+            string model = comboBox_eigenbelegeEditDevice.Text;
             string dateBought = textBox_eigenbelegDateBought.Text;
             string transactionAmount = textBox_eigenbelegTransactionAmount.Text;
             string mail = textBox_eigenbelegMail.Text;
@@ -43,8 +43,7 @@ namespace EigenbelegToolAlpha
 
             Eigenbelege.ExecuteQuery(query);
             MessageBox.Show("Deine Änderungen wurden erfolgreich gespeichert.");
-            Eigenbelege window = new Eigenbelege();
-            window.ShowEigenbelege();
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -53,7 +52,7 @@ namespace EigenbelegToolAlpha
             textBox_eigenbelegAdress.Text = Eigenbelege.address;
             textBox_eigenbelegDateBought.Text = Eigenbelege.dateBought;
             textBox_eigenbelegMail.Text = Eigenbelege.mail;
-            textBox_eigenbelegModel.Text = Eigenbelege.model;
+            comboBox_eigenbelegeEditDevice.Text = Eigenbelege.model;
             textBox_eigenbelegNumber.Text = Eigenbelege.eigenbelegNumber;
             textBox_eigenbelegReference.Text = Eigenbelege.reference;
             textBox_eigenbelegSellerName.Text = Eigenbelege.sellerName;

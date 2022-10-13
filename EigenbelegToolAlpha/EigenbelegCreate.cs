@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EigenbelegToolAlpha
 {
@@ -26,7 +27,7 @@ namespace EigenbelegToolAlpha
             string tempEigenbelegNumber = textBox_eigenbelegNumber.Text;
             string tempSellerName = textBox_eigenbelegSellerName.Text;
             string tempReference = textBox_eigenbelegReference.Text;
-            string tempModel = textBox_eigenbelegModel.Text;
+            string tempModel = comboBox_eigenbelegeCreateDevice.Text;
             string tempDateBought = textBox_eigenbelegDateBought.Text;
             string tempTransactionAmount = textBox_eigenbelegTransactionAmount.Text;
             string tempMail = textBox_eigenbelegMail.Text;
@@ -35,8 +36,8 @@ namespace EigenbelegToolAlpha
             string tempAddress = textBox_eigenbelegAdress.Text;
             string tempCreated = comboBox_eigenbelegCreated.Text;
             string tempArrived = comboBox_eigenbelegArrived.Text;
-            string tempTransactionText = textBox_eigenbelegTransactionText.Text;
             string tempEigenbelegStorage = comboBox_eigenbelegStorage.Text;
+            string tempTransactionText = "Zahlung für " + tempPlatform + ": " + tempModel + " " + tempEigenbelegStorage;
 
 
 
@@ -45,14 +46,14 @@ namespace EigenbelegToolAlpha
             
             Eigenbelege.ExecuteQuery(query);
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
-            Eigenbelege window = new Eigenbelege();
-            window.ShowEigenbelege();
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void EigenbelegCreate_Load(object sender, EventArgs e)
         {
-            textBox_eigenbelegNumber.Text = File.ReadAllText("config4.txt");
+            int newNumber = Convert.ToInt32(File.ReadAllText("config4.txt")) + 1;
+            textBox_eigenbelegNumber.Text = newNumber.ToString();
             comboBox_eigenbelegArrived.Text = "Ja";
             comboBox_eigenbelegCreated.Text = "Nein";
         }
@@ -62,15 +63,41 @@ namespace EigenbelegToolAlpha
         {
             if (comboBox_eigenbelegPlatform.Text.Equals("BackMarket"))
             {
-                EigenbelegBuyBackPriceCalculation window = new EigenbelegBuyBackPriceCalculation();
-                window.Show();
-                this.Hide();
+                comboBox_eigenbelegPaymentMethod.Text = "BuyBack / Lastschrift";
+                //BuyBack Preis Kalkulation
+                using (var form = new EigenbelegBuyBackPriceCalculation())
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        string val = form.sumup.ToString() +"€";
+                        textBox_eigenbelegTransactionAmount.Text = val;
+                    }
+                }
             }
+            else 
+            {
+                comboBox_eigenbelegPaymentMethod.Text = "PayPal";
+            }
+
         }
+
+   
+
 
         private void textBox_eigenbelegTransactionAmount_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox_eigenbelegNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_eigenbelegSellerName_TextChanged(object sender, EventArgs e)
+        {
+            textBox_eigenbelegAdress.Text = textBox_eigenbelegSellerName.Text;
         }
     }
 }
