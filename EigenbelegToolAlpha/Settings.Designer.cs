@@ -46,6 +46,7 @@
             this.openFD2 = new System.Windows.Forms.OpenFileDialog();
             this.openFD3 = new System.Windows.Forms.OpenFileDialog();
             this.openFD4 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_LocationTemplates = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label8
@@ -193,11 +194,22 @@
             // 
             this.openFD4.FileName = "openFileDialog1";
             // 
+            // btn_LocationTemplates
+            // 
+            this.btn_LocationTemplates.Location = new System.Drawing.Point(428, 22);
+            this.btn_LocationTemplates.Name = "btn_LocationTemplates";
+            this.btn_LocationTemplates.Size = new System.Drawing.Size(106, 23);
+            this.btn_LocationTemplates.TabIndex = 77;
+            this.btn_LocationTemplates.Text = "Ordnerort";
+            this.btn_LocationTemplates.UseVisualStyleBackColor = true;
+            this.btn_LocationTemplates.Click += new System.EventHandler(this.btn_LocationTemplates_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 371);
+            this.Controls.Add(this.btn_LocationTemplates);
             this.Controls.Add(this.lbl_currentPathSonstigesTemplate);
             this.Controls.Add(this.lbl_currentPathPlatinenTemplate);
             this.Controls.Add(this.lbl_currentPathDisplayTemplate);
@@ -243,5 +255,6 @@
         private System.Windows.Forms.OpenFileDialog openFD2;
         private System.Windows.Forms.OpenFileDialog openFD3;
         private System.Windows.Forms.OpenFileDialog openFD4;
+        private System.Windows.Forms.Button btn_LocationTemplates;
     }
 }

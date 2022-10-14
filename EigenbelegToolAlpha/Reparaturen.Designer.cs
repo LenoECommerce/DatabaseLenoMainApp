@@ -211,31 +211,32 @@
             this.etikettenToolStripMenuItem.Name = "etikettenToolStripMenuItem";
             this.etikettenToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.etikettenToolStripMenuItem.Text = "Etiketten";
+            this.etikettenToolStripMenuItem.Click += new System.EventHandler(this.etikettenToolStripMenuItem_Click);
             // 
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
             // 
             // label1
@@ -279,11 +280,11 @@
             this.btn_WorkWithSpecificReparatur.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_WorkWithSpecificReparatur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_WorkWithSpecificReparatur.ForeColor = System.Drawing.Color.Black;
-            this.btn_WorkWithSpecificReparatur.Location = new System.Drawing.Point(279, 88);
+            this.btn_WorkWithSpecificReparatur.Location = new System.Drawing.Point(271, 88);
             this.btn_WorkWithSpecificReparatur.Name = "btn_WorkWithSpecificReparatur";
-            this.btn_WorkWithSpecificReparatur.Size = new System.Drawing.Size(180, 26);
+            this.btn_WorkWithSpecificReparatur.Size = new System.Drawing.Size(165, 26);
             this.btn_WorkWithSpecificReparatur.TabIndex = 45;
-            this.btn_WorkWithSpecificReparatur.Text = "Reparatur bearbeiten";
+            this.btn_WorkWithSpecificReparatur.Text = "Reparatur Scan";
             this.btn_WorkWithSpecificReparatur.UseVisualStyleBackColor = false;
             this.btn_WorkWithSpecificReparatur.Click += new System.EventHandler(this.btn_WorkWithSpecificReparatur_Click);
             // 

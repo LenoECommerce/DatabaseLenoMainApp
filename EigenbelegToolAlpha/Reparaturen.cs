@@ -66,13 +66,12 @@ namespace EigenbelegToolAlpha
             ////Datensatz
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
-
             //Daten anzeigen im Grid
             reparaturenDGV.DataSource = dataSet.Tables[0];
-
             //Column verstecken
-
             reparaturenDGV.Columns[0].Visible = false;
+            //Sortierte Ansicht
+            reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Ascending);
             conn.Close();
         }
 
@@ -324,6 +323,7 @@ namespace EigenbelegToolAlpha
 
                 string barcodeIMEICombo = internPrefix + internalNumber + "/" + imei;
                 
+
                 bpac.Document doc = new bpac.Document();
                 doc.Open(path);
                 bool test = doc.SetPrinter("Brother QL-600", true);
@@ -380,6 +380,11 @@ namespace EigenbelegToolAlpha
                     }
                 }
             }
+        }
+
+        private void etikettenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

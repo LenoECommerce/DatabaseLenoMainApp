@@ -14,6 +14,7 @@ using System.Runtime.Remoting.Contexts;
 using _Excel = Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 namespace EigenbelegToolAlpha
 {
@@ -64,11 +65,9 @@ namespace EigenbelegToolAlpha
             Microsoft.Office.Interop.Excel.Range xlRange;
 
             int xlrow;
+            int newNumber;
             string strFileName;
             //Excel Datei aussuchen
-            
-
-            openFD.Filter = "Excel Office |*.xls; *xlsx";
             openFD.ShowDialog();
             strFileName = openFD.FileName;
 
@@ -76,24 +75,57 @@ namespace EigenbelegToolAlpha
             {
                 xlApp = new Microsoft.Office.Interop.Excel.Application();
                 xlWorkbook = xlApp.Workbooks.Open(strFileName);
-                xlWorksheet = xlWorkbook.Worksheets["Tabelle1"];
+                xlWorksheet = xlWorkbook.Worksheets["Worksheet"];
                 xlRange = xlWorksheet.UsedRange;
 
-                //row 2 weil erst da die daten anfangen
+                //row 2 weil erst da die daten anfange
                 for (xlrow = 2; xlrow <= xlRange.Rows.Count; xlrow++)
                 {
-                    // Hier je nachdem wie viele Spalten benutzt werden
-                    string zwischenwertTest = xlRange.Cells[xlrow, 1].Text;
-                    string query = string.Format("insert into Eigenbelege values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", 
-                        xlRange.Cells[xlrow, 1].Text, xlRange.Cells[xlrow, 2].Text, xlRange.Cells[xlrow, 3].Text, xlRange.Cells[xlrow,4].Text,
-                        xlRange.Cells[xlrow, 5].Text, xlRange.Cells[xlrow, 6].Text, xlRange.Cells[xlrow, 7].Text, xlRange.Cells[xlrow, 8].Text);
+                    newNumber = Convert.ToInt32(File.ReadAllText("config4.txt")) + 1;
+                    File.WriteAllText("config4.txt",newNumber.ToString());
+                    string tempDate = xlRange.Cells[xlrow, 1].Text;
+                    string tempSeller = xlRange.Cells[xlrow, 4].Text;
+                    string tempAmount = xlRange.Cells[xlrow, 8].Text;
+                    //- Zeichen entfernen, später für storno eigenbelege!
+                    int adaptAmount = Convert.ToInt32(tempAmount) * (-1);
+                    tempAmount = adaptAmount.ToString() + "€";
+                    string tempMail = xlRange.Cells[xlrow, 12].Text;
+                    string tempPlatform = "";
 
+                    string tempFullTransactionText = xlRange.Cells[xlrow, 17].Text;
+                    var length = tempFullTransactionText.Length;
+                    var posTrenn = tempFullTransactionText.IndexOf("trenn");
+                    var posTrenn2 = tempFullTransactionText.IndexOf("trenn2");
+                    var posTrenn3 = tempFullTransactionText.IndexOf("trenn3");
+                    var posDoublePoint = tempFullTransactionText.IndexOf(":");
+
+                    string tempReference = tempFullTransactionText.Substring(0, posTrenn-1);
+                    // Abfrage welche Plattform
+                    if (tempFullTransactionText.Contains("Ebay Kleinanzeigen"))
+                    {
+                        tempPlatform = "Ebay Kleinanzeigen";
+                    }
+                    else if (tempFullTransactionText.Contains("Ebay"))
+                    {
+                        tempPlatform = "Ebay";
+                    }
+                    else if (tempFullTransactionText.Contains("BackMarket"))
+                    {
+                        tempPlatform = "BackMarket";
+                    }
+                    string tempDevice = tempFullTransactionText.Substring(posDoublePoint + 2, posTrenn2 - posDoublePoint - 3);
+                    string tempStorage = tempFullTransactionText.Substring(posTrenn2 + 7, posTrenn3 - posTrenn2 - 8);
+
+                    //in Datenbank einfügen
+
+                    string query = string.Format("INSERT INTO `Eigenbelege` (`Eigenbelegnummer`, `Verkaeufername`,`Referenz`,`Modell`,`Kaufdatum`,`Kaufbetrag`,`E-Mail`,`Plattform`,`Zahlungsmethode`,`Adresse`,`Erstellt?`,`Angekommen?`,`Transaktionstext`,`Speicher`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
+                        , newNumber, tempSeller, tempReference, tempDevice, tempDate, tempAmount, tempMail, tempPlatform, "PayPal", "", "Nein", "Nein", tempFullTransactionText, tempStorage);
                     ExecuteQuery(query);
 
                 }
+ 
                 xlWorkbook.Close();
                 xlApp.Quit();
-
             }
             ShowEigenbelege();
 
@@ -115,13 +147,12 @@ namespace EigenbelegToolAlpha
             ////Datensatz
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
-
             //Daten anzeigen im Grid
             eigenbelegeDGV.DataSource = dataSet.Tables[0];
-
             //Column verstecken
-
             eigenbelegeDGV.Columns[0].Visible = false;
+            //Sortierte Ansicht
+            eigenbelegeDGV.Sort(eigenbelegeDGV.Columns[1], ListSortDirection.Ascending);
             conn.Close();
         }
 
@@ -378,13 +409,14 @@ namespace EigenbelegToolAlpha
             }
 
 
-            ////Abfrage ob PayPal Datenimport
-            //if (transactionText.Contains("Ebay Kleinanzeigen"))
-            //{
-            //    var posTrenn2 = transactionText.IndexOf("trenn2");
-            //    var defekt = transactionText.IndexOf("defekt");
-            //    defect = transactionText.Substring(posTrenn2+7,defekt-posTrenn2-7);
-            //}
+            //Abfrage ob PayPal Datenimport; Übernahme des Defekts 
+            if (transactionText.Contains("defekt"))
+            {
+                var posTrenn3 = transactionText.IndexOf("trenn3");
+                var posAnsonsten = transactionText.IndexOf("ansonsten");
+
+                defect = transactionText.Substring(posTrenn3 + 6, posAnsonsten - posTrenn3 - 7);
+            }
 
 
 

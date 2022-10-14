@@ -43,7 +43,6 @@
             this.btn_DeleteAll = new System.Windows.Forms.Button();
             this.btn_ImageLocPath = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.btn_PushToRep = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btn_SwitchToRelatedReparatur = new System.Windows.Forms.Button();
@@ -60,7 +59,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(192, 29);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Neue Excel Datei importieren";
+            this.button1.Text = "PayPal Daten Import";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -212,16 +211,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_3);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(312, 755);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(192, 29);
-            this.button4.TabIndex = 34;
-            this.button4.Text = "PayPal Datenimport";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // btn_PushToRep
             // 
             this.btn_PushToRep.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -323,7 +312,6 @@
             this.Controls.Add(this.btn_SwitchToRelatedReparatur);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btn_PushToRep);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_ImageLocPath);
             this.Controls.Add(this.btn_DeleteAll);
@@ -364,7 +352,6 @@
         private System.Windows.Forms.Button btn_DeleteAll;
         private System.Windows.Forms.Button btn_ImageLocPath;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btn_PushToRep;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btn_SwitchToRelatedReparatur;

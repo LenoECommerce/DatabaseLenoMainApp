@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
 namespace EigenbelegToolAlpha
 {
     public partial class Settings : Form
     {
         public string valueIntern = File.ReadAllText("config3.txt");
         public string valueEigenbelegNumber = File.ReadAllText("config4.txt");
+        public string folderLocation;
 
         public Settings()
         {
@@ -47,9 +49,9 @@ namespace EigenbelegToolAlpha
         private void lbl_currentPathModellTemplate_Click(object sender, EventArgs e)
         {
             openFD.ShowDialog();
-            string selectedFileName = openFD.SafeFileName;
-            string selectedFile = Path.GetFullPath(selectedFileName);
-            File.WriteAllText("modell.txt", selectedFile);
+            string selectedFileName = openFD.FileName;
+            //string selectedFile = Path.GetFullPath(selectedFileName);
+            File.WriteAllText("modell.txt", selectedFileName);
             lbl_currentPathModellTemplate.Text = File.ReadAllText("modell.txt");
         }
 
@@ -78,6 +80,11 @@ namespace EigenbelegToolAlpha
             string selectedFile = Path.GetFullPath(selectedFileName);
             File.WriteAllText("sonstiges.txt", selectedFile);
             lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
+        }
+
+        private void btn_LocationTemplates_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
