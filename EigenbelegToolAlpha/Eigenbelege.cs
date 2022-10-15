@@ -152,7 +152,7 @@ namespace EigenbelegToolAlpha
             //Column verstecken
             eigenbelegeDGV.Columns[0].Visible = false;
             //Sortierte Ansicht
-            eigenbelegeDGV.Sort(eigenbelegeDGV.Columns[1], ListSortDirection.Ascending);
+            eigenbelegeDGV.Sort(eigenbelegeDGV.Columns[1], ListSortDirection.Descending);
             conn.Close();
         }
 
@@ -468,6 +468,106 @@ namespace EigenbelegToolAlpha
         {
             Settings window = new Settings();
             window.Show();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorksheet;
+            Microsoft.Office.Interop.Excel.Range xlRange;
+
+            int xlrow;
+            string strFileName;
+            //Excel Datei aussuchen
+            openFD.ShowDialog();
+            strFileName = openFD.FileName;
+
+            if (destPath != "")
+            {
+                xlApp = new Microsoft.Office.Interop.Excel.Application();
+                xlWorkbook = xlApp.Workbooks.Open(strFileName);
+                xlWorksheet = xlWorkbook.Worksheets["Tabelle1"];
+                xlRange = xlWorksheet.UsedRange;
+
+                //row 2 weil erst da die daten anfange
+                for (xlrow = 2; xlrow <= xlRange.Rows.Count; xlrow++)
+                {
+
+                    string tempDate = xlRange.Cells[xlrow, 4].Text;
+                    string tempSeller = xlRange.Cells[xlrow, 1].Text;
+                    string tempAmount = xlRange.Cells[xlrow, 7].Text;
+                    string tempMail = xlRange.Cells[xlrow, 5].Text;
+                    string tempReference = xlRange.Cells[xlrow, 2].Text;
+                    string tempDevice = xlRange.Cells[xlrow, 3].Text;
+                    string tempPlatform = xlRange.Cells[xlrow, 8].Text;
+                    string tempPayment = xlRange.Cells[xlrow, 9].Text;
+                    string tempFullTransactionText = xlRange.Cells[xlrow, 15].Text;
+                    string tempNumber = xlRange.Cells[xlrow, 10].Text;
+                    string tempAddress = xlRange.Cells[xlrow, 11].Text;
+                    string tempArrived = xlRange.Cells[xlrow, 14].Text;
+                    string tempCreated = xlRange.Cells[xlrow, 12].Text;
+
+
+
+
+                    // Abfrage welche Plattform
+                    if (tempPlatform.Contains("EK"))
+                    {
+                        tempPlatform = "Ebay Kleinanzeigen";
+                    }
+                    else if (tempPlatform.Contains("/"))
+                    {
+                        tempPlatform = "/";
+                    }
+                    else if (tempPlatform.Contains("Ebay"))
+                    {
+                        tempPlatform = "Ebay";
+                    }
+                    else if (tempPlatform.Contains("Flohmarkt"))
+                    {
+                        tempPlatform = "Flohmarkt";
+                    }
+                    else if (tempPlatform.Contains("BM"))
+                    {
+                        tempPlatform = "BackMarket";
+                    }
+
+                    // Abfrage welche Zahlungsmethode
+                    if (tempPayment.Contains("PP"))
+                    {
+                        tempPayment = "PayPal";
+                    }
+                    else if (tempPayment.Contains("N26") || tempPayment.Contains("Sicher bezahlen") || tempPayment.Contains("Penta") || tempPayment.Contains("Bankkonto"))
+                    {
+                        tempPayment = "Bankkonto";
+                    }
+                    else if (tempPayment.Contains("/"))
+                    {
+                        tempPayment = "/";
+                    }
+                    else if (tempPayment.Contains("bar"))
+                    {
+                        tempPayment = "bar";
+                    }
+
+
+
+
+
+
+                    //in Datenbank einfügen
+
+                    string query = string.Format("INSERT INTO `Eigenbelege` (`Eigenbelegnummer`, `Verkaeufername`,`Referenz`,`Modell`,`Kaufdatum`,`Kaufbetrag`,`E-Mail`,`Plattform`,`Zahlungsmethode`,`Adresse`,`Erstellt?`,`Angekommen?`,`Transaktionstext`,`Speicher`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
+                            , tempNumber, tempSeller, tempReference, tempDevice, tempDate, tempAmount, tempMail, tempPlatform, tempPayment, tempAddress, tempCreated, tempArrived, tempFullTransactionText, "");
+                    ExecuteQuery(query);
+
+                }
+
+                xlWorkbook.Close();
+                xlApp.Quit();
+            }
+            ShowEigenbelege();
         }
     }
 }

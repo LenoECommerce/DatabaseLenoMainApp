@@ -49,6 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.openFD = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -216,27 +218,27 @@
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
             // 
             // label1
@@ -288,12 +290,30 @@
             this.btn_WorkWithSpecificReparatur.UseVisualStyleBackColor = false;
             this.btn_WorkWithSpecificReparatur.Click += new System.EventHandler(this.btn_WorkWithSpecificReparatur_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(1042, 776);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(165, 26);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "Manueller Datenimport";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // openFD
+            // 
+            this.openFD.FileName = "openFileDialog1";
+            // 
             // Reparaturen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btn_WorkWithSpecificReparatur);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -345,5 +365,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_WorkWithSpecificReparatur;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.OpenFileDialog openFD;
     }
 }

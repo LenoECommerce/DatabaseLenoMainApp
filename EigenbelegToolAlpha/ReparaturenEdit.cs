@@ -141,7 +141,10 @@ namespace EigenbelegToolAlpha
             foreach (object items in listBox_ReparaturenEditMainParts.SelectedItems)
             {
                 string mainpart = items.ToString();
-                string model = comboBox_reparaturenEditDevice.Text;
+                string modelInput = comboBox_reparaturenEditDevice.Text;
+                //Zerteilung zu Modell
+                var length = modelInput.Length;
+                string model = modelInput.Substring(6,length-6);
                 string query = "SELECT `" + mainpart + "` FROM `Ersatzteile` WHERE `Modell`= '" + model + "'";
                 double newValue = Reparaturen.ExecuteQueryWithResult(query);
                 if (newValue != 0)

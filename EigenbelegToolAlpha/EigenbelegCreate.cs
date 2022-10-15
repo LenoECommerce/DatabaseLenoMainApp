@@ -53,6 +53,7 @@ namespace EigenbelegToolAlpha
         private void EigenbelegCreate_Load(object sender, EventArgs e)
         {
             int newNumber = Convert.ToInt32(File.ReadAllText("config4.txt")) + 1;
+            File.WriteAllText("config4.txt", newNumber.ToString());
             textBox_eigenbelegNumber.Text = newNumber.ToString();
             comboBox_eigenbelegArrived.Text = "Ja";
             comboBox_eigenbelegCreated.Text = "Nein";
