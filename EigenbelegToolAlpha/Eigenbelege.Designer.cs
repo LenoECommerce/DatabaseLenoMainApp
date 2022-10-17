@@ -42,7 +42,6 @@
             this.btn_SelectAllRows = new System.Windows.Forms.Button();
             this.btn_DeleteAll = new System.Windows.Forms.Button();
             this.btn_ImageLocPath = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.btn_PushToRep = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btn_SwitchToRelatedReparatur = new System.Windows.Forms.Button();
@@ -51,12 +50,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.eigenbelegeDGV)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(61, 755);
+            this.button1.Location = new System.Drawing.Point(61, 773);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(192, 29);
             this.button1.TabIndex = 0;
@@ -81,7 +85,7 @@
             this.eigenbelegeDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.eigenbelegeDGV.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.eigenbelegeDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.eigenbelegeDGV.Location = new System.Drawing.Point(61, 193);
+            this.eigenbelegeDGV.Location = new System.Drawing.Point(61, 225);
             this.eigenbelegeDGV.Name = "eigenbelegeDGV";
             this.eigenbelegeDGV.ReadOnly = true;
             this.eigenbelegeDGV.RowHeadersVisible = false;
@@ -98,7 +102,7 @@
             // 
             this.btn_eigenbelegCreate.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_eigenbelegCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_eigenbelegCreate.Location = new System.Drawing.Point(77, 151);
+            this.btn_eigenbelegCreate.Location = new System.Drawing.Point(79, 179);
             this.btn_eigenbelegCreate.Name = "btn_eigenbelegCreate";
             this.btn_eigenbelegCreate.Size = new System.Drawing.Size(121, 26);
             this.btn_eigenbelegCreate.TabIndex = 22;
@@ -110,7 +114,7 @@
             // 
             this.btn_eigenbelegEdit.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_eigenbelegEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_eigenbelegEdit.Location = new System.Drawing.Point(221, 151);
+            this.btn_eigenbelegEdit.Location = new System.Drawing.Point(223, 179);
             this.btn_eigenbelegEdit.Name = "btn_eigenbelegEdit";
             this.btn_eigenbelegEdit.Size = new System.Drawing.Size(121, 26);
             this.btn_eigenbelegEdit.TabIndex = 23;
@@ -122,7 +126,7 @@
             // 
             this.btn_eigenbelegRemove.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_eigenbelegRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_eigenbelegRemove.Location = new System.Drawing.Point(368, 151);
+            this.btn_eigenbelegRemove.Location = new System.Drawing.Point(370, 179);
             this.btn_eigenbelegRemove.Name = "btn_eigenbelegRemove";
             this.btn_eigenbelegRemove.Size = new System.Drawing.Size(121, 26);
             this.btn_eigenbelegRemove.TabIndex = 24;
@@ -135,7 +139,7 @@
             this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(77, 52);
+            this.button3.Location = new System.Drawing.Point(79, 80);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(134, 26);
             this.button3.TabIndex = 26;
@@ -152,7 +156,7 @@
             this.btn_settings.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings.Location = new System.Drawing.Point(1012, 84);
+            this.btn_settings.Location = new System.Drawing.Point(1014, 80);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.Size = new System.Drawing.Size(98, 26);
             this.btn_settings.TabIndex = 27;
@@ -165,7 +169,7 @@
             this.btn_SelectAllRows.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SelectAllRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SelectAllRows.ForeColor = System.Drawing.Color.Black;
-            this.btn_SelectAllRows.Location = new System.Drawing.Point(535, 151);
+            this.btn_SelectAllRows.Location = new System.Drawing.Point(537, 179);
             this.btn_SelectAllRows.Name = "btn_SelectAllRows";
             this.btn_SelectAllRows.Size = new System.Drawing.Size(134, 26);
             this.btn_SelectAllRows.TabIndex = 28;
@@ -178,7 +182,7 @@
             this.btn_DeleteAll.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_DeleteAll.ForeColor = System.Drawing.Color.Black;
-            this.btn_DeleteAll.Location = new System.Drawing.Point(698, 151);
+            this.btn_DeleteAll.Location = new System.Drawing.Point(700, 179);
             this.btn_DeleteAll.Name = "btn_DeleteAll";
             this.btn_DeleteAll.Size = new System.Drawing.Size(134, 26);
             this.btn_DeleteAll.TabIndex = 29;
@@ -191,7 +195,7 @@
             this.btn_ImageLocPath.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_ImageLocPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_ImageLocPath.ForeColor = System.Drawing.Color.Black;
-            this.btn_ImageLocPath.Location = new System.Drawing.Point(1012, 52);
+            this.btn_ImageLocPath.Location = new System.Drawing.Point(1118, 80);
             this.btn_ImageLocPath.Name = "btn_ImageLocPath";
             this.btn_ImageLocPath.Size = new System.Drawing.Size(98, 26);
             this.btn_ImageLocPath.TabIndex = 32;
@@ -199,25 +203,12 @@
             this.btn_ImageLocPath.UseVisualStyleBackColor = false;
             this.btn_ImageLocPath.Click += new System.EventHandler(this.btn_ImageLocPath_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(1116, 52);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 26);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "Fenster";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_3);
-            // 
             // btn_PushToRep
             // 
             this.btn_PushToRep.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_PushToRep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_PushToRep.ForeColor = System.Drawing.Color.Black;
-            this.btn_PushToRep.Location = new System.Drawing.Point(221, 52);
+            this.btn_PushToRep.Location = new System.Drawing.Point(223, 80);
             this.btn_PushToRep.Name = "btn_PushToRep";
             this.btn_PushToRep.Size = new System.Drawing.Size(134, 26);
             this.btn_PushToRep.TabIndex = 35;
@@ -230,7 +221,7 @@
             this.button5.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(1116, 84);
+            this.button5.Location = new System.Drawing.Point(1118, 112);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(98, 26);
             this.button5.TabIndex = 37;
@@ -243,7 +234,7 @@
             this.btn_SwitchToRelatedReparatur.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SwitchToRelatedReparatur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SwitchToRelatedReparatur.ForeColor = System.Drawing.Color.Black;
-            this.btn_SwitchToRelatedReparatur.Location = new System.Drawing.Point(368, 52);
+            this.btn_SwitchToRelatedReparatur.Location = new System.Drawing.Point(370, 80);
             this.btn_SwitchToRelatedReparatur.Name = "btn_SwitchToRelatedReparatur";
             this.btn_SwitchToRelatedReparatur.Size = new System.Drawing.Size(134, 26);
             this.btn_SwitchToRelatedReparatur.TabIndex = 38;
@@ -256,7 +247,7 @@
             this.btn_settings2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_settings2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings2.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings2.Location = new System.Drawing.Point(1012, 114);
+            this.btn_settings2.Location = new System.Drawing.Point(1014, 142);
             this.btn_settings2.Name = "btn_settings2";
             this.btn_settings2.Size = new System.Drawing.Size(202, 26);
             this.btn_settings2.TabIndex = 41;
@@ -270,7 +261,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(72, 9);
+            this.label2.Location = new System.Drawing.Point(74, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(227, 28);
             this.label2.TabIndex = 44;
@@ -282,7 +273,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(72, 108);
+            this.label1.Location = new System.Drawing.Point(74, 136);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 28);
             this.label1.TabIndex = 45;
@@ -294,7 +285,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Atlanta", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1069, 9);
+            this.label3.Location = new System.Drawing.Point(1071, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 28);
             this.label3.TabIndex = 46;
@@ -305,7 +296,7 @@
             this.button4.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(1080, 758);
+            this.button4.Location = new System.Drawing.Point(1080, 776);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(134, 26);
             this.button4.TabIndex = 47;
@@ -313,12 +304,47 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fensterwechselToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip1.TabIndex = 48;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fensterwechselToolStripMenuItem
+            // 
+            this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eigenbelegeToolStripMenuItem,
+            this.protokollierungToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
+            // 
+            // eigenbelegeToolStripMenuItem
+            // 
+            this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
+            this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
+            // 
+            // protokollierungToolStripMenuItem
+            // 
+            this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protokollierungToolStripMenuItem.Text = "Protokollierung";
+            this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
+            // 
             // Eigenbelege
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -327,7 +353,6 @@
             this.Controls.Add(this.btn_SwitchToRelatedReparatur);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btn_PushToRep);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_ImageLocPath);
             this.Controls.Add(this.btn_DeleteAll);
             this.Controls.Add(this.btn_SelectAllRows);
@@ -346,6 +371,8 @@
             this.Text = "Eigenbelege";
             this.Load += new System.EventHandler(this.Hauptmenü_Load);
             ((System.ComponentModel.ISupportInitialize)(this.eigenbelegeDGV)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,7 +393,6 @@
         private System.Windows.Forms.Button btn_SelectAllRows;
         private System.Windows.Forms.Button btn_DeleteAll;
         private System.Windows.Forms.Button btn_ImageLocPath;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btn_PushToRep;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btn_SwitchToRelatedReparatur;
@@ -375,6 +401,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fensterwechselToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eigenbelegeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem;
     }
 }
 

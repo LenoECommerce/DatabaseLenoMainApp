@@ -144,8 +144,9 @@ namespace EigenbelegToolAlpha
                 string modelInput = comboBox_reparaturenEditDevice.Text;
                 //Zerteilung zu Modell
                 var length = modelInput.Length;
-                string model = modelInput.Substring(6,length-6);
-                string query = "SELECT `" + mainpart + "` FROM `Ersatzteile` WHERE `Modell`= '" + model + "'";
+                string model = modelInput.Substring(7,length-7);
+                string query2 = "SELECT `Display` FROM `Ersatzteile` WHERE `Modell` = '6S'";
+                string query = "SELECT `" + mainpart + "` FROM `Ersatzteile` WHERE `Modell` = '" + model + "'";
                 double newValue = Reparaturen.ExecuteQueryWithResult(query);
                 if (newValue != 0)
                 {

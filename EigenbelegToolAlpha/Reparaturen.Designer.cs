@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reparaturen));
-            this.btn_settings = new System.Windows.Forms.Button();
             this.reparaturenDGV = new System.Windows.Forms.DataGridView();
             this.btn_DeleteAll = new System.Windows.Forms.Button();
             this.btn_SelectAllRows = new System.Windows.Forms.Button();
@@ -51,22 +50,12 @@
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
+            this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_settings
-            // 
-            this.btn_settings.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_settings.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings.Location = new System.Drawing.Point(1109, 88);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(98, 26);
-            this.btn_settings.TabIndex = 28;
-            this.btn_settings.Text = "Fenster";
-            this.btn_settings.UseVisualStyleBackColor = false;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
             // reparaturenDGV
             // 
@@ -157,7 +146,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(1109, 120);
+            this.button1.Location = new System.Drawing.Point(1109, 88);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 26);
             this.button1.TabIndex = 36;
@@ -183,7 +172,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(1109, 152);
+            this.button2.Location = new System.Drawing.Point(1109, 120);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(98, 26);
             this.button2.TabIndex = 40;
@@ -195,7 +184,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.etikettenToolStripMenuItem});
+            this.etikettenToolStripMenuItem,
+            this.fensterwechselToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -218,27 +208,27 @@
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
             // 
             // label1
@@ -307,6 +297,29 @@
             // 
             this.openFD.FileName = "openFileDialog1";
             // 
+            // fensterwechselToolStripMenuItem
+            // 
+            this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eigenbelegeToolStripMenuItem,
+            this.protokollierungToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
+            // 
+            // eigenbelegeToolStripMenuItem
+            // 
+            this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eigenbelegeToolStripMenuItem.Text = "Eigenbelege";
+            this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
+            // 
+            // protokollierungToolStripMenuItem
+            // 
+            this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protokollierungToolStripMenuItem.Text = "Protokollierung";
+            this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
+            // 
             // Reparaturen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,7 +340,6 @@
             this.Controls.Add(this.btn_DeleteAll);
             this.Controls.Add(this.btn_SelectAllRows);
             this.Controls.Add(this.reparaturenDGV);
-            this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -344,8 +356,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_settings;
         public System.Windows.Forms.DataGridView reparaturenDGV;
         private System.Windows.Forms.Button btn_DeleteAll;
         private System.Windows.Forms.Button btn_SelectAllRows;
@@ -367,5 +377,8 @@
         private System.Windows.Forms.Button btn_WorkWithSpecificReparatur;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFD;
+        private System.Windows.Forms.ToolStripMenuItem fensterwechselToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eigenbelegeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem;
     }
 }

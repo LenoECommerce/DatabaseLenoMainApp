@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUDQueries.cs" />
     <Compile Include="EigenbelegBuyBackPriceCalculation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,10 +136,28 @@
     <Compile Include="EigenbelegEdit.Designer.cs">
       <DependentUpon>EigenbelegEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Evaluations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evaluations.Designer.cs">
+      <DependentUpon>Evaluations.cs</DependentUpon>
+    </Compile>
     <Compile Include="pdfDocument.cs" />
     <Compile Include="pdfDocumentStorno.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protokollierung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Protokollierung.Designer.cs">
+      <DependentUpon>Protokollierung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProtokollierungScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProtokollierungScan.Designer.cs">
+      <DependentUpon>ProtokollierungScan.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReparaturCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +201,9 @@
     <EmbeddedResource Include="EigenbelegEdit.resx">
       <DependentUpon>EigenbelegEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Evaluations.resx">
+      <DependentUpon>Evaluations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -191,6 +213,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Protokollierung.resx">
+      <DependentUpon>Protokollierung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProtokollierungScan.resx">
+      <DependentUpon>ProtokollierungScan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReparaturCreate.resx">
       <DependentUpon>ReparaturCreate.cs</DependentUpon>
     </EmbeddedResource>

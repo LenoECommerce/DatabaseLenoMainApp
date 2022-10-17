@@ -569,5 +569,19 @@ namespace EigenbelegToolAlpha
             }
             ShowEigenbelege();
         }
+
+        private void eigenbelegeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reparaturen window = new Reparaturen();
+            window.Show();
+            this.Hide();
+        }
+
+        private void protokollierungToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Protokollierung window = new Protokollierung();
+            window.Show();
+            this.Hide();
+        }
     }
 }
