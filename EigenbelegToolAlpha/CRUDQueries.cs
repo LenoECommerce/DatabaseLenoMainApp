@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Collections;
+using System.IO;
 
 namespace EigenbelegToolAlpha
 {
@@ -12,7 +15,33 @@ namespace EigenbelegToolAlpha
     {
         public static MySqlConnection conn;
         public static string connString = "SERVER=sql11.freesqldatabase.com;PORT=3306;Initial Catalog='sql11525524';username=sql11525524;password=d3ByMHVgie";
+        public string saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        public string fileName = @"\\Backup for " + DateTime.Today.ToString().Substring(0,10)+".sql";
 
+        public void Backup()
+        {
+            if (File.Exists(saveLocation + fileName) == true)
+            {
+                return;
+            }
+            else
+            {
+                using (MySqlConnection conn = new MySqlConnection(connString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(saveLocation + fileName);
+                            conn.Close();
+                        }
+                    }
+                }
+                MessageBox.Show("Es wurde erfolgreich ein BackUp für heute erstellt.");
+            }
+        }
         public static void ExecuteQuery(string query)
         {
             try

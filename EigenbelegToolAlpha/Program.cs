@@ -16,7 +16,9 @@ namespace EigenbelegToolAlpha
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Protokollierung());
+            CRUDQueries window = new CRUDQueries();
+            window.Backup();
+            Application.Run(new EvaluationCalculation());
         }
     }
 }
