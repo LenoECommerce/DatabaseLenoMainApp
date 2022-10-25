@@ -38,7 +38,9 @@ namespace EigenbelegToolAlpha
         public double restVersandkosten;
         public double restEbayVorsteuer;
 
-
+        public static double RunningCostsSum;
+        public static double RunningCostsTaxGetBack;
+        public static double RunningCostsFinal;
 
         private void btn_ContinueWithEvaluation3_Click(object sender, EventArgs e)
         {
@@ -63,6 +65,16 @@ namespace EigenbelegToolAlpha
             restKredit = Convert.ToDouble(textBox_RestKredit.Text);
             restVersandkosten = Convert.ToDouble(textBox_RestVersandkosten.Text);
             restEbayVorsteuer = Convert.ToDouble(textBox_EbayVorsteuer.Text);
+            //21 Elemente!
+            RunningCostsSum = digitalToolsBillBee + digitalToolsBitwarden + digitalToolsEbayAbo + digitalToolsFraenk + digitalToolsKleinanzeigen + digitalToolsLexOffice + digitalToolsNsys + digitalToolsPenta
+                + digitalToolsSQLDatabase + digitalToolsZapier + websitesElementorPro + websitesIONOS + websitesSiteground + legalFinanzbuchhaltung + legalRechtskanzlei + legalSteuerberatung + legalVerpackungslizenz
+                + restEbayVorsteuer + restKredit + restMiete + restVersandkosten;
+            RunningCostsTaxGetBack = (RunningCostsSum - restKredit - restMiete - websitesElementorPro - websitesSiteground)/1.19*0.19+(restEbayVorsteuer);
+            RunningCostsFinal = RunningCostsSum - RunningCostsTaxGetBack;
+
+            EvaluationCalculation window = new EvaluationCalculation();
+            window.Show();
+            this.Hide();
         }
 
         private void EvaluationThirdForm_Load(object sender, EventArgs e)

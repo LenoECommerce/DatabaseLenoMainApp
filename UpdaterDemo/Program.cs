@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EigenbelegToolAlpha
+namespace UpdaterDemo
 {
     internal static class Program
     {
@@ -16,9 +16,7 @@ namespace EigenbelegToolAlpha
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CRUDQueries window = new CRUDQueries();
-            window.Backup();
-            Application.Run(new Protokollierung());
+            Application.Run(new Form1());
         }
     }
 }

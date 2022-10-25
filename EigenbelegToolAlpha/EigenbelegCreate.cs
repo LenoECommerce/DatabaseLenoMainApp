@@ -55,6 +55,7 @@ namespace EigenbelegToolAlpha
             int newNumber = Convert.ToInt32(File.ReadAllText("config4.txt")) + 1;
             File.WriteAllText("config4.txt", newNumber.ToString());
             textBox_eigenbelegNumber.Text = newNumber.ToString();
+            textBox_eigenbelegDateBought.Text = DateTime.Now.ToString().Substring(0, 10);
             comboBox_eigenbelegArrived.Text = "Ja";
             comboBox_eigenbelegCreated.Text = "Nein";
         }

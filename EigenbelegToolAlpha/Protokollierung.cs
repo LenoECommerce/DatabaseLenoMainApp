@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using SautinSoft.Document;
 using System;
+using System.Diagnostics;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +31,25 @@ namespace EigenbelegToolAlpha
         {
             InitializeComponent();
             ShowProtokollierung();
+
+            WebClient webClient = new WebClient();
+            string downloadString = "https://pastebin.com/fTkxTGP6";
+            try
+            {
+                if (!webClient.DownloadString(downloadString).Contains("1.5.0"))
+                {
+                    if (MessageBox.Show("Oh there is an update", "Demo app", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes) using (var client = new WebClient())
+                    {
+                            Process.Start("UpdaterDemo.exe");
+                            this.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void ShowProtokollierung()
@@ -70,13 +91,12 @@ namespace EigenbelegToolAlpha
             window.Show();
             this.Hide();
         }
-
-        private void btn_reparaturenCreate_Click(object sender, EventArgs e)
+        public void ProtokollierungCreate()
         {
-            if (textBox_IMEI.Text == "" || 
-                textBox_InternalNumber.Text == "" ||
-                textBox_OrderID.Text == "" ||
-                comboBox_Marketplace.Text == "")
+            if (textBox_IMEI.Text == "" ||
+               textBox_InternalNumber.Text == "" ||
+               textBox_OrderID.Text == "" ||
+               comboBox_Marketplace.Text == "")
             {
                 MessageBox.Show("Bitte füll alle Felder aus.");
                 return;
@@ -90,10 +110,14 @@ namespace EigenbelegToolAlpha
 
 
             string query = string.Format("INSERT INTO `Protokollierung`(`Bestellnummer`,`IMEI`,`Intern`,`Marktplatz`,`Monat`,`Scandatum`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')"
-           , orderID,imei,internalNumber,marketplace,month,scanDate);  
+           , orderID, imei, internalNumber, marketplace, month, scanDate);
             CRUDQueries.ExecuteQuery(query);
             MessageBox.Show("Der Eintrag wurde erfolgreich erstellt.");
             ShowProtokollierung();
+        }
+        public void btn_reparaturenCreate_Click(object sender, EventArgs e)
+        {
+            ProtokollierungCreate();
         }
 
         private void textBox_OrderID_TextChanged(object sender, EventArgs e)
@@ -119,19 +143,39 @@ namespace EigenbelegToolAlpha
                     var giveBackValue = form.scanInput;
                     var length = giveBackValue.ToString().Length;
                     textBox_IMEI.Text = giveBackValue.ToString().Substring(6,length-6);
-                    textBox_InternalNumber.Text = giveBackValue.ToString().Substring(0, 5);
+                    var internalNumber = giveBackValue.ToString().Substring(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (internalNumber.Substring(i, 1) != "0")
+                        {
+                            internalNumber = internalNumber.Substring(i, 5 - i);
+                            break;
+                        }
+                    }
+
+                    textBox_InternalNumber.Text = internalNumber;
 
                     string orderIDValue = form.orderIDInput;
                     if (orderIDValue != "")
                     {
-                        string first = orderIDValue.Substring(0, 2);
-                        string second = orderIDValue.Substring(3, 5);
-                        string third = orderIDValue.Substring(9, 5);
-                        textBox_OrderID.Text = first + "-" + second + "-" + third;
+                        if (orderIDValue.Contains("-"))
+                        {
+                            string first = orderIDValue.Substring(0, 2);
+                            string second = orderIDValue.Substring(3, 5);
+                            string third = orderIDValue.Substring(9, 5);
+                            textBox_OrderID.Text = first + "-" + second + "-" + third;
+                        }
+                        textBox_OrderID.Text = orderIDValue;
                     }
 
                 }
             }
+            ProtokollierungCreate();
+            textBox_IMEI.Text = "";
+            textBox_InternalNumber.Text = "";
+            textBox_OrderID.Text = "";
+            textBox_ScanDate.Text = "";
+            comboBox_Marketplace.Text = "";
         }
 
         private void protokollierungDGV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -251,6 +295,26 @@ namespace EigenbelegToolAlpha
         {
             CRUDQueries window = new CRUDQueries();
             window.Backup();
+        }
+
+        private void btn_BulkEditor_Click(object sender, EventArgs e)
+        {
+            using (var form = new ProtokollierungBulkEditor())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var newMonth = form.selectedMonth;
+                    foreach (DataGridViewRow row in protokollierungDGV.SelectedRows)
+                    {
+                        string tempValue = row.Cells[0].Value.ToString();
+                        int getId = Convert.ToInt32(tempValue);
+                        string query = "UPDATE `Protokollierung` SET `Monat` = '" + newMonth + "' WHERE `Id` = " + getId;
+                        CRUDQueries.ExecuteQuery(query);
+                    }
+                }
+            }
+            ShowProtokollierung();
         }
     }
 }

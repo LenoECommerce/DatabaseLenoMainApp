@@ -160,6 +160,12 @@
     <Compile Include="EvaluationSecondForm.Designer.cs">
       <DependentUpon>EvaluationSecondForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationSumUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluationSumUp.Designer.cs">
+      <DependentUpon>EvaluationSumUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="EvaluationThirdForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,12 @@
     </Compile>
     <Compile Include="Protokollierung.Designer.cs">
       <DependentUpon>Protokollierung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProtokollierungBulkEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProtokollierungBulkEditor.Designer.cs">
+      <DependentUpon>ProtokollierungBulkEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="ProtokollierungScan.cs">
       <SubType>Form</SubType>
@@ -213,6 +225,7 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="SKUGeneration.cs" />
+    <Compile Include="TextOperations.cs" />
     <Compile Include="WorkWithSpecificRep.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +253,9 @@
     <EmbeddedResource Include="EvaluationSecondForm.resx">
       <DependentUpon>EvaluationSecondForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EvaluationSumUp.resx">
+      <DependentUpon>EvaluationSumUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EvaluationThirdForm.resx">
       <DependentUpon>EvaluationThirdForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +273,9 @@
     </Compile>
     <EmbeddedResource Include="Protokollierung.resx">
       <DependentUpon>Protokollierung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProtokollierungBulkEditor.resx">
+      <DependentUpon>ProtokollierungBulkEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProtokollierungScan.resx">
       <DependentUpon>ProtokollierungScan.cs</DependentUpon>

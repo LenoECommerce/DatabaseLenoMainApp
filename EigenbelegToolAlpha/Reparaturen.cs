@@ -417,99 +417,18 @@ namespace EigenbelegToolAlpha
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application xlApp;
-            Microsoft.Office.Interop.Excel.Workbook xlWorkbook;
-            Microsoft.Office.Interop.Excel.Worksheet xlWorksheet;
-            Microsoft.Office.Interop.Excel.Range xlRange;
+            string taxUpdate = "Regelbesteuerung";
+            string tempintern = "";
+            for (int i = 278; i <= 280 ; i++)
+            {
+                tempintern = i.ToString();
+                string query = "UPDATE `Reparaturen` SET `Besteuerung` = '" + taxUpdate + "' WHERE `Intern` = '" + tempintern + "'";
+                ExecuteQuery(query);
+            }
 
-            int xlrow ;
-            string strFileName;
-            //Excel Datei aussuchen
-            openFD.ShowDialog();
-            strFileName = openFD.FileName;
+            ShowReparaturen();
 
             
-                xlApp = new Microsoft.Office.Interop.Excel.Application();
-                xlWorkbook = xlApp.Workbooks.Open(strFileName);
-                xlWorksheet = xlWorkbook.Worksheets["Tabelle1"];
-                xlRange = xlWorksheet.UsedRange;
-
-            //row 2 weil erst da die daten anfange
-            for (xlrow = 2; xlrow <= xlRange.Rows.Count; xlrow++)
-            {
-
-                string tempIntern = xlRange.Cells[xlrow, 1].Text;
-                string tempDate = xlRange.Cells[xlrow, 2].Text;
-                string tempDevice = xlRange.Cells[xlrow, 3].Text;
-                string tempDefect = xlRange.Cells[xlrow, 4].Text;
-                string tempAmount = xlRange.Cells[xlrow, 5].Text;
-                string tempExternalCosts = xlRange.Cells[xlrow, 6].Text;
-                string tempReference = xlRange.Cells[xlrow, 7].Text;
-                string tempIMEI = xlRange.Cells[xlrow, 8].Text;
-                string tempSource = xlRange.Cells[xlrow, 9].Text;
-
-
-                //in Datenbank einfügen 1 Mal
-
-                string query = string.Format("INSERT INTO `Reparaturen` (`Intern`, `Kaufdatum`,`Geraet`,`Kaufbetrag`,`IMEI`,`Defekt`,`ExterneKosten`,`EBReferenz`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')"
-                                , tempIntern, tempDate, tempDevice, tempAmount, tempIMEI, tempDefect, tempExternalCosts, tempReference);
-                ExecuteQuery(query);
-                ShowReparaturen();
-                //Suchen Datum
-                foreach (DataGridViewRow row in reparaturenDGV.Rows)
-                {
-                    if (row.Cells[21].Value.Equals(tempReference))
-                    {
-                        string query2 = "SELECT `Kaufdatum` FROM `Eigenbelege` WHERE `Eigenbelegnummer`= '" + tempReference + "'";
-                        var result = ExecuteQueryWithResultForManualDataImport(query2).ToString();
-                        if (result != "0" & result != null & result != "")
-                        {
-                            tempDate = result;
-                        }
-                    }
-                }
-                //IMEI Übernahme
-                if (tempIMEI.Contains("-"))
-                {
-                    var length = tempIMEI.Length;
-                    tempIMEI = tempIMEI.Substring(6, length - 6);
-                }
-
-                //Quelle
-                if (tempSource == "1")
-                {
-                    tempSource = "B2B";
-                }
-                else
-                {
-                    foreach (DataGridViewRow row in reparaturenDGV.Rows)
-                    {
-                        if (row.Cells[21].Value.Equals(tempReference))
-                        {
-                            string query2 = "SELECT `Plattform` FROM `Eigenbelege` WHERE `Eigenbelegnummer`= '" + tempReference + "'";
-                            var result = ExecuteQueryWithResultForManualDataImport(query2);
-                            if (result != "0" & result != null & result != "")
-                            {
-                                tempSource = result;
-                            }
-                            string query3 = "SELECT `Plattform` FROM `Eigenbelege` WHERE `Eigenbelegnummer`= '" + tempReference + "'";
-                            var result2 = ExecuteQueryWithResultForManualDataImport(query3);
-                            if (result2 != "0" & result2 != null & result2 != "")
-                            {
-                                tempSource = result2;
-                            }
-                        }
-                    }
-                }
-                //2. Datenanpassung!
-                ShowReparaturen();
-                string querySecond = string.Format("UPDATE `Reparaturen` SET `Kaufdatum` = '{0}',`IMEI` = '{1}',`Quelle` = '{2}' WHERE `Intern` = {3}"
-                                , tempDate, tempIMEI, tempSource, tempIntern);
-                ExecuteQuery(querySecond);
-            }
-                xlWorkbook.Close();
-                xlApp.Quit();
-                ShowReparaturen();
         }
 
         private void button4_Click(object sender, EventArgs e)
