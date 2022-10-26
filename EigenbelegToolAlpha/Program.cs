@@ -18,7 +18,16 @@ namespace EigenbelegToolAlpha
             Application.SetCompatibleTextRenderingDefault(false);
             CRUDQueries window = new CRUDQueries();
             window.Backup();
-            Application.Run(new Protokollierung());
+            StartMenu window2 = new StartMenu();
+            if (window2.CheckUser() == false)
+            {
+                Application.Run(new StartMenu());
+            }
+            else
+            {
+                Application.Run(new Eigenbelege());
+            }
+
         }
     }
 }

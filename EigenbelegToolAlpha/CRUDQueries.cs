@@ -63,6 +63,27 @@ namespace EigenbelegToolAlpha
                 return 0;
             }
         }
+        public static string ExecuteQueryWithResultString(string table, string searchingColumn, string getValueOfWhere, string equalValue)
+        {
+            string query = "SELECT `" + searchingColumn + "` FROM `" + table + "` WHERE `" + getValueOfWhere + "` = '" + equalValue + "'";
+            try
+            {
+                conn = new MySqlConnection();
+                conn.ConnectionString = connString;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                //zwischenspeichern und danach umformen um Fehlerquelle zu vermeiden
+                var firstValueGetBack = cmd.ExecuteScalar();
+                string result = firstValueGetBack.ToString();
+                conn.Close();
+                return result;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "";
+            }
+        }
         public static void ExecuteQuery(string query)
         {
             try

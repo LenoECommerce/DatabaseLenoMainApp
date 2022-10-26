@@ -28,7 +28,8 @@ namespace EigenbelegToolAlpha
         {
             textBox_SettingsEigenbelegNummer.Text = valueEigenbelegNumber;
             textBox_SettingsInternalNumber.Text = valueIntern;
-            lbl_currentPathModellTemplate.Text = File.ReadAllText("modell.txt");
+            string modellTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser","TemplateModell","Nutzer",File.ReadAllText("user.txt"));
+            lbl_currentPathModellTemplate.Text = modellTemplate;
             //lbl_currentPathDisplayTemplate.Text = File.ReadAllText("display.txt");
             //lbl_currentPathPlatinenTemplate.Text = File.ReadAllText("platinen.txt");
             //lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
