@@ -18,6 +18,7 @@ namespace EigenbelegToolAlpha
         public string valueIntern = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer").ToString();
         public string valueEigenbelegNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "Eigenbelegnummer").ToString();
         public string folderLocation;
+        public string currentUser = File.ReadAllText("user.txt");
 
         public Settings()
         {
@@ -28,11 +29,14 @@ namespace EigenbelegToolAlpha
         {
             textBox_SettingsEigenbelegNummer.Text = valueEigenbelegNumber;
             textBox_SettingsInternalNumber.Text = valueIntern;
-            string modellTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser","TemplateModell","Nutzer",File.ReadAllText("user.txt"));
+            string modellTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser","TemplateModell","Nutzer", currentUser);
             lbl_currentPathModellTemplate.Text = modellTemplate;
-            //lbl_currentPathDisplayTemplate.Text = File.ReadAllText("display.txt");
-            //lbl_currentPathPlatinenTemplate.Text = File.ReadAllText("platinen.txt");
-            //lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
+            string displayTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplateDisplay", "Nutzer", currentUser);
+            lbl_currentPathDisplayTemplate.Text = displayTemplate;
+            string platineTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplatePlatine", "Nutzer", currentUser);
+            lbl_currentPathPlatinenTemplate.Text = platineTemplate;
+            string sonstigeTeileTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplateSonstigeTeile", "Nutzer", currentUser);
+            lbl_currentPathSonstigesTemplate.Text = sonstigeTeileTemplate;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,9 +56,8 @@ namespace EigenbelegToolAlpha
         {
             openFD.ShowDialog();
             string selectedFileName = openFD.FileName;
-            //string selectedFile = Path.GetFullPath(selectedFileName);
-            File.WriteAllText("modell.txt", selectedFileName);
-            lbl_currentPathModellTemplate.Text = File.ReadAllText("modell.txt");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `TemplateModell` = '" + selectedFileName + "' WHERE `Nutzer` = '"+ currentUser + "'");
+            lbl_currentPathModellTemplate.Text = selectedFileName;
         }
 
         private void lbl_currentPathDisplayTemplate_Click(object sender, EventArgs e)
