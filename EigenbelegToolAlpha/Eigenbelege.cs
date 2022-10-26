@@ -15,6 +15,7 @@ using _Excel = Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
 namespace EigenbelegToolAlpha
 {
@@ -289,12 +290,12 @@ namespace EigenbelegToolAlpha
             {
                 string eigenbelegNumber = eigenbelegeDGV.SelectedRows[i].Cells[1].Value.ToString();
                 string sellerName = eigenbelegeDGV.SelectedRows[i].Cells[2].Value.ToString();
-                string dateBought = eigenbelegeDGV.SelectedRows[i].Cells[3].Value.ToString();
-                string transactionAmount = eigenbelegeDGV.SelectedRows[i].Cells[4].Value.ToString();
-                string article = eigenbelegeDGV.SelectedRows[i].Cells[5].Value.ToString();
-                string platform = eigenbelegeDGV.SelectedRows[i].Cells[6].Value.ToString();
-                string paymentMethod = eigenbelegeDGV.SelectedRows[i].Cells[7].Value.ToString();
-                string sellerAddress = eigenbelegeDGV.SelectedRows[i].Cells[8].Value.ToString();
+                string dateBought = eigenbelegeDGV.SelectedRows[i].Cells[5].Value.ToString();
+                string transactionAmount = eigenbelegeDGV.SelectedRows[i].Cells[6].Value.ToString();
+                string article = eigenbelegeDGV.SelectedRows[i].Cells[13].Value.ToString();
+                string platform = eigenbelegeDGV.SelectedRows[i].Cells[8].Value.ToString();
+                string paymentMethod = eigenbelegeDGV.SelectedRows[i].Cells[9].Value.ToString();
+                string sellerAddress = eigenbelegeDGV.SelectedRows[i].Cells[10].Value.ToString();
                 if (platform == "/")
                 {
                     pdfDocumentStorno.CreateDocument(eigenbelegNumber, sellerName, dateBought, transactionAmount, article, platform, paymentMethod, sellerAddress);
@@ -420,8 +421,8 @@ namespace EigenbelegToolAlpha
 
 
 
-            int intern = Convert.ToInt32(File.ReadAllText("config3.txt"))+1;
-            File.WriteAllText("config3.txt",intern.ToString());
+            int intern = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer") + 1; ;
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + intern + "' WHERE `Typ` = 'InterneNummer'");
 
 
             string query = string.Format("INSERT INTO `Reparaturen`(`Intern`,`Kaufdatum`,`Geraet`,`Kaufbetrag`,`Speicher`,`Defekt`,`Reparaturstatus`,`Quelle`,`EBReferenz`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"

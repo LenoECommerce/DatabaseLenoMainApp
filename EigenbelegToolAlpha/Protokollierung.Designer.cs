@@ -57,7 +57,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btn_Evaluation = new System.Windows.Forms.Button();
             this.btn_BulkEditor = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.protokollierungDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -374,22 +373,12 @@
             this.btn_BulkEditor.UseVisualStyleBackColor = false;
             this.btn_BulkEditor.Click += new System.EventHandler(this.btn_BulkEditor_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(315, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 70;
-            this.comboBox1.Text = "Version 3.0";
-            // 
             // Protokollierung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btn_BulkEditor);
             this.Controls.Add(this.btn_Evaluation);
             this.Controls.Add(this.button3);
@@ -458,6 +447,5 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btn_Evaluation;
         private System.Windows.Forms.Button btn_BulkEditor;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

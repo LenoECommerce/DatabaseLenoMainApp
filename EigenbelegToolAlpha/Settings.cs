@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 
 
 namespace EigenbelegToolAlpha
 {
     public partial class Settings : Form
     {
-        public string valueIntern = File.ReadAllText("config3.txt");
-        public string valueEigenbelegNumber = File.ReadAllText("config4.txt");
+        public string valueIntern = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer").ToString();
+        public string valueEigenbelegNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "Eigenbelegnummer").ToString();
         public string folderLocation;
 
         public Settings()
@@ -28,15 +29,15 @@ namespace EigenbelegToolAlpha
             textBox_SettingsEigenbelegNummer.Text = valueEigenbelegNumber;
             textBox_SettingsInternalNumber.Text = valueIntern;
             lbl_currentPathModellTemplate.Text = File.ReadAllText("modell.txt");
-            lbl_currentPathDisplayTemplate.Text = File.ReadAllText("display.txt");
-            lbl_currentPathPlatinenTemplate.Text = File.ReadAllText("platinen.txt");
-            lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
+            //lbl_currentPathDisplayTemplate.Text = File.ReadAllText("display.txt");
+            //lbl_currentPathPlatinenTemplate.Text = File.ReadAllText("platinen.txt");
+            //lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            File.WriteAllText("config3.txt",textBox_SettingsInternalNumber.Text);
-            File.WriteAllText("config4.txt", textBox_SettingsEigenbelegNummer.Text);
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + valueEigenbelegNumber + "' WHERE `Typ` = 'Eigenbelegnummer'");
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + valueIntern + "' WHERE `Typ` = 'InterneNummer'");
             MessageBox.Show("Deine Einstellungen wurden gespeichert.");
             this.Hide();
         }

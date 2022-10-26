@@ -13,6 +13,7 @@ namespace EigenbelegToolAlpha
 {
     public partial class ReparaturCreate : Form
     {
+        public int tempNumber = 0;
         public ReparaturCreate()
         {
             InitializeComponent();
@@ -20,7 +21,8 @@ namespace EigenbelegToolAlpha
 
         private void ReparaturCreate_Load(object sender, EventArgs e)
         {
-            textBox_ReparaturenInternalNumber.Text = File.ReadAllText("config3.txt");
+            tempNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer") + 1;
+            textBox_ReparaturenInternalNumber.Text = tempNumber.ToString();
             comboBox_ReparaturenReparaturStatus.Text = "Entgegengenommen";
         }
 
@@ -52,6 +54,7 @@ namespace EigenbelegToolAlpha
             , tempInternalNumber, tempDateBought, tempDevice, tempTransactionAmount, tempImei, tempMake, tempStorage, tempDefect, tempExternalCosts, tempComment, tempNotifications, tempTested, tempStatus, tempSource, tempRiskLevel, tempWorthIt, tempReferenceToEB, tempColor, tempTaxes, tempCondition);
 
             Reparaturen.ExecuteQuery(query);
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + tempNumber + "' WHERE `Typ` = 'InterneNummer'");
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
             this.DialogResult = DialogResult.OK;
             this.Close();

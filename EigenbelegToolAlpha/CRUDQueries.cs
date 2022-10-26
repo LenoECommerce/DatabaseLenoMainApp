@@ -42,6 +42,27 @@ namespace EigenbelegToolAlpha
                 MessageBox.Show("Es wurde erfolgreich ein BackUp für heute erstellt.");
             }
         }
+        public static int ExecuteQueryWithResult(string table, string searchingColumn, string getValueOfWhere, string equalValue)
+        {
+            string query = "SELECT `"+searchingColumn+"` FROM `"+table+ "` WHERE `"+getValueOfWhere+ "` = '"+equalValue+"'";
+            try
+            {
+                conn = new MySqlConnection();
+                conn.ConnectionString = connString;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                //zwischenspeichern und danach umformen um Fehlerquelle zu vermeiden
+                var firstValueGetBack = cmd.ExecuteScalar();
+                int result = Convert.ToInt32(firstValueGetBack);
+                conn.Close();
+                return result;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
         public static void ExecuteQuery(string query)
         {
             try

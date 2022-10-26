@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace EigenbelegToolAlpha
 {
@@ -19,7 +20,7 @@ namespace EigenbelegToolAlpha
             InitializeComponent();
 
         }
-
+        public int newNumber = 0;
         
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,7 +44,7 @@ namespace EigenbelegToolAlpha
 
             string query = string.Format("INSERT INTO `Eigenbelege`(`Eigenbelegnummer`,`Verkaeufername`,`Referenz`,`Modell`,`Kaufdatum`,`Kaufbetrag`,`E-Mail`,`Plattform`,`Zahlungsmethode`,`Adresse`,`Erstellt?`,`Angekommen?`,`Transaktionstext`,`Speicher`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
            , tempEigenbelegNumber,tempSellerName,tempReference,tempModel,tempDateBought,tempTransactionAmount,tempMail,tempPlatform,tempPaymentMethod,tempAddress,tempCreated,tempArrived,tempTransactionText, tempEigenbelegStorage);
-            
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + newNumber + "' WHERE `Typ` = 'Eigenbelegnummer'");
             Eigenbelege.ExecuteQuery(query);
             MessageBox.Show("Dein Eintrag wurde erfolgreich erstellt.");
             this.DialogResult = DialogResult.OK;
@@ -52,8 +53,7 @@ namespace EigenbelegToolAlpha
 
         private void EigenbelegCreate_Load(object sender, EventArgs e)
         {
-            int newNumber = Convert.ToInt32(File.ReadAllText("config4.txt")) + 1;
-            File.WriteAllText("config4.txt", newNumber.ToString());
+            int newNumber = CRUDQueries.ExecuteQueryWithResult("Config","Nummer","Typ","Eigenbelegnummer") + 1;
             textBox_eigenbelegNumber.Text = newNumber.ToString();
             textBox_eigenbelegDateBought.Text = DateTime.Now.ToString().Substring(0, 10);
             comboBox_eigenbelegArrived.Text = "Ja";
