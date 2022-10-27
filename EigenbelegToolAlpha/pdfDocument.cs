@@ -20,6 +20,8 @@ namespace EigenbelegToolAlpha
         public static string signaturePath = "Unterschrift.png";
         public static string paymentMethodPath = "paypal.jpg";
         public static string filename = "";
+        public static string locationImages = @"C:\\Users\\lenna\\Desktop";
+        public static string savePath = @"C:\Users\lenna\Desktop\speicherort";
 
         public static void CreateDocument(string pdfEigenbelegNumber, string pdfSellerName, string pdfDateBought,
              string pdfTransactionAmount, string pdfArticle, string pdfPlatform, string pdfPaymentmethod, string pdfAddress)
@@ -85,24 +87,30 @@ namespace EigenbelegToolAlpha
             //Bilder!
             DrawImage(gfx, signaturePath, 200, 750, 280, 80);
 
-            //config2: Speicherort Bilder | config3: Dateiendung
 
-            //Alle Ordner ausgeben im Hauptspeicherort als Array; Durchsuchung anhand eines bestimmten Ordnername
-            var pathOfDir = Directory.GetDirectories(File.ReadAllText("config2.txt")).Where(Directory => Directory.Contains(pdfEigenbelegNumber)).ToList();
-            //Alle Dateien speichern des Belegs; gerade aufm ersten Index, weil es nur ein Ergebnis gibt!
-         
-            var filesInDir = Directory.GetFiles(pathOfDir[0]);
-
-            //Schleife die neue Seite erstellt
-            for (int i = 0; i < filesInDir.Length; i++)
+            try
             {
-                PdfPage pageImage = document.AddPage();
-                XGraphics gfx3 = XGraphics.FromPdfPage(pageImage);
-                DrawImage(gfx3, filesInDir[i], 50, 50, 500, 800);
+                //Alle Ordner ausgeben im Hauptspeicherort als Array; Durchsuchung anhand eines bestimmten Ordnername
+                var pathOfDir = Directory.GetDirectories(locationImages).Where(Directory => Directory.Contains(pdfEigenbelegNumber)).ToList();
+                //Alle Dateien speichern des Belegs; gerade aufm ersten Index, weil es nur ein Ergebnis gibt!
+                var filesInDir = Directory.GetFiles(pathOfDir[0]);
+
+                //Schleife die neue Seite erstellt
+                for (int i = 0; i < filesInDir.Length; i++)
+                {
+                    PdfPage pageImage = document.AddPage();
+                    XGraphics gfx3 = XGraphics.FromPdfPage(pageImage);
+                    DrawImage(gfx3, filesInDir[i], 50, 50, 500, 800);
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Bei der Bildsuche ist ein Fehler passiert.");
+            }    
+
 
             filename = "Eigenbeleg" + pdfEigenbelegNumber + "_" + pdfDateBought + "_" + pdfTransactionAmount;
-            document.Save(File.ReadAllText("config.txt") + @"/" + filename + ".pdf");
+            document.Save(savePath + @"/" + filename + ".pdf");
 
         }
 

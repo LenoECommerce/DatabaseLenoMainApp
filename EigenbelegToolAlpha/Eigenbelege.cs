@@ -279,11 +279,11 @@ namespace EigenbelegToolAlpha
                 return;
             }
 
-            if (File.ReadAllText("config.txt") == "")
-            {
-                MessageBox.Show("Du hast noch keinen Speicherpfad angegeben.");
-                return;
-            }
+            //if (File.ReadAllText("config.txt") == "")
+            //{
+            //    MessageBox.Show("Du hast noch keinen Speicherpfad angegeben.");
+            //    return;
+            //}
 
 
             for (int i = 0; i < eigenbelegeDGV.SelectedRows.Count; i++)
