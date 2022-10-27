@@ -17,10 +17,9 @@ namespace EigenbelegToolAlpha
 {
     public class pdfDocument
     {
-        public static string signaturePath = Properties.Resources.Unterschrift.ToString();
         public static string paymentMethodPath = "paypal.jpg";
         public static string filename = "";
-        public static string locationImages = @"C:\\Users\\lenna\\Desktop";
+        public static string locationImages = @"C:\Users\lenna\Desktop\bilder";
         public static string savePath = @"C:\Users\lenna\Desktop\speicherort";
 
         public static void CreateDocument(string pdfEigenbelegNumber, string pdfSellerName, string pdfDateBought,
@@ -85,7 +84,13 @@ namespace EigenbelegToolAlpha
 
 
             //Bilder!
-            DrawImage(gfx, signaturePath, 200, 750, 280, 80);
+            string imagePath = Path.GetTempPath();
+            imagePath = imagePath + "unterschrift.png";
+            if (File.Exists(imagePath) == false)
+            {
+                Properties.Resources.Unterschrift.Save(imagePath);
+            }
+            DrawImage(gfx, imagePath, 200, 750, 280, 80);
 
 
             try
@@ -122,7 +127,7 @@ namespace EigenbelegToolAlpha
         {
             if (File.Exists(jpegSamplePath)==false)
             {
-                MessageBox.Show("Für den Beleg mit dem Pfad "+jpegSamplePath+" wurde keine Datei gefunden.");
+                MessageBox.Show("Für den Pfad "+jpegSamplePath+" wurde keine Datei gefunden.");
                 return;
             }
             XImage image = XImage.FromFile(jpegSamplePath);

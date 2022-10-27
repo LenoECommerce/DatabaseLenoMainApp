@@ -54,7 +54,8 @@
             this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btn_folderInstaCreate = new System.Windows.Forms.Button();
+            this.btn_buybackPriceAdaptions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eigenbelegeDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +171,7 @@
             this.btn_SelectAllRows.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_SelectAllRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SelectAllRows.ForeColor = System.Drawing.Color.Black;
-            this.btn_SelectAllRows.Location = new System.Drawing.Point(537, 179);
+            this.btn_SelectAllRows.Location = new System.Drawing.Point(919, 179);
             this.btn_SelectAllRows.Name = "btn_SelectAllRows";
             this.btn_SelectAllRows.Size = new System.Drawing.Size(134, 26);
             this.btn_SelectAllRows.TabIndex = 28;
@@ -183,7 +184,7 @@
             this.btn_DeleteAll.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_DeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_DeleteAll.ForeColor = System.Drawing.Color.Black;
-            this.btn_DeleteAll.Location = new System.Drawing.Point(700, 179);
+            this.btn_DeleteAll.Location = new System.Drawing.Point(1082, 179);
             this.btn_DeleteAll.Name = "btn_DeleteAll";
             this.btn_DeleteAll.Size = new System.Drawing.Size(134, 26);
             this.btn_DeleteAll.TabIndex = 29;
@@ -222,7 +223,7 @@
             this.button5.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(1118, 112);
+            this.button5.Location = new System.Drawing.Point(967, 37);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(98, 26);
             this.button5.TabIndex = 37;
@@ -248,11 +249,11 @@
             this.btn_settings2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_settings2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings2.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings2.Location = new System.Drawing.Point(1014, 142);
+            this.btn_settings2.Location = new System.Drawing.Point(1014, 112);
             this.btn_settings2.Name = "btn_settings2";
             this.btn_settings2.Size = new System.Drawing.Size(202, 26);
             this.btn_settings2.TabIndex = 41;
-            this.btn_settings2.Text = "Einstellungen Nummern";
+            this.btn_settings2.Text = "Einstellungen Alles";
             this.btn_settings2.UseVisualStyleBackColor = false;
             this.btn_settings2.Click += new System.EventHandler(this.btn_settings2_Click);
             // 
@@ -339,14 +340,31 @@
             this.protokollierungToolStripMenuItem.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
-            // label4
+            // btn_folderInstaCreate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(560, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 49;
-            this.label4.Text = "label5";
+            this.btn_folderInstaCreate.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_folderInstaCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_folderInstaCreate.ForeColor = System.Drawing.Color.Black;
+            this.btn_folderInstaCreate.Location = new System.Drawing.Point(527, 80);
+            this.btn_folderInstaCreate.Name = "btn_folderInstaCreate";
+            this.btn_folderInstaCreate.Size = new System.Drawing.Size(134, 26);
+            this.btn_folderInstaCreate.TabIndex = 49;
+            this.btn_folderInstaCreate.Text = "Ordner Insta Create";
+            this.btn_folderInstaCreate.UseVisualStyleBackColor = false;
+            this.btn_folderInstaCreate.Click += new System.EventHandler(this.btn_folderInstaCreate_Click);
+            // 
+            // btn_buybackPriceAdaptions
+            // 
+            this.btn_buybackPriceAdaptions.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_buybackPriceAdaptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_buybackPriceAdaptions.ForeColor = System.Drawing.Color.Black;
+            this.btn_buybackPriceAdaptions.Location = new System.Drawing.Point(688, 80);
+            this.btn_buybackPriceAdaptions.Name = "btn_buybackPriceAdaptions";
+            this.btn_buybackPriceAdaptions.Size = new System.Drawing.Size(134, 26);
+            this.btn_buybackPriceAdaptions.TabIndex = 50;
+            this.btn_buybackPriceAdaptions.Text = "BuyBack Price Adaption";
+            this.btn_buybackPriceAdaptions.UseVisualStyleBackColor = false;
+            this.btn_buybackPriceAdaptions.Click += new System.EventHandler(this.btn_buybackPriceAdaptions_Click);
             // 
             // Eigenbelege
             // 
@@ -354,7 +372,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btn_buybackPriceAdaptions);
+            this.Controls.Add(this.btn_folderInstaCreate);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label3);
@@ -416,7 +435,8 @@
         private System.Windows.Forms.ToolStripMenuItem fensterwechselToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eigenbelegeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btn_folderInstaCreate;
+        private System.Windows.Forms.Button btn_buybackPriceAdaptions;
     }
 }
 

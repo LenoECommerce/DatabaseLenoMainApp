@@ -584,5 +584,76 @@ namespace EigenbelegToolAlpha
             window.Show();
             this.Hide();
         }
+
+        private void btn_folderInstaCreate_Click(object sender, EventArgs e)
+        {
+            FolderInstaCreate window = new FolderInstaCreate();
+            window.Show();
+        }
+
+        private void btn_buybackPriceAdaptions_Click(object sender, EventArgs e)
+        {
+            openFD.ShowDialog();
+            string strFileName = openFD.FileName;
+            int xlrow;
+            int countValueChanges = 0;
+
+            Microsoft.Office.Interop.Excel.Application xlApp;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkbook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorksheet;
+            Microsoft.Office.Interop.Excel.Range xlRange;
+
+            if (strFileName != "")
+            {
+                xlApp = new Microsoft.Office.Interop.Excel.Application();
+                xlWorkbook = xlApp.Workbooks.Open(strFileName);
+                xlWorksheet = xlWorkbook.Worksheets["Worksheet"];
+                xlRange = xlWorksheet.UsedRange;
+
+                for (xlrow = 2; xlrow <= xlRange.Rows.Count; xlrow++)
+                {
+                    if (xlRange.Cells[xlrow, 5].Text == "ADYEN NV")
+                    {
+                        //Filterung 
+                        string tempAmount = xlRange.Cells[xlrow, 9].Text;
+                        string newTransactionAmount = tempAmount.Substring(1,tempAmount.Length-1);
+
+                        string fullTransactionstext = xlRange.Cells[xlrow, 8].Text;
+                        var fullLength = fullTransactionstext.Length;
+                        var posMarket = fullTransactionstext.IndexOf("Market");
+                        string temp = fullTransactionstext.Substring(posMarket + 7, fullLength - posMarket - 7);
+                        var posLastSpace = temp.IndexOf(" ");
+
+                        string orderID = temp.Substring(0,posLastSpace);
+                        foreach (DataGridViewRow row in eigenbelegeDGV.Rows)
+                        {
+                            if (row.Cells[3].Value.Equals(orderID))
+                            {
+                                string tempNumber = row.Cells[1].Value.ToString();
+                                double calcOldAmount = Convert.ToDouble(row.Cells[6].Value.ToString());
+                                double calcNewAmount = Convert.ToDouble(newTransactionAmount);
+                                double difference = calcOldAmount - calcNewAmount;
+                                if (difference != 0)
+                                {
+                                    CRUDQueries.ExecuteQuery("UPDATE `Eigenbelege` SET `Kaufbetrag` = '" + newTransactionAmount + "' WHERE `Referenz` = '"+orderID+"'");
+                                    CRUDQueries.ExecuteQuery("UPDATE `Reparaturen` SET `Kaufbetrag` = '" + newTransactionAmount + "' WHERE `EBReferenz` = '" + tempNumber + "'");
+                                    countValueChanges++;
+                                }
+                            }
+                        }
+                    }
+
+                    string tempDate = xlRange.Cells[xlrow, 4].Text;
+                }
+
+
+                xlWorkbook.Close();
+                xlApp.Quit();
+            }
+            MessageBox.Show("Es wurden "+countValueChanges+" Werte angepasst.");
+            ShowEigenbelege();
+        }
+
+
     }
 }

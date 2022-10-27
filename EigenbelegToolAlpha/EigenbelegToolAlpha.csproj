@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</UpdateUrl>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -89,6 +89,15 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.7.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.7\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.50.5147\lib\net20\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.50.5147\lib\net20\MigraDoc.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.50.5147\lib\net20\MigraDoc.RtfRendering.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.31.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.31\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
@@ -96,10 +105,10 @@
       <HintPath>..\packages\MySqlBackup.1.0.1\lib\MySqlBackup.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <HintPath>..\packages\PDFsharp-MigraDoc.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="SautinSoft.Document, Version=5.6.8.16, Culture=neutral, PublicKeyToken=e759c76c7515592a, processorArchitecture=MSIL">
       <HintPath>..\packages\sautinsoft.document.5.6.8.16\lib\net48\SautinSoft.Document.dll</HintPath>
@@ -201,6 +210,12 @@
     <Compile Include="EvaluationThirdForm.Designer.cs">
       <DependentUpon>EvaluationThirdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FolderInstaCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FolderInstaCreate.Designer.cs">
+      <DependentUpon>FolderInstaCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Matching.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EvaluationThirdForm.resx">
       <DependentUpon>EvaluationThirdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderInstaCreate.resx">
+      <DependentUpon>FolderInstaCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Matching.resx">
       <DependentUpon>Matching.cs</DependentUpon>

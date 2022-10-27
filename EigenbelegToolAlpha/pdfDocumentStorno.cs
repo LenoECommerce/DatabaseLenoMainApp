@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Forms;
+using PdfSharp.Drawing.Layout;
 
 namespace EigenbelegToolAlpha
 {
     internal class pdfDocumentStorno
     {
-        public static string signaturePath = "Unterschrift.png";
-        public static string paymentMethodPath = "paypal.jpg";
+        public static string locationImages = pdfDocument.locationImages;
         public static string filename = "";
+        public static string savePath = pdfDocument.savePath;
 
         public static void CreateDocument(string pdfEigenbelegNumber, string pdfSellerName, string pdfDateBought,
              string pdfTransactionAmount, string pdfArticle, string pdfPlatform, string pdfPaymentmethod, string pdfAddress)
@@ -30,13 +31,13 @@ namespace EigenbelegToolAlpha
 
             //New pages
             PdfPage page = document.AddPage();
-            PdfPage page2 = document.AddPage();
+
 
             XGraphics gfx = XGraphics.FromPdfPage(page);
-            XGraphics gfx2 = XGraphics.FromPdfPage(page2);
             XFont heading = new XFont("Arial", 20);
             XFont main = new XFont("Arial", 14);
             XFont subFont = new XFont("Arial", 11);
+            XTextFormatter tf = new XTextFormatter(gfx);
 
 
             //Text schreiben
@@ -70,26 +71,36 @@ namespace EigenbelegToolAlpha
 
 
             //Bilder!
-            DrawImage(gfx, signaturePath, 200, 750, 280, 80);
-
-            //config2: Speicherort Bilder | config3: Dateiendung
-
-            //Alle Ordner ausgeben im Hauptspeicherort als Array; Durchsuchung anhand eines bestimmten Ordnername
-            var pathOfDir = Directory.GetDirectories(File.ReadAllText("config2.txt")).Where(Directory => Directory.Contains(pdfEigenbelegNumber)).ToList();
-            //Alle Dateien speichern des Belegs; gerade aufm ersten Index, weil es nur ein Ergebnis gibt!
-
-            var filesInDir = Directory.GetFiles(pathOfDir[0]);
-
-            //Schleife die neue Seite erstellt
-            for (int i = 0; i < filesInDir.Length; i++)
+            string imagePath = Path.GetTempPath();
+            imagePath = imagePath + "unterschrift.png";
+            if (File.Exists(imagePath) == false)
             {
-                PdfPage pageImage = document.AddPage();
-                XGraphics gfx3 = XGraphics.FromPdfPage(pageImage);
-                DrawImage(gfx3, filesInDir[i], 50, 50, 500, 800);
+                Properties.Resources.Unterschrift.Save(imagePath);
+            }
+            DrawImage(gfx, imagePath, 200, 750, 280, 80);
+
+            try
+            {
+                //Alle Ordner ausgeben im Hauptspeicherort als Array; Durchsuchung anhand eines bestimmten Ordnername
+                var pathOfDir = Directory.GetDirectories(locationImages).Where(Directory => Directory.Contains(pdfEigenbelegNumber)).ToList();
+                //Alle Dateien speichern des Belegs; gerade aufm ersten Index, weil es nur ein Ergebnis gibt!
+                var filesInDir = Directory.GetFiles(pathOfDir[0]);
+
+                //Schleife die neue Seite erstellt
+                for (int i = 0; i < filesInDir.Length; i++)
+                {
+                    PdfPage pageImage = document.AddPage();
+                    XGraphics gfx3 = XGraphics.FromPdfPage(pageImage);
+                    DrawImage(gfx3, filesInDir[i], 50, 50, 500, 800);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bei der Bildsuche ist ein Fehler passiert.");
             }
 
             filename = "Eigenbeleg"+pdfEigenbelegNumber + "_" + pdfDateBought + "_" + pdfTransactionAmount;
-            document.Save(File.ReadAllText("config.txt") + @"/" +filename+ ".pdf");
+            document.Save(savePath + @"/" +filename+ ".pdf");
 
         }
 
@@ -101,7 +112,7 @@ namespace EigenbelegToolAlpha
         {
             if (File.Exists(jpegSamplePath) == false)
             {
-                MessageBox.Show("Für den Beleg mit dem Pfad " + jpegSamplePath + " wurde keine Datei gefunden.");
+                MessageBox.Show("Für den Pfad " + jpegSamplePath + " wurde keine Datei gefunden.");
                 return;
             }
             XImage image = XImage.FromFile(jpegSamplePath);

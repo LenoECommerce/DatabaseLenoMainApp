@@ -53,7 +53,7 @@ namespace EigenbelegToolAlpha
 
         private void EigenbelegCreate_Load(object sender, EventArgs e)
         {
-            int newNumber = CRUDQueries.ExecuteQueryWithResult("Config","Nummer","Typ","Eigenbelegnummer") + 1;
+            newNumber = CRUDQueries.ExecuteQueryWithResult("Config","Nummer","Typ","Eigenbelegnummer") + 1;
             textBox_eigenbelegNumber.Text = newNumber.ToString();
             textBox_eigenbelegDateBought.Text = DateTime.Now.ToString().Substring(0, 10);
             comboBox_eigenbelegArrived.Text = "Ja";

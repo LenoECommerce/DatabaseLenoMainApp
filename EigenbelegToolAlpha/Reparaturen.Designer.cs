@@ -44,15 +44,15 @@
             this.platinenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sonstigeTeileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
-            this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -208,28 +208,51 @@
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
+            // 
+            // fensterwechselToolStripMenuItem
+            // 
+            this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eigenbelegeToolStripMenuItem,
+            this.protokollierungToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
+            // 
+            // eigenbelegeToolStripMenuItem
+            // 
+            this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eigenbelegeToolStripMenuItem.Text = "Eigenbelege";
+            this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
+            // 
+            // protokollierungToolStripMenuItem
+            // 
+            this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem.Text = "Protokollierung";
+            this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -296,29 +319,6 @@
             // openFD
             // 
             this.openFD.FileName = "openFileDialog1";
-            // 
-            // fensterwechselToolStripMenuItem
-            // 
-            this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eigenbelegeToolStripMenuItem,
-            this.protokollierungToolStripMenuItem});
-            this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
-            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
-            this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
-            // 
-            // eigenbelegeToolStripMenuItem
-            // 
-            this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eigenbelegeToolStripMenuItem.Text = "Eigenbelege";
-            this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
-            // 
-            // protokollierungToolStripMenuItem
-            // 
-            this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.protokollierungToolStripMenuItem.Text = "Protokollierung";
-            this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
             // Reparaturen
             // 
