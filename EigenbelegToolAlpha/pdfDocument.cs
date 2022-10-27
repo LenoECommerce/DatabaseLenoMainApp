@@ -17,7 +17,7 @@ namespace EigenbelegToolAlpha
 {
     public class pdfDocument
     {
-        public static string signaturePath = "Unterschrift.png";
+        public static string signaturePath = Properties.Resources.Unterschrift.ToString();
         public static string paymentMethodPath = "paypal.jpg";
         public static string filename = "";
         public static string locationImages = @"C:\\Users\\lenna\\Desktop";
