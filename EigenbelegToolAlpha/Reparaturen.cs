@@ -77,6 +77,56 @@ namespace EigenbelegToolAlpha
             reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Descending);
             conn.Close();
         }
+        public void ShowReparaturenFiltered(string filterValueModel, string filterValueSource, string filterValueRepairState)
+        {
+            conn = new MySqlConnection();
+            conn.ConnectionString = connString;
+            conn.Open();
+
+            string query = "SELECT * FROM `Reparaturen`";
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, conn);
+
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+
+            ////Datensatz
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            //Daten anzeigen im Grid
+            reparaturenDGV.DataSource = dataSet.Tables[0];
+            //Column verstecken
+            reparaturenDGV.Columns[0].Visible = false;
+            //Sortierte Ansicht
+            reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Descending);
+            //Filtern
+            for (int i = 1; i < reparaturenDGV.RowCount; i++)
+            {
+                if (reparaturenDGV.Rows[i].Cells[3].Value.ToString() == filterValueModel)
+                {
+                    if (reparaturenDGV.Rows[i].Cells[18].Value.ToString() == filterValueSource)
+                    {
+                        if (reparaturenDGV.Rows[i].Cells[17].Value.ToString() == filterValueRepairState)
+                        {
+                            reparaturenDGV.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            reparaturenDGV.Rows[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        reparaturenDGV.Rows[i].Visible = false;
+                    }
+                }
+                else
+                {
+                    reparaturenDGV.Rows[i].Visible = false;
+                }
+
+            }
+            conn.Close();
+        }
 
         public static void ExecuteQuery(string query)
         {
@@ -451,5 +501,16 @@ namespace EigenbelegToolAlpha
             this.Hide();
         }
 
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new ReparaturenFilter())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowReparaturenFiltered(form.filterModel, form.filterSource, form.filterRepairState);
+                }
+            }
+        }
     }
 }

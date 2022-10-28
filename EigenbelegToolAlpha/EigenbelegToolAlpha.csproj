@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</UpdateUrl>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -64,6 +64,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>leno-favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -180,6 +183,12 @@
     <Compile Include="EigenbelegEdit.Designer.cs">
       <DependentUpon>EigenbelegEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="EigenbelegFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EigenbelegFilter.Designer.cs">
+      <DependentUpon>EigenbelegFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="EvaluationCalculation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +271,12 @@
     <Compile Include="ReparaturenEdit.Designer.cs">
       <DependentUpon>ReparaturenEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReparaturenFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReparaturenFilter.Designer.cs">
+      <DependentUpon>ReparaturenFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EigenbelegEdit.resx">
       <DependentUpon>EigenbelegEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EigenbelegFilter.resx">
+      <DependentUpon>EigenbelegFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EvaluationCalculation.resx">
       <DependentUpon>EvaluationCalculation.cs</DependentUpon>
@@ -342,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReparaturenEdit.resx">
       <DependentUpon>ReparaturenEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReparaturenFilter.resx">
+      <DependentUpon>ReparaturenFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -410,6 +431,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Unterschrift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="leno-favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -144,7 +144,6 @@ namespace EigenbelegToolAlpha
 
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.ExecuteNonQuery();
-
             ////Datensatz
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
@@ -154,6 +153,59 @@ namespace EigenbelegToolAlpha
             eigenbelegeDGV.Columns[0].Visible = false;
             //Sortierte Ansicht
             eigenbelegeDGV.Sort(eigenbelegeDGV.Columns[1], ListSortDirection.Descending);
+
+            conn.Close();
+        }
+
+        public void ShowEigenbelegeFiltered(string [] filterValueModel, string filterValuePlatform, string filterValueCreated)
+        {
+            conn = new MySqlConnection();
+            conn.ConnectionString = connString;
+            conn.Open();
+
+            string query = "SELECT * FROM `Eigenbelege`";
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, conn);
+
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+            ////Datensatz
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            //Daten anzeigen im Grid
+            eigenbelegeDGV.DataSource = dataSet.Tables[0];
+            eigenbelegeDGV.ClearSelection();
+            //Column verstecken
+            eigenbelegeDGV.Columns[0].Visible = false;
+            //Sortierte Ansicht
+            eigenbelegeDGV.Sort(eigenbelegeDGV.Columns[1], ListSortDirection.Descending);
+            //Filtern
+            for (int i = 1; i < eigenbelegeDGV.RowCount; i++)
+            {
+                if (filterValueModel.Contains(eigenbelegeDGV.Rows[i].Cells[4].Value.ToString()) == true)
+                {
+                    if (eigenbelegeDGV.Rows[i].Cells[11].Value.ToString() == filterValueCreated)
+                    {
+                        if (eigenbelegeDGV.Rows[i].Cells[8].Value.ToString() == filterValuePlatform)
+                        {
+                            eigenbelegeDGV.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            eigenbelegeDGV.Rows[i].Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        eigenbelegeDGV.Rows[i].Visible = false;
+                    }
+                }
+                else
+                {
+                    eigenbelegeDGV.Rows[i].Visible = false;
+                }
+                
+            }
+
             conn.Close();
         }
 
@@ -654,6 +706,16 @@ namespace EigenbelegToolAlpha
             ShowEigenbelege();
         }
 
-
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new EigenbelegFilter())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ShowEigenbelegeFiltered(form.selectedFilterModell,form.filterPlatform,form.filterCreated);
+                }
+            }
+        }
     }
 }
