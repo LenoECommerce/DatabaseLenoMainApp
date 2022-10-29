@@ -157,7 +157,7 @@ namespace EigenbelegToolAlpha
             conn.Close();
         }
 
-        public void ShowEigenbelegeFiltered(string [] filterValueModel, string filterValuePlatform, string filterValueCreated)
+        public void ShowEigenbelegeFiltered(string [] filterValueModel, string[] filterValueCreated, string[] filterValuePlatform)
         {
             conn = new MySqlConnection();
             conn.ConnectionString = connString;
@@ -183,9 +183,9 @@ namespace EigenbelegToolAlpha
             {
                 if (filterValueModel.Contains(eigenbelegeDGV.Rows[i].Cells[4].Value.ToString()) == true)
                 {
-                    if (eigenbelegeDGV.Rows[i].Cells[11].Value.ToString() == filterValueCreated)
+                    if (filterValueCreated.Contains(eigenbelegeDGV.Rows[i].Cells[11].Value.ToString()) == true)
                     {
-                        if (eigenbelegeDGV.Rows[i].Cells[8].Value.ToString() == filterValuePlatform)
+                        if (filterValuePlatform.Contains(eigenbelegeDGV.Rows[i].Cells[8].Value.ToString()) == true)
                         {
                             eigenbelegeDGV.Rows[i].Visible = true;
                         }
@@ -508,13 +508,45 @@ namespace EigenbelegToolAlpha
             int rowIndex = -1;
             foreach (DataGridViewRow row in eigenbelegeDGV.Rows)
             {
-                if (row.Cells[1].Value.Equals(relatedNumber))
+                if (row.Cells[1].Value.ToString().Equals(relatedNumber))
                 {
                     rowIndex = row.Index;
                 }
             }
-            eigenbelegeDGV.ClearSelection();
-            eigenbelegeDGV.Rows[rowIndex].Selected = true;
+            if (rowIndex != -1)
+            {
+                eigenbelegeDGV.ClearSelection();
+                eigenbelegeDGV.Rows[rowIndex].Selected = true;
+                //bad workaroung, weil selection nicht erkannt wird als Klick
+                eigenbelegNumber = eigenbelegeDGV.Rows[rowIndex].Cells[1].Value.ToString();
+                sellerName = eigenbelegeDGV.Rows[rowIndex].Cells[2].Value.ToString();
+                reference = eigenbelegeDGV.Rows[rowIndex].Cells[3].Value.ToString();
+                model = eigenbelegeDGV.Rows[rowIndex].Cells[4].Value.ToString();
+                dateBought = eigenbelegeDGV.Rows[rowIndex].Cells[5].Value.ToString();
+                transactionAmount = eigenbelegeDGV.Rows[rowIndex].Cells[6].Value.ToString();
+                mail = eigenbelegeDGV.Rows[rowIndex].Cells[7].Value.ToString();
+                platform = eigenbelegeDGV.Rows[rowIndex].Cells[8].Value.ToString();
+                paymentMethod = eigenbelegeDGV.Rows[rowIndex].Cells[9].Value.ToString();
+                address = eigenbelegeDGV.Rows[rowIndex].Cells[10].Value.ToString();
+                created = eigenbelegeDGV.Rows[rowIndex].Cells[11].Value.ToString();
+                arrived = eigenbelegeDGV.Rows[rowIndex].Cells[12].Value.ToString();
+                transactionText = eigenbelegeDGV.Rows[rowIndex].Cells[13].Value.ToString();
+                storage = eigenbelegeDGV.Rows[rowIndex].Cells[14].Value.ToString();
+                lastSelectedProductKey = (int)eigenbelegeDGV.Rows[rowIndex].Cells[0].Value;
+
+                using (var form = new EigenbelegEdit())
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        ShowEigenbelege();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Es konnte kein Eintrag gefunden werden.");
+            }
         }
 
         private void btn_settings2_Click(object sender, EventArgs e)
@@ -713,7 +745,7 @@ namespace EigenbelegToolAlpha
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    ShowEigenbelegeFiltered(form.selectedFilterModell,form.filterPlatform,form.filterCreated);
+                    ShowEigenbelegeFiltered(form.selectedFilterModell,form.selectedFilterCreated,form.selectedFilterPlatform);
                 }
             }
         }

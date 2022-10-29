@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EigenbelegFilter));
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -164,10 +165,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "EigenbelegFilter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filter einstellen";
+            this.Load += new System.EventHandler(this.EigenbelegFilter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,10 +181,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox_FilterCreated;
-        private System.Windows.Forms.ComboBox comboBox_filterPlatform;
+        public  System.Windows.Forms.ComboBox comboBox_FilterCreated;
+        public System.Windows.Forms.ComboBox comboBox_filterPlatform;
         private System.Windows.Forms.Button btn_Execute;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox_filterModell;
+        public  System.Windows.Forms.ComboBox comboBox_filterModell;
     }
 }

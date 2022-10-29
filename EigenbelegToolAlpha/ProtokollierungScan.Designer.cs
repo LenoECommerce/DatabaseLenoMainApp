@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProtokollierungScan));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_scanField = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@
             this.Controls.Add(this.textBox_scanField);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProtokollierungScan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProtokollierungScan";

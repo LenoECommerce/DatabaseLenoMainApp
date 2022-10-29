@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EigenbelegCreate));
             this.comboBox_eigenbelegArrived = new System.Windows.Forms.ComboBox();
             this.comboBox_eigenbelegCreated = new System.Windows.Forms.ComboBox();
             this.comboBox_eigenbelegPaymentMethod = new System.Windows.Forms.ComboBox();
@@ -401,6 +402,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EigenbelegCreate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eigenbeleg erstellen";

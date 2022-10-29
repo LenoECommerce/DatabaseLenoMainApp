@@ -77,7 +77,7 @@ namespace EigenbelegToolAlpha
             reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Descending);
             conn.Close();
         }
-        public void ShowReparaturenFiltered(string filterValueModel, string filterValueSource, string filterValueRepairState)
+        public void ShowReparaturenFiltered(string[] filterValueModel, string[] filterValueSource, string []filterValueRepairState)
         {
             conn = new MySqlConnection();
             conn.ConnectionString = connString;
@@ -101,11 +101,11 @@ namespace EigenbelegToolAlpha
             //Filtern
             for (int i = 1; i < reparaturenDGV.RowCount; i++)
             {
-                if (reparaturenDGV.Rows[i].Cells[3].Value.ToString() == filterValueModel)
+                if (filterValueModel.Contains(reparaturenDGV.Rows[i].Cells[3].Value.ToString()) == true)
                 {
-                    if (reparaturenDGV.Rows[i].Cells[18].Value.ToString() == filterValueSource)
+                    if (filterValueSource.Contains(reparaturenDGV.Rows[i].Cells[18].Value.ToString()) == true)
                     {
-                        if (reparaturenDGV.Rows[i].Cells[17].Value.ToString() == filterValueRepairState)
+                        if (filterValueRepairState.Contains(reparaturenDGV.Rows[i].Cells[17].Value.ToString()) == true)
                         {
                             reparaturenDGV.Rows[i].Visible = true;
                         }
@@ -207,8 +207,40 @@ namespace EigenbelegToolAlpha
             }
             if (rowIndex != -1)
             {
+
                 reparaturenDGV.ClearSelection();
                 reparaturenDGV.Rows[rowIndex].Selected = true;
+                //bad workaroung, weil selection nicht erkannt wird als Klick
+                internalNumber = reparaturenDGV.Rows[rowIndex].Cells[1].Value.ToString();
+                dateBought = reparaturenDGV.Rows[rowIndex].Cells[2].Value.ToString();
+                device = reparaturenDGV.Rows[rowIndex].Cells[3].Value.ToString();
+                transactionAmount = reparaturenDGV.Rows[rowIndex].Cells[4].Value.ToString();
+                imei = reparaturenDGV.Rows[rowIndex].Cells[5].Value.ToString();
+                make = reparaturenDGV.Rows[rowIndex].Cells[6].Value.ToString();
+                color = reparaturenDGV.Rows[rowIndex].Cells[7].Value.ToString();
+                storage = reparaturenDGV.Rows[rowIndex].Cells[8].Value.ToString();
+                taxes = reparaturenDGV.Rows[rowIndex].Cells[9].Value.ToString();
+                condition = reparaturenDGV.Rows[rowIndex].Cells[10].Value.ToString();
+                defect = reparaturenDGV.Rows[rowIndex].Cells[11].Value.ToString();
+                maindefects = reparaturenDGV.Rows[rowIndex].Cells[12].Value.ToString();
+                externalCosts = reparaturenDGV.Rows[rowIndex].Cells[13].Value.ToString();
+                comment = reparaturenDGV.Rows[rowIndex].Cells[14].Value.ToString();
+                notifications = reparaturenDGV.Rows[rowIndex].Cells[15].Value.ToString();
+                tested = reparaturenDGV.Rows[rowIndex].Cells[16].Value.ToString();
+                state = reparaturenDGV.Rows[rowIndex].Cells[17].Value.ToString();
+                source = reparaturenDGV.Rows[rowIndex].Cells[18].Value.ToString();
+                riskLevel = reparaturenDGV.Rows[rowIndex].Cells[19].Value.ToString();
+                worthIt = reparaturenDGV.Rows[rowIndex].Cells[20].Value.ToString();
+                referenceToEB = reparaturenDGV.Rows[rowIndex].Cells[21].Value.ToString();
+                lastSelectedProductKey = (int)reparaturenDGV.Rows[rowIndex].Cells[0].Value;
+                using (var form = new ReparaturenEdit())
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        ShowReparaturen();
+                    }
+                }
             }
             else
             {
@@ -508,7 +540,7 @@ namespace EigenbelegToolAlpha
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    ShowReparaturenFiltered(form.filterModel, form.filterSource, form.filterRepairState);
+                    ShowReparaturenFiltered(form.selectedFilterModell, form.selectedFilterSource, form.selectedFilterRepairState);
                 }
             }
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReparaturenFilter));
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Execute = new System.Windows.Forms.Button();
             this.comboBox_filterSource = new System.Windows.Forms.ComboBox();
@@ -159,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 298);
+            this.ClientSize = new System.Drawing.Size(474, 281);
             this.Controls.Add(this.comboBox_filterRepairState);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -169,10 +170,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ReparaturenFilter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReparaturenFilter";
+            this.Load += new System.EventHandler(this.ReparaturenFilter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

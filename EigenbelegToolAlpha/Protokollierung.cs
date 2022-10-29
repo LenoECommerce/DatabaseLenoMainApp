@@ -174,7 +174,6 @@ namespace EigenbelegToolAlpha
             textBox_IMEI.Text = "";
             textBox_InternalNumber.Text = "";
             textBox_OrderID.Text = "";
-            textBox_ScanDate.Text = "";
             comboBox_Marketplace.Text = "";
         }
 
