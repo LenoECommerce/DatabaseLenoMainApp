@@ -54,6 +54,7 @@
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
+            this.xHauptetikettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,7 @@
             // 
             this.etikettenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hauptetikettToolStripMenuItem,
+            this.xHauptetikettToolStripMenuItem,
             this.platinenToolStripMenuItem,
             this.displayToolStripMenuItem,
             this.sonstigeTeileToolStripMenuItem});
@@ -210,27 +212,27 @@
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
             // 
             // fensterwechselToolStripMenuItem
@@ -329,6 +331,13 @@
             // 
             this.openFD.FileName = "openFileDialog1";
             // 
+            // xHauptetikettToolStripMenuItem
+            // 
+            this.xHauptetikettToolStripMenuItem.Name = "xHauptetikettToolStripMenuItem";
+            this.xHauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xHauptetikettToolStripMenuItem.Text = "2x Hauptetikett";
+            this.xHauptetikettToolStripMenuItem.Click += new System.EventHandler(this.xHauptetikettToolStripMenuItem_Click);
+            // 
             // Reparaturen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,5 +400,6 @@
         private System.Windows.Forms.ToolStripMenuItem eigenbelegeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xHauptetikettToolStripMenuItem;
     }
 }

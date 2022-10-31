@@ -37,11 +37,9 @@
             this.btn_eigenbelegRemove = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
-            this.btn_settings = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btn_SelectAllRows = new System.Windows.Forms.Button();
             this.btn_DeleteAll = new System.Windows.Forms.Button();
-            this.btn_ImageLocPath = new System.Windows.Forms.Button();
             this.btn_PushToRep = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btn_SwitchToRelatedReparatur = new System.Windows.Forms.Button();
@@ -155,19 +153,6 @@
             // 
             this.openFD.FileName = "openFD";
             // 
-            // btn_settings
-            // 
-            this.btn_settings.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_settings.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings.Location = new System.Drawing.Point(1014, 80);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(98, 26);
-            this.btn_settings.TabIndex = 27;
-            this.btn_settings.Text = "Einstellungen";
-            this.btn_settings.UseVisualStyleBackColor = false;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
-            // 
             // btn_SelectAllRows
             // 
             this.btn_SelectAllRows.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -194,19 +179,6 @@
             this.btn_DeleteAll.UseVisualStyleBackColor = false;
             this.btn_DeleteAll.Click += new System.EventHandler(this.btn_DeleteAll_Click);
             // 
-            // btn_ImageLocPath
-            // 
-            this.btn_ImageLocPath.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_ImageLocPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ImageLocPath.ForeColor = System.Drawing.Color.Black;
-            this.btn_ImageLocPath.Location = new System.Drawing.Point(1118, 80);
-            this.btn_ImageLocPath.Name = "btn_ImageLocPath";
-            this.btn_ImageLocPath.Size = new System.Drawing.Size(98, 26);
-            this.btn_ImageLocPath.TabIndex = 32;
-            this.btn_ImageLocPath.Text = "Bilderpfad";
-            this.btn_ImageLocPath.UseVisualStyleBackColor = false;
-            this.btn_ImageLocPath.Click += new System.EventHandler(this.btn_ImageLocPath_Click);
-            // 
             // btn_PushToRep
             // 
             this.btn_PushToRep.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -225,9 +197,9 @@
             this.button5.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(967, 37);
+            this.button5.Location = new System.Drawing.Point(1082, 113);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(98, 26);
+            this.button5.Size = new System.Drawing.Size(134, 27);
             this.button5.TabIndex = 37;
             this.button5.Text = "Aktualisieren";
             this.button5.UseVisualStyleBackColor = false;
@@ -251,11 +223,11 @@
             this.btn_settings2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_settings2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings2.ForeColor = System.Drawing.Color.Black;
-            this.btn_settings2.Location = new System.Drawing.Point(1014, 112);
+            this.btn_settings2.Location = new System.Drawing.Point(1082, 80);
             this.btn_settings2.Name = "btn_settings2";
-            this.btn_settings2.Size = new System.Drawing.Size(202, 26);
+            this.btn_settings2.Size = new System.Drawing.Size(134, 27);
             this.btn_settings2.TabIndex = 41;
-            this.btn_settings2.Text = "Einstellungen Alles";
+            this.btn_settings2.Text = "Einstellungen";
             this.btn_settings2.UseVisualStyleBackColor = false;
             this.btn_settings2.Click += new System.EventHandler(this.btn_settings2_Click);
             // 
@@ -393,10 +365,8 @@
             this.Controls.Add(this.btn_SwitchToRelatedReparatur);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btn_PushToRep);
-            this.Controls.Add(this.btn_ImageLocPath);
             this.Controls.Add(this.btn_DeleteAll);
             this.Controls.Add(this.btn_SelectAllRows);
-            this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btn_eigenbelegRemove);
             this.Controls.Add(this.btn_eigenbelegEdit);
@@ -428,11 +398,9 @@
         private System.Windows.Forms.Button btn_eigenbelegRemove;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.OpenFileDialog openFD;
-        private System.Windows.Forms.Button btn_settings;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btn_SelectAllRows;
         private System.Windows.Forms.Button btn_DeleteAll;
-        private System.Windows.Forms.Button btn_ImageLocPath;
         private System.Windows.Forms.Button btn_PushToRep;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btn_SwitchToRelatedReparatur;

@@ -141,6 +141,7 @@
             // 
             this.comboBox_filterRepairState.FormattingEnabled = true;
             this.comboBox_filterRepairState.Items.AddRange(new object[] {
+            "Alle",
             "Entgegengenommen",
             "Getestet",
             "Reparatur",

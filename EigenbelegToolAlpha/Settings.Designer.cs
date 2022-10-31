@@ -44,17 +44,21 @@
             this.lbl_currentPathDisplayTemplate = new System.Windows.Forms.Label();
             this.lbl_currentPathPlatinenTemplate = new System.Windows.Forms.Label();
             this.lbl_currentPathSonstigesTemplate = new System.Windows.Forms.Label();
-            this.openFD2 = new System.Windows.Forms.OpenFileDialog();
-            this.openFD3 = new System.Windows.Forms.OpenFileDialog();
-            this.openFD4 = new System.Windows.Forms.OpenFileDialog();
             this.btn_LocationTemplates = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.lbl_SaveLocationPDF = new System.Windows.Forms.Label();
+            this.lbl_SourceImages = new System.Windows.Forms.Label();
+            this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(48, 22);
+            this.label8.Location = new System.Drawing.Point(48, 49);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(128, 18);
             this.label8.TabIndex = 40;
@@ -64,7 +68,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 52);
+            this.label1.Location = new System.Drawing.Point(48, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 18);
             this.label1.TabIndex = 41;
@@ -72,7 +76,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(382, 318);
+            this.button1.Location = new System.Drawing.Point(363, 548);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 29);
             this.button1.TabIndex = 64;
@@ -82,14 +86,14 @@
             // 
             // textBox_SettingsInternalNumber
             // 
-            this.textBox_SettingsInternalNumber.Location = new System.Drawing.Point(215, 23);
+            this.textBox_SettingsInternalNumber.Location = new System.Drawing.Point(215, 50);
             this.textBox_SettingsInternalNumber.Name = "textBox_SettingsInternalNumber";
             this.textBox_SettingsInternalNumber.Size = new System.Drawing.Size(110, 20);
             this.textBox_SettingsInternalNumber.TabIndex = 65;
             // 
             // textBox_SettingsEigenbelegNummer
             // 
-            this.textBox_SettingsEigenbelegNummer.Location = new System.Drawing.Point(215, 53);
+            this.textBox_SettingsEigenbelegNummer.Location = new System.Drawing.Point(215, 80);
             this.textBox_SettingsEigenbelegNummer.Name = "textBox_SettingsEigenbelegNummer";
             this.textBox_SettingsEigenbelegNummer.Size = new System.Drawing.Size(110, 20);
             this.textBox_SettingsEigenbelegNummer.TabIndex = 66;
@@ -98,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(48, 82);
+            this.label2.Location = new System.Drawing.Point(48, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 18);
             this.label2.TabIndex = 67;
@@ -110,7 +114,7 @@
             // 
             // lbl_currentPathModellTemplate
             // 
-            this.lbl_currentPathModellTemplate.Location = new System.Drawing.Point(212, 86);
+            this.lbl_currentPathModellTemplate.Location = new System.Drawing.Point(212, 151);
             this.lbl_currentPathModellTemplate.Name = "lbl_currentPathModellTemplate";
             this.lbl_currentPathModellTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathModellTemplate.TabIndex = 69;
@@ -120,7 +124,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 334);
+            this.label3.Location = new System.Drawing.Point(48, 381);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(307, 13);
             this.label3.TabIndex = 70;
@@ -130,7 +134,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(49, 138);
+            this.label4.Location = new System.Drawing.Point(49, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 18);
             this.label4.TabIndex = 71;
@@ -140,7 +144,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(49, 194);
+            this.label5.Location = new System.Drawing.Point(49, 259);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 18);
             this.label5.TabIndex = 72;
@@ -150,7 +154,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(48, 259);
+            this.label6.Location = new System.Drawing.Point(48, 324);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(157, 18);
             this.label6.TabIndex = 73;
@@ -158,7 +162,7 @@
             // 
             // lbl_currentPathDisplayTemplate
             // 
-            this.lbl_currentPathDisplayTemplate.Location = new System.Drawing.Point(212, 142);
+            this.lbl_currentPathDisplayTemplate.Location = new System.Drawing.Point(212, 207);
             this.lbl_currentPathDisplayTemplate.Name = "lbl_currentPathDisplayTemplate";
             this.lbl_currentPathDisplayTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathDisplayTemplate.TabIndex = 74;
@@ -167,7 +171,7 @@
             // 
             // lbl_currentPathPlatinenTemplate
             // 
-            this.lbl_currentPathPlatinenTemplate.Location = new System.Drawing.Point(212, 194);
+            this.lbl_currentPathPlatinenTemplate.Location = new System.Drawing.Point(212, 259);
             this.lbl_currentPathPlatinenTemplate.Name = "lbl_currentPathPlatinenTemplate";
             this.lbl_currentPathPlatinenTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathPlatinenTemplate.TabIndex = 75;
@@ -176,40 +180,93 @@
             // 
             // lbl_currentPathSonstigesTemplate
             // 
-            this.lbl_currentPathSonstigesTemplate.Location = new System.Drawing.Point(212, 263);
+            this.lbl_currentPathSonstigesTemplate.Location = new System.Drawing.Point(212, 328);
             this.lbl_currentPathSonstigesTemplate.Name = "lbl_currentPathSonstigesTemplate";
             this.lbl_currentPathSonstigesTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathSonstigesTemplate.TabIndex = 76;
             this.lbl_currentPathSonstigesTemplate.Text = "label3";
             this.lbl_currentPathSonstigesTemplate.Click += new System.EventHandler(this.lbl_currentPathSonstigesTemplate_Click);
             // 
-            // openFD2
-            // 
-            this.openFD2.FileName = "openFileDialog1";
-            // 
-            // openFD3
-            // 
-            this.openFD3.FileName = "openFileDialog1";
-            // 
-            // openFD4
-            // 
-            this.openFD4.FileName = "openFileDialog1";
-            // 
             // btn_LocationTemplates
             // 
-            this.btn_LocationTemplates.Location = new System.Drawing.Point(428, 22);
+            this.btn_LocationTemplates.Location = new System.Drawing.Point(52, 458);
             this.btn_LocationTemplates.Name = "btn_LocationTemplates";
-            this.btn_LocationTemplates.Size = new System.Drawing.Size(106, 23);
+            this.btn_LocationTemplates.Size = new System.Drawing.Size(190, 30);
             this.btn_LocationTemplates.TabIndex = 77;
-            this.btn_LocationTemplates.Text = "Ordnerort";
+            this.btn_LocationTemplates.Text = "Speicherort PDF";
             this.btn_LocationTemplates.UseVisualStyleBackColor = true;
             this.btn_LocationTemplates.Click += new System.EventHandler(this.btn_LocationTemplates_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label20.Location = new System.Drawing.Point(47, 9);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(106, 29);
+            this.label20.TabIndex = 82;
+            this.label20.Text = "Nummern";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label7.Location = new System.Drawing.Point(47, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 29);
+            this.label7.TabIndex = 83;
+            this.label7.Text = "Templates";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label9.Location = new System.Drawing.Point(47, 416);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(128, 29);
+            this.label9.TabIndex = 84;
+            this.label9.Text = "Eigenbelege";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(291, 458);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(224, 30);
+            this.button2.TabIndex = 85;
+            this.button2.Text = "Bilder Quelle (auch Ordner Insta Create)";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // lbl_SaveLocationPDF
+            // 
+            this.lbl_SaveLocationPDF.Location = new System.Drawing.Point(52, 491);
+            this.lbl_SaveLocationPDF.Name = "lbl_SaveLocationPDF";
+            this.lbl_SaveLocationPDF.Size = new System.Drawing.Size(190, 39);
+            this.lbl_SaveLocationPDF.TabIndex = 86;
+            this.lbl_SaveLocationPDF.Text = "label3";
+            // 
+            // lbl_SourceImages
+            // 
+            this.lbl_SourceImages.Location = new System.Drawing.Point(291, 491);
+            this.lbl_SourceImages.Name = "lbl_SourceImages";
+            this.lbl_SourceImages.Size = new System.Drawing.Size(224, 39);
+            this.lbl_SourceImages.TabIndex = 87;
+            this.lbl_SourceImages.Text = "label3";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 371);
+            this.ClientSize = new System.Drawing.Size(572, 589);
+            this.Controls.Add(this.lbl_SourceImages);
+            this.Controls.Add(this.lbl_SaveLocationPDF);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.btn_LocationTemplates);
             this.Controls.Add(this.lbl_currentPathSonstigesTemplate);
             this.Controls.Add(this.lbl_currentPathPlatinenTemplate);
@@ -254,9 +311,13 @@
         private System.Windows.Forms.Label lbl_currentPathDisplayTemplate;
         private System.Windows.Forms.Label lbl_currentPathPlatinenTemplate;
         private System.Windows.Forms.Label lbl_currentPathSonstigesTemplate;
-        private System.Windows.Forms.OpenFileDialog openFD2;
-        private System.Windows.Forms.OpenFileDialog openFD3;
-        private System.Windows.Forms.OpenFileDialog openFD4;
         private System.Windows.Forms.Button btn_LocationTemplates;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lbl_SaveLocationPDF;
+        private System.Windows.Forms.Label lbl_SourceImages;
+        private System.Windows.Forms.FolderBrowserDialog folderDialog;
     }
 }

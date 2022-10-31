@@ -18,7 +18,7 @@ namespace EigenbelegToolAlpha
         public string valueIntern = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer").ToString();
         public string valueEigenbelegNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "Eigenbelegnummer").ToString();
         public string folderLocation;
-        public string currentUser = File.ReadAllText("user.txt");
+        public static string currentUser = File.ReadAllText("user.txt");
 
         public Settings()
         {
@@ -37,6 +37,10 @@ namespace EigenbelegToolAlpha
             lbl_currentPathPlatinenTemplate.Text = platineTemplate;
             string sonstigeTeileTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplateSonstigeTeile", "Nutzer", currentUser);
             lbl_currentPathSonstigesTemplate.Text = sonstigeTeileTemplate;
+            string saveLocationEB = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "PathSaveLocationEB", "Nutzer", currentUser);
+            lbl_SaveLocationPDF.Text = saveLocationEB;
+            string sourceImages = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "PathImagesEB", "Nutzer", currentUser);
+            lbl_SourceImages.Text = sourceImages;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -56,40 +60,54 @@ namespace EigenbelegToolAlpha
         {
             openFD.ShowDialog();
             string selectedFileName = openFD.FileName;
+            selectedFileName = selectedFileName.Replace(@"\", @"\\");
             CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `TemplateModell` = '" + selectedFileName + "' WHERE `Nutzer` = '"+ currentUser + "'");
             lbl_currentPathModellTemplate.Text = selectedFileName;
         }
 
         private void lbl_currentPathDisplayTemplate_Click(object sender, EventArgs e)
         {
-            openFD2.ShowDialog();
-            string selectedFileName = openFD2.SafeFileName;
-            string selectedFile = Path.GetFullPath(selectedFileName);
-            File.WriteAllText("display.txt", selectedFile);
-            lbl_currentPathDisplayTemplate.Text = File.ReadAllText("display.txt");
+            openFD.ShowDialog();
+            string selectedFileName = openFD.FileName;
+            selectedFileName = selectedFileName.Replace(@"\", @"\\");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `TemplateDisplay` = '" + selectedFileName + "' WHERE `Nutzer` = '" + currentUser + "'");
+            lbl_currentPathDisplayTemplate.Text = selectedFileName;
         }
 
         private void lbl_currentPathPlatinenTemplate_Click(object sender, EventArgs e)
         {
-            openFD3.ShowDialog();
-            string selectedFileName = openFD3.SafeFileName;
-            string selectedFile = Path.GetFullPath(selectedFileName);
-            File.WriteAllText("platinen.txt", selectedFile);
-            lbl_currentPathPlatinenTemplate.Text = File.ReadAllText("display.txt");
+            openFD.ShowDialog();
+            string selectedFileName = openFD.FileName;
+            selectedFileName = selectedFileName.Replace(@"\", @"\\");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `TemplatePlatine` = '" + selectedFileName + "' WHERE `Nutzer` = '" + currentUser + "'");
+            lbl_currentPathPlatinenTemplate.Text = selectedFileName;
         }
 
         private void lbl_currentPathSonstigesTemplate_Click(object sender, EventArgs e)
         {
-            openFD4.ShowDialog();
-            string selectedFileName = openFD4.SafeFileName;
-            string selectedFile = Path.GetFullPath(selectedFileName);
-            File.WriteAllText("sonstiges.txt", selectedFile);
-            lbl_currentPathSonstigesTemplate.Text = File.ReadAllText("sonstiges.txt");
+            openFD.ShowDialog();
+            string selectedFileName = openFD.FileName;
+            selectedFileName = selectedFileName.Replace(@"\", @"\\");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `TemplateSonstigeTeile` = '" + selectedFileName + "' WHERE `Nutzer` = '" + currentUser + "'");
+            lbl_currentPathSonstigesTemplate.Text = selectedFileName;
         }
 
         private void btn_LocationTemplates_Click(object sender, EventArgs e)
         {
-            
+            folderDialog.ShowDialog();
+            string selectedDirectory = folderDialog.SelectedPath;
+            selectedDirectory = selectedDirectory.Replace(@"\", @"\\");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `PathSaveLocationEB` = '" + selectedDirectory + "' WHERE `Nutzer` = '" + currentUser + "'");
+            lbl_SaveLocationPDF.Text = selectedDirectory;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            folderDialog.ShowDialog();
+            string selectedDirectory = folderDialog.SelectedPath;
+            selectedDirectory = selectedDirectory.Replace(@"\", @"\\");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `PathImagesEB` = '" + selectedDirectory + "' WHERE `Nutzer` = '" + currentUser + "'");
+            lbl_SourceImages.Text = selectedDirectory;
         }
     }
 }

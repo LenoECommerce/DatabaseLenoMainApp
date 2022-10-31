@@ -409,16 +409,16 @@ namespace EigenbelegToolAlpha
                 string internPrefix = "";
                 string zero = "0";
                 string barcodeSKU = "APL/10.1/B64C/DIFF";
-                string path = @"C:\Users\otisf\Desktop\TEMPLATES\modell.lbx";
-                //try
-                //{
-                //    path = @"C:\Users\otisf\Desktop\TEMPLATES\modell.lbx";
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("Bitte setze in den Einstellungen dein Template fest; Fehlermeldung:"+ex.Message);
-                //}
-                
+                string path = "";
+                try
+                {
+                    path = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplateModell", "Nutzer", Settings.currentUser);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bitte setze in den Einstellungen dein Template fest; Fehlermeldung:" + ex.Message);
+                }
+
                 //Abfrage wie lang interne Nummer, dann prefix anpassen!
                 int lengthIntern = internalNumber.Length;
                 int freeDigits = 5 - lengthIntern;
@@ -543,6 +543,11 @@ namespace EigenbelegToolAlpha
                     ShowReparaturenFiltered(form.selectedFilterModell, form.selectedFilterSource, form.selectedFilterRepairState);
                 }
             }
+        }
+
+        private void xHauptetikettToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BrotherPrintThisModell(2);
         }
     }
 }

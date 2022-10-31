@@ -19,8 +19,8 @@ namespace EigenbelegToolAlpha
     {
         public static string paymentMethodPath = "paypal.jpg";
         public static string filename = "";
-        public static string locationImages = @"C:\Users\lenna\Desktop\bilder";
-        public static string savePath = @"C:\Users\lenna\Desktop\speicherort";
+        public static string locationImages = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "PathImagesEB", "Nutzer", Settings.currentUser);
+        public static string savePath = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "PathSaveLocationEB", "Nutzer", Settings.currentUser);
 
         public static void CreateDocument(string pdfEigenbelegNumber, string pdfSellerName, string pdfDateBought,
              string pdfTransactionAmount, string pdfArticle, string pdfPlatform, string pdfPaymentmethod, string pdfAddress)
