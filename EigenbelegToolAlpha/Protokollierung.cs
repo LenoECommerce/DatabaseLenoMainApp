@@ -26,30 +26,12 @@ namespace EigenbelegToolAlpha
         public string marketplace = "";
         public string month = "";
         public string scanDate = "";
+        public string newOrderIDValue = "";
         public int lastSelectedEntry;
         public Protokollierung()
         {
             InitializeComponent();
             ShowProtokollierung();
-
-            WebClient webClient = new WebClient();
-            string downloadString = "https://pastebin.com/fTkxTGP6";
-            try
-            {
-                if (!webClient.DownloadString(downloadString).Contains("1.5.0"))
-                {
-                    if (MessageBox.Show("Oh there is an update", "Demo app", MessageBoxButtons.YesNo, MessageBoxIcon.Question)== DialogResult.Yes) using (var client = new WebClient())
-                    {
-                            Process.Start("UpdaterDemo.exe");
-                            this.Close();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         public void ShowProtokollierung()
@@ -122,14 +104,18 @@ namespace EigenbelegToolAlpha
 
         private void textBox_OrderID_TextChanged(object sender, EventArgs e)
         {
-            //Abfrage welche Plattform
-            if (textBox_OrderID.Text.Contains("-"))
+            comboBox_Marketplace.Text = CheckMarketplace(textBox_OrderID.Text);
+        }
+
+        private string CheckMarketplace(string  checkValue)
+        {
+            if (checkValue.Contains("-"))
             {
-                comboBox_Marketplace.Text = "Ebay";
+                return "Ebay";
             }
             else
             {
-                comboBox_Marketplace.Text = "BackMarket";
+                return "BackMarket";
             }
         }
 
@@ -158,17 +144,23 @@ namespace EigenbelegToolAlpha
                     string orderIDValue = form.orderIDInput;
                     if (orderIDValue != "")
                     {
-                        if (orderIDValue.Contains("-"))
+                        if (orderIDValue.Contains("ß"))
                         {
                             string first = orderIDValue.Substring(0, 2);
                             string second = orderIDValue.Substring(3, 5);
                             string third = orderIDValue.Substring(9, 5);
                             textBox_OrderID.Text = first + "-" + second + "-" + third;
+
                         }
-                        textBox_OrderID.Text = orderIDValue;
+                        else
+                        {
+                            textBox_OrderID.Text = orderIDValue;
+                        }
                     }
 
                 }
+                comboBox_Marketplace.Text = CheckMarketplace(textBox_OrderID.Text);
+                MessageBox.Show("test");
             }
             ProtokollierungCreate();
             textBox_IMEI.Text = "";
@@ -315,5 +307,14 @@ namespace EigenbelegToolAlpha
             }
             ShowProtokollierung();
         }
+
+        private void proofingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Proofing window = new Proofing();
+            window.Show();
+            this.Hide();
+        }
+
+
     }
 }

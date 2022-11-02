@@ -749,5 +749,12 @@ namespace EigenbelegToolAlpha
                 }
             }
         }
+
+        private void proofingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Proofing window = new Proofing();
+            window.Show();
+            this.Hide();
+        }
     }
 }

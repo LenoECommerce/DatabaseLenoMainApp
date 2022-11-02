@@ -41,6 +41,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.etikettenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hauptetikettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xHauptetikettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.platinenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sonstigeTeileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,7 @@
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
-            this.xHauptetikettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -212,34 +213,42 @@
             // hauptetikettToolStripMenuItem
             // 
             this.hauptetikettToolStripMenuItem.Name = "hauptetikettToolStripMenuItem";
-            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hauptetikettToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.hauptetikettToolStripMenuItem.Text = "Hauptetikett";
             this.hauptetikettToolStripMenuItem.Click += new System.EventHandler(this.hauptetikettToolStripMenuItem_Click);
+            // 
+            // xHauptetikettToolStripMenuItem
+            // 
+            this.xHauptetikettToolStripMenuItem.Name = "xHauptetikettToolStripMenuItem";
+            this.xHauptetikettToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.xHauptetikettToolStripMenuItem.Text = "2x Hauptetikett";
+            this.xHauptetikettToolStripMenuItem.Click += new System.EventHandler(this.xHauptetikettToolStripMenuItem_Click);
             // 
             // platinenToolStripMenuItem
             // 
             this.platinenToolStripMenuItem.Name = "platinenToolStripMenuItem";
-            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.platinenToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.platinenToolStripMenuItem.Text = "Platinen";
             this.platinenToolStripMenuItem.Click += new System.EventHandler(this.platinenToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // sonstigeTeileToolStripMenuItem
             // 
             this.sonstigeTeileToolStripMenuItem.Name = "sonstigeTeileToolStripMenuItem";
-            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sonstigeTeileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.sonstigeTeileToolStripMenuItem.Text = "Sonstige Teile";
             // 
             // fensterwechselToolStripMenuItem
             // 
             this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eigenbelegeToolStripMenuItem,
-            this.protokollierungToolStripMenuItem});
+            this.protokollierungToolStripMenuItem,
+            this.proofingToolStripMenuItem});
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
             this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
             this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
@@ -247,14 +256,14 @@
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Eigenbelege";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
@@ -331,12 +340,12 @@
             // 
             this.openFD.FileName = "openFileDialog1";
             // 
-            // xHauptetikettToolStripMenuItem
+            // proofingToolStripMenuItem
             // 
-            this.xHauptetikettToolStripMenuItem.Name = "xHauptetikettToolStripMenuItem";
-            this.xHauptetikettToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.xHauptetikettToolStripMenuItem.Text = "2x Hauptetikett";
-            this.xHauptetikettToolStripMenuItem.Click += new System.EventHandler(this.xHauptetikettToolStripMenuItem_Click);
+            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proofingToolStripMenuItem.Text = "Proofing";
+            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
             // 
             // Reparaturen
             // 
@@ -401,5 +410,6 @@
         private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xHauptetikettToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
     }
 }

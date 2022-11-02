@@ -55,6 +55,7 @@
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_folderInstaCreate = new System.Windows.Forms.Button();
             this.btn_buybackPriceAdaptions = new System.Windows.Forms.Button();
+            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.eigenbelegeDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -296,7 +297,8 @@
             // 
             this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eigenbelegeToolStripMenuItem,
-            this.protokollierungToolStripMenuItem});
+            this.protokollierungToolStripMenuItem,
+            this.proofingToolStripMenuItem});
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
             this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
             this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
@@ -304,14 +306,14 @@
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
@@ -347,6 +349,13 @@
             this.btn_buybackPriceAdaptions.Text = "BuyBack Price Adaption";
             this.btn_buybackPriceAdaptions.UseVisualStyleBackColor = false;
             this.btn_buybackPriceAdaptions.Click += new System.EventHandler(this.btn_buybackPriceAdaptions_Click);
+            // 
+            // proofingToolStripMenuItem
+            // 
+            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proofingToolStripMenuItem.Text = "Proofing";
+            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
             // 
             // Eigenbelege
             // 
@@ -416,6 +425,7 @@
         private System.Windows.Forms.Button btn_folderInstaCreate;
         private System.Windows.Forms.Button btn_buybackPriceAdaptions;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
     }
 }
 

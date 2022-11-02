@@ -444,7 +444,7 @@ namespace EigenbelegToolAlpha
                 doc.SetBarcodeData(temp2, barcodeIMEICombo);
 
                 doc.StartPrint("", bpac.PrintOptionConstants.bpoDefault);
-                doc.PrintOut(1, bpac.PrintOptionConstants.bpoDefault);
+                doc.PrintOut(quantityOfCopies, bpac.PrintOptionConstants.bpoDefault);
                 doc.EndPrint();
                 doc.Close();
             }
@@ -548,6 +548,13 @@ namespace EigenbelegToolAlpha
         private void xHauptetikettToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BrotherPrintThisModell(2);
+        }
+
+        private void proofingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Proofing window = new Proofing();
+            window.Show();
+            this.Hide();
         }
     }
 }
