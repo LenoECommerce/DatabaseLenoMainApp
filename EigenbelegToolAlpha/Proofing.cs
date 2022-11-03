@@ -145,10 +145,12 @@ namespace EigenbelegToolAlpha
                 foreach (DataGridViewRow row in proofing.proofingDGV.Rows)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(item).ToString();
+                    GoogleDrive drive = new GoogleDrive(item);
+                    string fileLink = GoogleDrive.currentLink;
                     string rowValueIntern = row.Cells[1].Value.ToString();
                     if (rowValueIntern == fileName)
                     {
-                        string query = "UPDATE Proofing SET `Video` = '"+fileName+ "' WHERE `Intern` = '"+ rowValueIntern + "'";
+                        string query = "UPDATE Proofing SET `Video` = '"+fileLink+ "' WHERE `Intern` = '"+ rowValueIntern + "'";
                         CRUDQueries.ExecuteQuery(query);
                     }
                     else

@@ -23,7 +23,8 @@ namespace EigenbelegToolAlpha
         private const string PathToServiceAccountKeyFile = @"C:\Users\lenna\Desktop\credentials.json";
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "DriveAccessLeno";
-        public GoogleDrive()
+        public static string currentLink = "";
+        public GoogleDrive(string path)
         {
             InitializeComponent();
             UserCredential credential;
@@ -36,30 +37,31 @@ namespace EigenbelegToolAlpha
                 ApplicationName = ApplicationName,
             });
 
-            UploadBasicImage(@"C:\Users\lenna\Desktop\test\office.jpg", service);
+            UploadBasicImage(path, service);
         }
         private static void UploadBasicImage(string path, DriveService service)
         {
             //Objektfile von Google Drive
             var fileMetadata = new Google.Apis.Drive.v3.Data.File();
             fileMetadata.Name = Path.GetFileName(path);
-            fileMetadata.MimeType = "image/jpeg";
+            fileMetadata.MimeType = "mp4";
             FilesResource.CreateMediaUpload request;
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                request = service.Files.Create(fileMetadata, stream, "image/jpeg");
-                request.Fields = "id";
-                request.Fields = "webViewLink";
-                request.Fields = "PermissionsIds";
+                request = service.Files.Create(fileMetadata, stream, "mp4");
+                request.Fields = "permissionIds, id, webViewLink";
                 request.Upload();
             }
-            Permission permission = new Permission();
-            permission.Role = "reader";
-            permission.Type = "anyone";
+            Permission perm = new Permission();
+            perm.Role = "reader";
+            perm.Type = "anyone";
+
             var file = request.ResponseBody;
-            var permissionId = file.PermissionIds.FirstOrDefault();
-            service.Permissions.Update(permission, file.Id, permissionId.ToString()).Execute();
-            Console.WriteLine("File ID: " + file.Id + file.WebViewLink);
+            var permissionId = file.PermissionIds;
+            service.Permissions.Create(perm, file.Id).Execute();
+
+            currentLink = file.WebViewLink;
+            //Console.WriteLine("File ID: " + file.Id +" "+ file.WebViewLink);
         }
 
         private static UserCredential GetCredentials()

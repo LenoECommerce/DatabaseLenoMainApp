@@ -13,10 +13,10 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\lenna\source\repos\GitHub\DatabaseLenoMainApp\published\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\lenna\source\repos\GitHub\Leno All In One\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -24,7 +24,6 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</UpdateUrl>
     <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
@@ -252,12 +251,6 @@
     <Compile Include="GoogleDrive.Designer.cs">
       <DependentUpon>GoogleDrive.cs</DependentUpon>
     </Compile>
-    <Compile Include="GoogleDriveTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GoogleDriveTest.Designer.cs">
-      <DependentUpon>GoogleDriveTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Matching.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,9 +364,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GoogleDrive.resx">
       <DependentUpon>GoogleDrive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GoogleDriveTest.resx">
-      <DependentUpon>GoogleDriveTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Matching.resx">
       <DependentUpon>Matching.cs</DependentUpon>
