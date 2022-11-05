@@ -24,7 +24,7 @@ namespace EigenbelegToolAlpha
             int max = Convert.ToInt32(textBox_maximum.Text);
             string createPath = pdfDocument.locationImages;
             int numberOrdersCreated = max-min;
-            for (int i = min; i < max; i++)
+            for (int i = min; i <= max; i++)
             {
                 Directory.CreateDirectory(createPath+ @"\"+i);
             }

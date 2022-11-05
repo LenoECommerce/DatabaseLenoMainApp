@@ -33,6 +33,7 @@
             this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protokollierungToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_InternalNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,7 +51,8 @@
             this.textBox_IMEI = new System.Windows.Forms.TextBox();
             this.btn_SyncTableWithNewData = new System.Windows.Forms.Button();
             this.folderBD = new System.Windows.Forms.FolderBrowserDialog();
-            this.protokollierungToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_CreateExcel = new System.Windows.Forms.Button();
+            this.btn_certificateSyncing = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proofingDGV)).BeginInit();
             this.SuspendLayout();
@@ -79,16 +81,23 @@
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.protokollierungToolStripMenuItem.Text = "Eigenbelege";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
+            // 
+            // protokollierungToolStripMenuItem1
+            // 
+            this.protokollierungToolStripMenuItem1.Name = "protokollierungToolStripMenuItem1";
+            this.protokollierungToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem1.Text = "Protokollierung";
+            this.protokollierungToolStripMenuItem1.Click += new System.EventHandler(this.protokollierungToolStripMenuItem1_Click);
             // 
             // textBox_InternalNumber
             // 
@@ -270,12 +279,29 @@
             this.btn_SyncTableWithNewData.UseVisualStyleBackColor = false;
             this.btn_SyncTableWithNewData.Click += new System.EventHandler(this.btn_SyncTableWithNewData_Click);
             // 
-            // protokollierungToolStripMenuItem1
+            // btn_CreateExcel
             // 
-            this.protokollierungToolStripMenuItem1.Name = "protokollierungToolStripMenuItem1";
-            this.protokollierungToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.protokollierungToolStripMenuItem1.Text = "Protokollierung";
-            this.protokollierungToolStripMenuItem1.Click += new System.EventHandler(this.protokollierungToolStripMenuItem1_Click);
+            this.btn_CreateExcel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_CreateExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CreateExcel.Location = new System.Drawing.Point(898, 197);
+            this.btn_CreateExcel.Name = "btn_CreateExcel";
+            this.btn_CreateExcel.Size = new System.Drawing.Size(134, 26);
+            this.btn_CreateExcel.TabIndex = 84;
+            this.btn_CreateExcel.Text = "Excel erstellen";
+            this.btn_CreateExcel.UseVisualStyleBackColor = false;
+            this.btn_CreateExcel.Click += new System.EventHandler(this.btn_CreateExcel_Click);
+            // 
+            // btn_certificateSyncing
+            // 
+            this.btn_certificateSyncing.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_certificateSyncing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_certificateSyncing.Location = new System.Drawing.Point(1055, 156);
+            this.btn_certificateSyncing.Name = "btn_certificateSyncing";
+            this.btn_certificateSyncing.Size = new System.Drawing.Size(134, 26);
+            this.btn_certificateSyncing.TabIndex = 85;
+            this.btn_certificateSyncing.Text = "Zertifikat Sync";
+            this.btn_certificateSyncing.UseVisualStyleBackColor = false;
+            this.btn_certificateSyncing.Click += new System.EventHandler(this.btn_certificateSyncing_Click);
             // 
             // Proofing
             // 
@@ -283,6 +309,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::EigenbelegToolAlpha.Properties.Resources.office_gfeb180cfc_1280;
             this.ClientSize = new System.Drawing.Size(1264, 814);
+            this.Controls.Add(this.btn_certificateSyncing);
+            this.Controls.Add(this.btn_CreateExcel);
             this.Controls.Add(this.btn_SyncTableWithNewData);
             this.Controls.Add(this.textBox_IMEI);
             this.Controls.Add(this.textBox_nsysCertificate);
@@ -339,5 +367,7 @@
         private System.Windows.Forms.Button btn_SyncTableWithNewData;
         private System.Windows.Forms.FolderBrowserDialog folderBD;
         private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem1;
+        private System.Windows.Forms.Button btn_CreateExcel;
+        private System.Windows.Forms.Button btn_certificateSyncing;
     }
 }

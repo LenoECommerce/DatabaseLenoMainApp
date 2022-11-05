@@ -3,6 +3,9 @@ using Google.Apis.Drive.v3;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using Microsoft.Office.Interop.Excel;
+using Org.BouncyCastle.Asn1.Ocsp;
+using SautinSoft.Document.Drawing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +28,7 @@ namespace EigenbelegToolAlpha
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "DriveAccessLeno";
         public static string currentLink = "";
-        public GoogleDrive(string path)
+        public GoogleDrive(string path, string fileFormat)
         {
             InitializeComponent();
             UserCredential credential;
@@ -36,19 +40,78 @@ namespace EigenbelegToolAlpha
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
+            if (fileFormat == "mp4")
+            {
+                UploadBasicImage(path, service);
+            }
+            else if (fileFormat == "pdf")
+            {
+                UploadBasicPDF(path, service);
+            }
+           
 
-            UploadBasicImage(path, service);
         }
-        private static void UploadBasicImage(string path, DriveService service)
+        public static void UploadBasicImage(string path, DriveService service)
         {
             //Objektfile von Google Drive
             var fileMetadata = new Google.Apis.Drive.v3.Data.File();
             fileMetadata.Name = Path.GetFileName(path);
-            fileMetadata.MimeType = "mp4";
+            fileMetadata.MimeType = "video/mp4";
             FilesResource.CreateMediaUpload request;
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                request = service.Files.Create(fileMetadata, stream, "mp4");
+                request = service.Files.Create(fileMetadata, stream, "video/mp4");
+                request.Fields = "permissionIds, id, webViewLink";
+                request.Upload();
+            }
+            Permission perm = new Permission();
+            perm.Role = "reader";
+            perm.Type = "anyone";
+
+            var file = request.ResponseBody;
+            var permissionId = file.PermissionIds;
+            service.Permissions.Create(perm, file.Id).Execute();
+
+            currentLink =  file.WebViewLink;
+            //Console.WriteLine("File ID: " + file.Id +" "+ file.WebViewLink);
+        }
+        public static void UploadBasicPDF(string path, DriveService service)
+        {
+            //Objektfile von Google Drive
+            //Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+            //body.Name = System.IO.Path.GetFileName(path);
+            //body.MimeType = "pdf";
+
+            //byte[] byteArray = System.IO.File.ReadAllBytes(path);
+            //System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
+
+            //try
+            //{
+            //    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream, "pdf");
+            //    request.Fields = "permissionIds, id, webViewLink";
+            //    request.Upload();
+            //    var file = request.ResponseBody;
+            //    Permission perm = new Permission();
+            //    perm.Role = "reader";
+            //    perm.Type = "anyone";
+
+            //    var permissionId = file.PermissionIds;
+            //    service.Permissions.Create(perm, file.Id).Execute();
+
+            //    currentLink = file.WebViewLink;
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.Message, "Error Occured");
+            //}
+            //Objektfile von Google Drive
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File();
+            fileMetadata.Name = Path.GetFileName(path);
+            fileMetadata.MimeType = "application/pdf";
+            FilesResource.CreateMediaUpload request;
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                request = service.Files.Create(fileMetadata, stream, "application/pdf");
                 request.Fields = "permissionIds, id, webViewLink";
                 request.Upload();
             }
@@ -61,13 +124,15 @@ namespace EigenbelegToolAlpha
             service.Permissions.Create(perm, file.Id).Execute();
 
             currentLink = file.WebViewLink;
-            //Console.WriteLine("File ID: " + file.Id +" "+ file.WebViewLink);
+
         }
 
         private static UserCredential GetCredentials()
         {
             UserCredential credential;
-            using (var stream = new FileStream(PathToServiceAccountKeyFile, FileMode.Open, FileAccess.Read))
+
+            string path = @"C:\\Users\\lenna\\source\\repos\\GitHub\\Leno All In One\\EigenbelegToolAlpha\\Resources\\credentials.json";
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.

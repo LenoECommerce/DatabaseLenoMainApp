@@ -23,6 +23,7 @@ namespace EigenbelegToolAlpha
         public string imei = "";
         public string videoLink = "";
         public string nsysCertificate = "";
+
         public Proofing()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace EigenbelegToolAlpha
             proofingDGV.Columns[0].Visible = false;
 
             //Sortierte Ansicht
-            proofingDGV.Sort(proofingDGV.Columns[0], ListSortDirection.Descending);
+            proofingDGV.Sort(proofingDGV.Columns[1], ListSortDirection.Descending);
             conn.Close();
         }
 
@@ -133,33 +134,109 @@ namespace EigenbelegToolAlpha
             window.deleteEntry(lastSelectedEntry, "Proofing");
             ShowProofing();
         }
+        private void btn_certificateSyncing_Click(object sender, EventArgs e)
+        {
+            folderBD.ShowDialog();
+            try
+            {
+                string folderPath = folderBD.SelectedPath;
+                string[] filesInDir = Directory.GetFiles(folderPath);
+                int countChanger = 0;
+
+                foreach (DataGridViewRow row in proofingDGV.Rows)
+                {
+                    foreach (var item in filesInDir)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(item).ToString();
+                        string rowValueIntern = row.Cells[1].Value.ToString();
+                        if (rowValueIntern == fileName)
+                        {
+                            if (row.Cells[4].Value.ToString() == "")
+                            {
+                                countChanger++;
+                                GoogleDrive drive = new GoogleDrive(item,"pdf");
+                                string fileLink = GoogleDrive.currentLink;
+                                string query = "UPDATE `Proofing` SET `NSYS-Zertifikat` = '" + fileLink + "' WHERE `Intern` = '" + rowValueIntern + "'";
+                                CRUDQueries.ExecuteQuery(query);
+                            }
+                        }
+                    }
+                }
+                MessageBox.Show("Es wurden " + countChanger + " Zertifikate erfolgreich hochgeladen.");
+                ShowProofing();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void btn_SyncTableWithNewData_Click(object sender, EventArgs e)
         {
-            folderBD.ShowDialog();
-            string folderPath = folderBD.SelectedPath;
-            string []  filesInDir = Directory.GetFiles(folderPath);
-            foreach (var item in filesInDir)
+            //Check new entries and copy paste intern + imei
+            int highestInternalNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer");
+            int dgvHighestInternalNumber = Convert.ToInt32(proofingDGV.Rows[0].Cells[1].Value);
+            for (int i = dgvHighestInternalNumber; i <= highestInternalNumber; i++)
             {
-                Proofing proofing = new Proofing();
-                foreach (DataGridViewRow row in proofing.proofingDGV.Rows)
-                {
-                    string fileName = Path.GetFileNameWithoutExtension(item).ToString();
-                    GoogleDrive drive = new GoogleDrive(item);
-                    string fileLink = GoogleDrive.currentLink;
-                    string rowValueIntern = row.Cells[1].Value.ToString();
-                    if (rowValueIntern == fileName)
+                    var testIfNotCreated = CRUDQueries.ExecuteQueryWithResult("Proofing","Id","Intern",i.ToString());
+                    if (testIfNotCreated == 0)
                     {
-                        string query = "UPDATE Proofing SET `Video` = '"+fileLink+ "' WHERE `Intern` = '"+ rowValueIntern + "'";
+                        string newIMEI = CRUDQueries.ExecuteQueryWithResultString("Reparaturen","IMEI","Intern",i.ToString());
+                        string query = "INSERT INTO `Proofing` (`Intern`,`IMEI`) VALUES ('"+i.ToString()+"','" + newIMEI + "')";
                         CRUDQueries.ExecuteQuery(query);
                     }
-                    else
-                    {
-                        break;
-                    }
+
+            }
+            //Check imei changes l deduct 100 because of performance
+            for (int i = highestInternalNumber-100; i <= highestInternalNumber; i++)
+            {
+                string newIMEICheckUp = CRUDQueries.ExecuteQueryWithResultString("Reparaturen", "IMEI", "Intern", i.ToString());
+                var testIfNotCreated = CRUDQueries.ExecuteQueryWithResult("Proofing", "Id", "IMEI", i.ToString());
+                if (testIfNotCreated == 0 & newIMEICheckUp != "")
+                {
+                    string query = "UPDATE `Proofing` SET `IMEI` = '" + newIMEICheckUp + "' WHERE `Intern` = '"+i.ToString()+"'";
+                    CRUDQueries.ExecuteQuery(query);
                 }
             }
-            ShowProofing();
+
+            folderBD.ShowDialog();
+            try
+            {
+                string folderPath = folderBD.SelectedPath;
+                string[] filesInDir = Directory.GetFiles(folderPath);
+                int countChanger = 0;
+                ProofingVideoSyncLoadingBar window = new ProofingVideoSyncLoadingBar(filesInDir.Count());
+                window.Show();
+                foreach (DataGridViewRow row in proofingDGV.Rows)
+                {
+                   foreach (var item in filesInDir)
+                   {
+                        string fileName = Path.GetFileNameWithoutExtension(item).ToString();
+                        string rowValueIntern = row.Cells[1].Value.ToString();
+                        if (rowValueIntern == fileName)
+                        {
+                             if (row.Cells[3].Value.ToString() == "")
+                             {
+                                 countChanger++;
+                                 window.ChangeBar(countChanger);
+                                 window.lbl_matchedVideos.Text = countChanger.ToString();
+                                 GoogleDrive drive = new GoogleDrive(item,"mp4");
+                                 string fileLink = GoogleDrive.currentLink;
+                                 string query = "UPDATE `Proofing` SET `Video` = '" + fileLink + "' WHERE `Intern` = '" + rowValueIntern + "'";
+                                 CRUDQueries.ExecuteQuery(query);
+                             }
+                        }
+                    }
+                }
+                MessageBox.Show("Es wurden " + countChanger + " Videos erfolgreich hochgeladen.");
+                window.Hide();
+                ShowProofing();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void eigenbelegeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,5 +259,13 @@ namespace EigenbelegToolAlpha
             window.Show();
             this.Hide();
         }
+
+        private void btn_CreateExcel_Click(object sender, EventArgs e)
+        {
+            ProofingInputOrderIDs window = new ProofingInputOrderIDs();
+            window.Show();
+        }
+
+        
     }
 }

@@ -61,6 +61,16 @@ namespace EigenbelegToolAlpha.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
+        internal static byte[] credentials {
+            get {
+                object obj = ResourceManager.GetObject("credentials", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap office_gfeb180cfc_1280 {

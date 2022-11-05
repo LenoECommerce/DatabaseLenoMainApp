@@ -355,9 +355,12 @@ namespace EigenbelegToolAlpha
                 else
                 {
                     pdfDocument.CreateDocument(eigenbelegNumber, sellerName, dateBought, transactionAmount, article, platform, paymentMethod, sellerAddress);
-                } 
+                }
+                string query = "UPDATE `Eigenbelege` SET `Erstellt?` = 'Ja' WHERE `Eigenbelegnummer` = '"+eigenbelegNumber.ToString()+"'";
+                CRUDQueries.ExecuteQuery(query);
             }
             MessageBox.Show("PDF-Dokumente wurden erfolgreich erstellt.");
+            ShowEigenbelege();
         }
 
         private void eigenbelegeDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)

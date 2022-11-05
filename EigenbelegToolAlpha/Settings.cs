@@ -109,5 +109,10 @@ namespace EigenbelegToolAlpha
             CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `PathImagesEB` = '" + selectedDirectory + "' WHERE `Nutzer` = '" + currentUser + "'");
             lbl_SourceImages.Text = selectedDirectory;
         }
+
+        private void textBox_SettingsInternalNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

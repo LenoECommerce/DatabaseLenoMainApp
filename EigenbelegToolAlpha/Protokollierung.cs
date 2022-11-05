@@ -160,7 +160,6 @@ namespace EigenbelegToolAlpha
 
                 }
                 comboBox_Marketplace.Text = CheckMarketplace(textBox_OrderID.Text);
-                MessageBox.Show("test");
             }
             ProtokollierungCreate();
             textBox_IMEI.Text = "";

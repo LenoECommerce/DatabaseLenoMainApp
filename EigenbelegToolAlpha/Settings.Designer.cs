@@ -90,6 +90,7 @@
             this.textBox_SettingsInternalNumber.Name = "textBox_SettingsInternalNumber";
             this.textBox_SettingsInternalNumber.Size = new System.Drawing.Size(110, 20);
             this.textBox_SettingsInternalNumber.TabIndex = 65;
+            this.textBox_SettingsInternalNumber.TextChanged += new System.EventHandler(this.textBox_SettingsInternalNumber_TextChanged);
             // 
             // textBox_SettingsEigenbelegNummer
             // 

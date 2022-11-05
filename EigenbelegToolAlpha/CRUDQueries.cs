@@ -84,6 +84,7 @@ namespace EigenbelegToolAlpha
                 return "";
             }
         }
+        
         public static void ExecuteQuery(string query)
         {
             try
