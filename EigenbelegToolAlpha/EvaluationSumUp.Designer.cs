@@ -79,6 +79,7 @@
             this.lbl_MoreExternalCosts = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lbl_donorDevices = new System.Windows.Forms.Label();
+            this.btn_CreatePDFDocument = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_grossSalesEbayREG
@@ -563,6 +564,7 @@
             this.lbl_MoreExternalCosts.Size = new System.Drawing.Size(16, 18);
             this.lbl_MoreExternalCosts.TabIndex = 222;
             this.lbl_MoreExternalCosts.Text = "0";
+            this.lbl_MoreExternalCosts.Click += new System.EventHandler(this.lbl_MoreExternalCosts_Click);
             // 
             // label18
             // 
@@ -584,11 +586,22 @@
             this.lbl_donorDevices.TabIndex = 224;
             this.lbl_donorDevices.Text = "0";
             // 
+            // btn_CreatePDFDocument
+            // 
+            this.btn_CreatePDFDocument.Location = new System.Drawing.Point(418, 616);
+            this.btn_CreatePDFDocument.Name = "btn_CreatePDFDocument";
+            this.btn_CreatePDFDocument.Size = new System.Drawing.Size(197, 36);
+            this.btn_CreatePDFDocument.TabIndex = 225;
+            this.btn_CreatePDFDocument.Text = "PDF-Dokument erstellen";
+            this.btn_CreatePDFDocument.UseVisualStyleBackColor = true;
+            this.btn_CreatePDFDocument.Click += new System.EventHandler(this.btn_CreatePDFDocument_Click);
+            // 
             // EvaluationSumUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 694);
+            this.Controls.Add(this.btn_CreatePDFDocument);
             this.Controls.Add(this.lbl_donorDevices);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.lbl_MoreExternalCosts);
@@ -703,5 +716,6 @@
         private System.Windows.Forms.Label lbl_MoreExternalCosts;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lbl_donorDevices;
+        private System.Windows.Forms.Button btn_CreatePDFDocument;
     }
 }

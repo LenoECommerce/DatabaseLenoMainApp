@@ -30,6 +30,7 @@ namespace EigenbelegToolAlpha
         public static double ebayTaxGetBack = 0;
         private void EvaluationsFirstPage_Load(object sender, EventArgs e)
         {
+            CreateConfigTXT();
             lbl_BackMarketNormal1.Text = lineSearchAndGetValue("BackMarket normal 1:",20);
             lbl_BackMarketNormal2.Text = lineSearchAndGetValue("BackMarket normal 2:", 20);
             lbl_BackMarketNormal3.Text = lineSearchAndGetValue("BackMarket normal 3:", 20);
@@ -40,7 +41,14 @@ namespace EigenbelegToolAlpha
             lbl_ebayInvoice.Text = lineSearchAndGetValue("Ebay Rechnung:",14);
             comboBox_MonthOfEvaluation.Text = lineSearchAndGetValue("Monat:", 6);
         }
-
+        public void CreateConfigTXT()
+        {
+            string path = "Evaluation_config.txt";
+            FileStream stream = File.Create(path);
+            stream.Close();
+            File.WriteAllText(path, "\r\nBackMarket normal 1: kein Wert\r\nBackMarket normal 2: kein Wert\r\nBackMarket normal 3: kein Wert\r\nBackMarket PayPal 1: kein Wert\r\nBackMarket PayPal 2: kein Wert\r\nBackMarket PayPal 3: kein Wert\r\nEbay Report: kein Wert\r\nEbay Rechnung: kein Wert\r\nMonat: kein Wert");
+            
+        }
         public void lineSearchAndInsert(string searchValue)
         {
             string[] lines = File.ReadAllLines(fileName);
@@ -137,6 +145,8 @@ namespace EigenbelegToolAlpha
 
             string path = eval.lineSearchAndGetValue("Ebay Report:",12);
             string tempPath = "ebaydata.txt";
+            FileStream stream = File.Create(tempPath);
+            stream.Close();
             File.WriteAllText(tempPath, ExtractTextFromPdf(path));
             string[] allLines = File.ReadAllLines(tempPath);
 
@@ -163,6 +173,8 @@ namespace EigenbelegToolAlpha
 
             string path = eval.lineSearchAndGetValue("Ebay Rechnung:", 14);
             string tempPath = "ebaydata2.txt";
+            FileStream stream = File.Create(tempPath);
+            stream.Close();
             File.WriteAllText(tempPath, ExtractTextFromPdf(path));
             string[] allLines = File.ReadAllLines(tempPath);
 

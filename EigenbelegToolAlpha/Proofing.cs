@@ -266,6 +266,10 @@ namespace EigenbelegToolAlpha
             window.Show();
         }
 
-        
+        private void auswertungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EvaluationChoice window = new EvaluationChoice();
+            window.Show();
+        }
     }
 }

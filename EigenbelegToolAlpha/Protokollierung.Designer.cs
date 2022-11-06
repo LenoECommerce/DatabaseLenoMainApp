@@ -38,6 +38,8 @@
             this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auswertungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,9 +57,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
             this.button3 = new System.Windows.Forms.Button();
-            this.btn_Evaluation = new System.Windows.Forms.Button();
             this.btn_BulkEditor = new System.Windows.Forms.Button();
-            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.protokollierungDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +135,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fensterwechselToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem,
+            this.auswertungToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -155,16 +156,30 @@
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.protokollierungToolStripMenuItem.Text = "Eigenbelege";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
+            // 
+            // proofingToolStripMenuItem
+            // 
+            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.proofingToolStripMenuItem.Text = "Proofing";
+            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
+            // 
+            // auswertungToolStripMenuItem
+            // 
+            this.auswertungToolStripMenuItem.Name = "auswertungToolStripMenuItem";
+            this.auswertungToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.auswertungToolStripMenuItem.Text = "Auswertung";
+            this.auswertungToolStripMenuItem.Click += new System.EventHandler(this.auswertungToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -351,18 +366,6 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btn_Evaluation
-            // 
-            this.btn_Evaluation.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_Evaluation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Evaluation.Location = new System.Drawing.Point(1064, 52);
-            this.btn_Evaluation.Name = "btn_Evaluation";
-            this.btn_Evaluation.Size = new System.Drawing.Size(134, 26);
-            this.btn_Evaluation.TabIndex = 68;
-            this.btn_Evaluation.Text = "Berichte";
-            this.btn_Evaluation.UseVisualStyleBackColor = false;
-            this.btn_Evaluation.Click += new System.EventHandler(this.btn_Evaluation_Click);
-            // 
             // btn_BulkEditor
             // 
             this.btn_BulkEditor.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -375,13 +378,6 @@
             this.btn_BulkEditor.UseVisualStyleBackColor = false;
             this.btn_BulkEditor.Click += new System.EventHandler(this.btn_BulkEditor_Click);
             // 
-            // proofingToolStripMenuItem
-            // 
-            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
-            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.proofingToolStripMenuItem.Text = "Proofing";
-            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
-            // 
             // Protokollierung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,7 +385,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 814);
             this.Controls.Add(this.btn_BulkEditor);
-            this.Controls.Add(this.btn_Evaluation);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox_Marketplace);
@@ -455,8 +450,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openFD;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btn_Evaluation;
         private System.Windows.Forms.Button btn_BulkEditor;
         private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auswertungToolStripMenuItem;
     }
 }

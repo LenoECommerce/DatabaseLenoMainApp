@@ -28,12 +28,14 @@ namespace EigenbelegToolAlpha
         public static double runningCostsInTotal = EvaluationThirdForm.RunningCostsFinal;
         public static double revenueInTotal = outComeInTotal +EvaluationSecondForm.B2BRevenue- inputInTotal - rateConsumptionTotal - taxesInTotal;
         public static double revenieInTotalAfterRunningCosts = revenueInTotal - runningCostsInTotal;
+        public string month = "";
         public EvaluationSumUp()
         {
             InitializeComponent();
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
             EvaluationCalculation eval2 = new EvaluationCalculation();
-            lbl_MonthOfEvaluationo.Text = eval.lineSearchAndGetValue("Monat:", 6);
+            month = eval.lineSearchAndGetValue("Monat:", 6);
+            lbl_MonthOfEvaluationo.Text = month;
             lbl_grossSalesBackMarketNormalDIFF.Text = EvaluationCalculation.backMarketGrossSalesVolumeMarginalVat.ToString();
             lbl_grossSalesBackMarketNormalREG.Text = EvaluationCalculation.backMarketGrossSalesVolumeNormalVat.ToString();
             lbl_grossSalesBackMarketPayPalDIFF.Text = EvaluationCalculation.backMarketPayPalGrossSalesVolumeMarginalVat.ToString();
@@ -67,6 +69,23 @@ namespace EigenbelegToolAlpha
         }
 
         private void EvaluationSumUp_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CreatePDFDocument_Click(object sender, EventArgs e)
+        {
+            MonthlyReportPDF.CreatePDFFile(month, EvaluationSecondForm.ebayGrossSalesNormalVat.ToString(), EvaluationSecondForm.ebayGrossSalesMarginalVat.ToString(), EvaluationCalculation.backMarketGrossSalesVolumeNormalVat.ToString(),
+                                           EvaluationCalculation.backMarketGrossSalesVolumeMarginalVat.ToString(), EvaluationCalculation.backMarketPayPalGrossSalesVolumeNormalVat.ToString(), EvaluationCalculation.backMarketPayPalGrossSalesVolumeMarginalVat.ToString(),
+                                           EvaluationSecondForm.sparepartsGrossSalesNormalVat.ToString(), EvaluationSecondForm.sparepartsGrossSalesMarginalVat.ToString(), lbl_OutComeInTotal.Text, lbl_InputOfGoodsREG.Text, lbl_InputOfGoodsDIFF.Text,
+                                           lbl_InputOfExternalCosts.Text, lbl_MoreExternalCosts.Text, lbl_donorDevices.Text, lbl_InputInTotal.Text, lbl_rateConsumption.Text, lbl_RunningCostsTotal.Text, lbl_TaxesInTotal.Text,
+                                           lbl_B2BGrossSales.Text, lbl_B2BRevenue.Text, lbl_KPIGrossSalesTotal.Text, lbl_KPIRevenue.Text, lbl_revenueTotalAfterRunningCosts.Text);
+            //GoogleDrive drive = new GoogleDrive(MonthlyReportPDF.,"pdf");
+            MessageBox.Show("Datei erfolgreich erstellt.");
+            this.Close();
+        }
+
+        private void lbl_MoreExternalCosts_Click(object sender, EventArgs e)
         {
 
         }

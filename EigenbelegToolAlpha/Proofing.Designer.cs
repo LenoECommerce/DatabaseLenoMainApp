@@ -53,6 +53,7 @@
             this.folderBD = new System.Windows.Forms.FolderBrowserDialog();
             this.btn_CreateExcel = new System.Windows.Forms.Button();
             this.btn_certificateSyncing = new System.Windows.Forms.Button();
+            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proofingDGV)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fensterwechselToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem,
+            this.auswertungenToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -303,6 +305,13 @@
             this.btn_certificateSyncing.UseVisualStyleBackColor = false;
             this.btn_certificateSyncing.Click += new System.EventHandler(this.btn_certificateSyncing_Click);
             // 
+            // auswertungenToolStripMenuItem
+            // 
+            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
+            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
+            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
+            // 
             // Proofing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,5 +378,6 @@
         private System.Windows.Forms.ToolStripMenuItem protokollierungToolStripMenuItem1;
         private System.Windows.Forms.Button btn_CreateExcel;
         private System.Windows.Forms.Button btn_certificateSyncing;
+        private System.Windows.Forms.ToolStripMenuItem auswertungenToolStripMenuItem;
     }
 }

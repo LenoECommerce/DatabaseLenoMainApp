@@ -191,6 +191,8 @@ namespace EigenbelegToolAlpha
                 arrayIndexer++;
                 string path = eval.lineSearchAndGetValue(buildPath,20);
                 string tempPath = "backmarketdata.txt";
+                FileStream stream = File.Create(tempPath);
+                stream.Close();
                 File.WriteAllText(tempPath, ExtractTextFromPdf(path));
                 if (File.Exists(path) != true)
                 {
@@ -314,6 +316,8 @@ namespace EigenbelegToolAlpha
                 arrayIndexer++;
                 string path = eval.lineSearchAndGetValue(buildPath,20);
                 string tempPath = "backmarketdata.txt";
+                FileStream stream = File.Create(tempPath);
+                stream.Close();
                 File.WriteAllText(tempPath, ExtractTextFromPdf(path));
                 if (File.Exists(path) != true)
                 {

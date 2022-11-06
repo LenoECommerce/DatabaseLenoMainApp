@@ -53,6 +53,7 @@
             this.lbl_ebayInvoice = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label20
@@ -273,7 +274,7 @@
             "Oktober",
             "November",
             "Dezember"});
-            this.comboBox_MonthOfEvaluation.Location = new System.Drawing.Point(454, 26);
+            this.comboBox_MonthOfEvaluation.Location = new System.Drawing.Point(600, 26);
             this.comboBox_MonthOfEvaluation.Name = "comboBox_MonthOfEvaluation";
             this.comboBox_MonthOfEvaluation.Size = new System.Drawing.Size(121, 21);
             this.comboBox_MonthOfEvaluation.TabIndex = 104;
@@ -310,12 +311,23 @@
             this.label13.TabIndex = 107;
             this.label13.Text = "(Zahlungen/Berichte/Zusammenfassung)";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(539, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 18);
+            this.label10.TabIndex = 108;
+            this.label10.Text = "Monat";
+            // 
             // EvaluationsFirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(826, 495);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lbl_ebayInvoice);
@@ -375,5 +387,6 @@
         private System.Windows.Forms.Label lbl_ebayInvoice;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label10;
     }
 }

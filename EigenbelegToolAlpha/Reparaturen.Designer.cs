@@ -48,6 +48,7 @@
             this.fensterwechselToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,7 +56,7 @@
             this.btn_WorkWithSpecificReparatur = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.openFD = new System.Windows.Forms.OpenFileDialog();
-            this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.reparaturenDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -189,7 +190,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.etikettenToolStripMenuItem,
             this.fensterwechselToolStripMenuItem,
-            this.filterToolStripMenuItem});
+            this.filterToolStripMenuItem,
+            this.auswertungenToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -256,16 +258,23 @@
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Eigenbelege";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.protokollierungToolStripMenuItem.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
+            // 
+            // proofingToolStripMenuItem
+            // 
+            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.proofingToolStripMenuItem.Text = "Proofing";
+            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
             // 
             // filterToolStripMenuItem
             // 
@@ -340,12 +349,12 @@
             // 
             this.openFD.FileName = "openFileDialog1";
             // 
-            // proofingToolStripMenuItem
+            // auswertungenToolStripMenuItem
             // 
-            this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
-            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.proofingToolStripMenuItem.Text = "Proofing";
-            this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
+            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
+            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
+            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
             // 
             // Reparaturen
             // 
@@ -411,5 +420,6 @@
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xHauptetikettToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auswertungenToolStripMenuItem;
     }
 }

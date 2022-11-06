@@ -556,5 +556,11 @@ namespace EigenbelegToolAlpha
             window.Show();
             this.Hide();
         }
+
+        private void auswertungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EvaluationChoice window = new EvaluationChoice();
+            window.Show();
+        }
     }
 }

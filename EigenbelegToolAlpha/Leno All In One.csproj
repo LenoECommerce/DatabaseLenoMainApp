@@ -28,7 +28,7 @@
     <UpdateUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -221,6 +221,18 @@
     <Compile Include="EvaluationCalculation.Designer.cs">
       <DependentUpon>EvaluationCalculation.cs</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluationChoice.Designer.cs">
+      <DependentUpon>EvaluationChoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluationHistory.Designer.cs">
+      <DependentUpon>EvaluationHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Evaluations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +276,7 @@
     <Compile Include="Matching.Designer.cs">
       <DependentUpon>Matching.cs</DependentUpon>
     </Compile>
+    <Compile Include="MonthlyReportPDF.cs" />
     <Compile Include="pdfDocument.cs" />
     <Compile Include="pdfDocumentStorno.cs" />
     <Compile Include="Program.cs" />
@@ -365,6 +378,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EvaluationCalculation.resx">
       <DependentUpon>EvaluationCalculation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvaluationChoice.resx">
+      <DependentUpon>EvaluationChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvaluationHistory.resx">
+      <DependentUpon>EvaluationHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Evaluations.resx">
       <DependentUpon>Evaluations.cs</DependentUpon>
