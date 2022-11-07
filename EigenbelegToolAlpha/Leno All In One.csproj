@@ -28,7 +28,7 @@
     <UpdateUrl>https://raw.githubusercontent.com/LenoECommerce/DatabaseLenoMainApp/main/published/</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>22</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -341,6 +341,12 @@
     <Compile Include="ReparaturenFilter.Designer.cs">
       <DependentUpon>ReparaturenFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchAlgorithm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchAlgorithm.Designer.cs">
+      <DependentUpon>SearchAlgorithm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +452,9 @@
     <EmbeddedResource Include="ReparaturenFilter.resx">
       <DependentUpon>ReparaturenFilter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchAlgorithm.resx">
+      <DependentUpon>SearchAlgorithm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -513,10 +522,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\credentials.json" />
+    <None Include="Resources\evaluations.webp" />
     <None Include="Resources\Unterschrift.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="leno-favicon.ico" />
+    <None Include="Resources\evaluations.png" />
+    <None Include="Resources\windowsvg.png" />
+    <None Include="Resources\evaluations.jpg" />
+    <None Include="Resources\window.png" />
+    <None Include="Resources\suche.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\107799.png" />
     <None Include="Resources\office-gfeb180cfc_1280.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

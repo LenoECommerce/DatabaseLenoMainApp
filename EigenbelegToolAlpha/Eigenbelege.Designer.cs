@@ -53,10 +53,11 @@
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_folderInstaCreate = new System.Windows.Forms.Button();
             this.btn_buybackPriceAdaptions = new System.Windows.Forms.Button();
-            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.eigenbelegeDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -287,6 +288,7 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fensterwechselToolStripMenuItem,
+            this.sucheToolStripMenuItem,
             this.filterToolStripMenuItem,
             this.auswertungenToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -301,37 +303,55 @@
             this.eigenbelegeToolStripMenuItem,
             this.protokollierungToolStripMenuItem,
             this.proofingToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.windowsvg;
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
-            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
             // 
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
             // proofingToolStripMenuItem
             // 
             this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
-            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proofingToolStripMenuItem.Text = "Proofing";
             this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
             // 
+            // sucheToolStripMenuItem
+            // 
+            this.sucheToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.suche;
+            this.sucheToolStripMenuItem.Name = "sucheToolStripMenuItem";
+            this.sucheToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.sucheToolStripMenuItem.Text = "Suche";
+            this.sucheToolStripMenuItem.Click += new System.EventHandler(this.sucheToolStripMenuItem_Click);
+            // 
             // filterToolStripMenuItem
             // 
+            this.filterToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.filter;
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.filterToolStripMenuItem.Text = "Filter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
+            // 
+            // auswertungenToolStripMenuItem
+            // 
+            this.auswertungenToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.evaluations;
+            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
+            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
+            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
             // 
             // btn_folderInstaCreate
             // 
@@ -358,13 +378,6 @@
             this.btn_buybackPriceAdaptions.Text = "BuyBack Price Adaption";
             this.btn_buybackPriceAdaptions.UseVisualStyleBackColor = false;
             this.btn_buybackPriceAdaptions.Click += new System.EventHandler(this.btn_buybackPriceAdaptions_Click);
-            // 
-            // auswertungenToolStripMenuItem
-            // 
-            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
-            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
-            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
             // 
             // Eigenbelege
             // 
@@ -437,6 +450,7 @@
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auswertungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucheToolStripMenuItem;
     }
 }
 

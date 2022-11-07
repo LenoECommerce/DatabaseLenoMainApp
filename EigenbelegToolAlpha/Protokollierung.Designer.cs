@@ -39,6 +39,7 @@
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auswertungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -136,6 +137,7 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fensterwechselToolStripMenuItem,
+            this.sucheToolStripMenuItem,
             this.auswertungToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -149,36 +151,46 @@
             this.eigenbelegeToolStripMenuItem,
             this.protokollierungToolStripMenuItem,
             this.proofingToolStripMenuItem});
+            this.fensterwechselToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.windowsvg;
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
-            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
             // 
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem.Text = "Eigenbelege";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
             // proofingToolStripMenuItem
             // 
             this.proofingToolStripMenuItem.Name = "proofingToolStripMenuItem";
-            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proofingToolStripMenuItem.Text = "Proofing";
             this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
             // 
+            // sucheToolStripMenuItem
+            // 
+            this.sucheToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.suche;
+            this.sucheToolStripMenuItem.Name = "sucheToolStripMenuItem";
+            this.sucheToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.sucheToolStripMenuItem.Text = "Suche";
+            this.sucheToolStripMenuItem.Click += new System.EventHandler(this.sucheToolStripMenuItem_Click);
+            // 
             // auswertungToolStripMenuItem
             // 
+            this.auswertungToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.evaluations;
             this.auswertungToolStripMenuItem.Name = "auswertungToolStripMenuItem";
-            this.auswertungToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.auswertungToolStripMenuItem.Text = "Auswertung";
+            this.auswertungToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.auswertungToolStripMenuItem.Text = "Auswertungen";
             this.auswertungToolStripMenuItem.Click += new System.EventHandler(this.auswertungToolStripMenuItem_Click);
             // 
             // label2
@@ -453,5 +465,6 @@
         private System.Windows.Forms.Button btn_BulkEditor;
         private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auswertungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucheToolStripMenuItem;
     }
 }

@@ -13,6 +13,7 @@ namespace EigenbelegToolAlpha
 {
     public partial class EvaluationHistory : Form
     {
+        public string currentYear = "2022";
         public EvaluationHistory()
         {
             InitializeComponent();
@@ -41,12 +42,26 @@ namespace EigenbelegToolAlpha
             evaluationsDGV.Columns[0].Visible = false;
 
             //Sortierte Ansicht
-            evaluationsDGV.Sort(evaluationsDGV.Columns[1], ListSortDirection.Descending);
+            //evaluationsDGV.Sort(evaluationsDGV.Columns[1], ListSortDirection.Descending);
+
+            for (int i = 0; i <= evaluationsDGV.Rows.Count-1; i++)
+            {
+                if (evaluationsDGV.Rows[i].Cells[2].Value.ToString() != currentYear)
+                {
+                    evaluationsDGV.Rows[i].Visible = false;
+                }
+            }
+
             conn.Close();
         }
         private void EvaluationHistory_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void combobox_SelectedYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentYear = combobox_SelectedYear.SelectedItem.ToString();
         }
     }
 }

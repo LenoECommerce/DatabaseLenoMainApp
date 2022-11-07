@@ -58,6 +58,8 @@
             this.combobox_SelectedYear.Name = "combobox_SelectedYear";
             this.combobox_SelectedYear.Size = new System.Drawing.Size(121, 21);
             this.combobox_SelectedYear.TabIndex = 109;
+            this.combobox_SelectedYear.Text = "2022";
+            this.combobox_SelectedYear.SelectedIndexChanged += new System.EventHandler(this.combobox_SelectedYear_SelectedIndexChanged);
             // 
             // btn_DownloadReport
             // 

@@ -34,6 +34,8 @@
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_InternalNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,7 +55,6 @@
             this.folderBD = new System.Windows.Forms.FolderBrowserDialog();
             this.btn_CreateExcel = new System.Windows.Forms.Button();
             this.btn_certificateSyncing = new System.Windows.Forms.Button();
-            this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proofingDGV)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +64,7 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fensterwechselToolStripMenuItem,
+            this.sucheToolStripMenuItem,
             this.auswertungenToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -76,30 +78,47 @@
             this.eigenbelegeToolStripMenuItem,
             this.protokollierungToolStripMenuItem,
             this.protokollierungToolStripMenuItem1});
+            this.fensterwechselToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.windowsvg;
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
-            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.fensterwechselToolStripMenuItem.Text = "Fensterwechsel";
             // 
             // eigenbelegeToolStripMenuItem
             // 
             this.eigenbelegeToolStripMenuItem.Name = "eigenbelegeToolStripMenuItem";
-            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eigenbelegeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eigenbelegeToolStripMenuItem.Text = "Reparaturen";
             this.eigenbelegeToolStripMenuItem.Click += new System.EventHandler(this.eigenbelegeToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem
             // 
             this.protokollierungToolStripMenuItem.Name = "protokollierungToolStripMenuItem";
-            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem.Text = "Eigenbelege";
             this.protokollierungToolStripMenuItem.Click += new System.EventHandler(this.protokollierungToolStripMenuItem_Click);
             // 
             // protokollierungToolStripMenuItem1
             // 
             this.protokollierungToolStripMenuItem1.Name = "protokollierungToolStripMenuItem1";
-            this.protokollierungToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
+            this.protokollierungToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.protokollierungToolStripMenuItem1.Text = "Protokollierung";
             this.protokollierungToolStripMenuItem1.Click += new System.EventHandler(this.protokollierungToolStripMenuItem1_Click);
+            // 
+            // sucheToolStripMenuItem
+            // 
+            this.sucheToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.suche;
+            this.sucheToolStripMenuItem.Name = "sucheToolStripMenuItem";
+            this.sucheToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.sucheToolStripMenuItem.Text = "Suche";
+            this.sucheToolStripMenuItem.Click += new System.EventHandler(this.sucheToolStripMenuItem_Click);
+            // 
+            // auswertungenToolStripMenuItem
+            // 
+            this.auswertungenToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.evaluations;
+            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
+            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
+            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
             // 
             // textBox_InternalNumber
             // 
@@ -305,13 +324,6 @@
             this.btn_certificateSyncing.UseVisualStyleBackColor = false;
             this.btn_certificateSyncing.Click += new System.EventHandler(this.btn_certificateSyncing_Click);
             // 
-            // auswertungenToolStripMenuItem
-            // 
-            this.auswertungenToolStripMenuItem.Name = "auswertungenToolStripMenuItem";
-            this.auswertungenToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.auswertungenToolStripMenuItem.Text = "Auswertungen";
-            this.auswertungenToolStripMenuItem.Click += new System.EventHandler(this.auswertungenToolStripMenuItem_Click);
-            // 
             // Proofing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,5 +391,6 @@
         private System.Windows.Forms.Button btn_CreateExcel;
         private System.Windows.Forms.Button btn_certificateSyncing;
         private System.Windows.Forms.ToolStripMenuItem auswertungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucheToolStripMenuItem;
     }
 }

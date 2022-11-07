@@ -25,7 +25,7 @@ namespace EigenbelegToolAlpha
             }
             else
             {
-                Application.Run(new Protokollierung());
+                Application.Run(new Eigenbelege());
             }
 
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -80,7 +81,21 @@ namespace EigenbelegToolAlpha
                                            EvaluationSecondForm.sparepartsGrossSalesNormalVat.ToString(), EvaluationSecondForm.sparepartsGrossSalesMarginalVat.ToString(), lbl_OutComeInTotal.Text, lbl_InputOfGoodsREG.Text, lbl_InputOfGoodsDIFF.Text,
                                            lbl_InputOfExternalCosts.Text, lbl_MoreExternalCosts.Text, lbl_donorDevices.Text, lbl_InputInTotal.Text, lbl_rateConsumption.Text, lbl_RunningCostsTotal.Text, lbl_TaxesInTotal.Text,
                                            lbl_B2BGrossSales.Text, lbl_B2BRevenue.Text, lbl_KPIGrossSalesTotal.Text, lbl_KPIRevenue.Text, lbl_revenueTotalAfterRunningCosts.Text);
-            //GoogleDrive drive = new GoogleDrive(MonthlyReportPDF.,"pdf");
+            var returnValue = CRUDQueries.ExecuteQueryWithResult("Evaluations", "Id","Monat",month);
+            GoogleDrive drive = new GoogleDrive(MonthlyReportPDF.fullPath, "pdf");
+            if (returnValue == 0)
+            {
+                string query = string.Format("INSERT INTO `Evaluations` (`Monat`,`Jahr`,`Link`) VALUES ('{0}','{1}','{2}')"
+                                , month, "2022", GoogleDrive.currentLink);
+                CRUDQueries.ExecuteQuery(query);
+                MessageBox.Show("Der Monat " + month + " wurde erstmalig angelegt.");
+            }
+            else
+            {
+                string query = "UPDATE `Evaluations` SET VALUES (`Link` = '"+GoogleDrive.currentLink+ "' WHERE `Id` = '"+returnValue+"')";
+                CRUDQueries.ExecuteQuery(query);
+                MessageBox.Show("Der Monat " + month + " wurde überschrieben.");
+            }
             MessageBox.Show("Datei erfolgreich erstellt.");
             this.Close();
         }
@@ -89,6 +104,8 @@ namespace EigenbelegToolAlpha
         {
 
         }
+
+
     }
     
 }

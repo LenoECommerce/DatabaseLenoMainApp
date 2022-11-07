@@ -271,5 +271,52 @@ namespace EigenbelegToolAlpha
             EvaluationChoice window = new EvaluationChoice();
             window.Show();
         }
+
+        private void sucheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new SearchAlgorithm())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    //Collecting all rows with the matching term
+                    string searchTerm = form.searchTerm.ToLower();
+                    int cellCounter = proofingDGV.Rows[0].Cells.Count - 1;
+                    int arrayIndexCounter = 0;
+                    string[] matchingRows = new string[100];
+                    foreach (DataGridViewRow row in proofingDGV.Rows)
+                    {
+                        var pos = row.Index;
+                        for (int i = 1; i <= cellCounter; i++)
+                        {
+                            if (row.Cells[i].Value.ToString().ToLower().Contains(searchTerm))
+                            {
+                                if (SearchAlgorithm.CheckIfExists(pos, matchingRows) == false)
+                                {
+                                    matchingRows[arrayIndexCounter] = pos.ToString();
+                                }
+                            }
+                        }
+                        //Changing the visibility
+                        if (matchingRows.Contains(pos.ToString()))
+                        {
+                            row.Visible = true;
+                        }
+                        else
+                        {
+                            if (pos == 0)
+                            {
+                                proofingDGV.CurrentCell = null;
+                                row.Visible = false;
+                            }
+                            else
+                            {
+                                row.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
