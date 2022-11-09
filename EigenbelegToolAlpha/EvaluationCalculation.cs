@@ -58,6 +58,9 @@ namespace EigenbelegToolAlpha
 
         public static double donorDevicesAmount = 0;
         public static int donorDevicesCounter = 0;
+
+        public static int checkValueAddedDevicesToMatching = 0;
+        public static int checkValueDevicesCountedInput = 0;
         private void DonorDevicesAlgorithm()
         {
             Reparaturen rep = new Reparaturen();
@@ -81,32 +84,19 @@ namespace EigenbelegToolAlpha
             Matching match = new Matching();
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
             string month = eval.lineSearchAndGetValue("Monat:", 6);
-            string path = "alreadyMatchedDevives.txt";
-            string[] devicesList = new string[1000];
             int arrayIndex = 0;
             double rowsInTotal = match.matchingDGV.RowCount;
             double approvedRows = 0;
-            int addedRows = 0;
             foreach (DataGridViewRow row in match.matchingDGV.Rows)
             {
                 approvedRows++;
                 double progress = approvedRows / rowsInTotal * 100;
                 progressBar1.Value = Convert.ToInt32(progress);
-                if (row.Cells[8].Value.ToString() == month)
+                string monthOfMatching = row.Cells[8].Value.ToString();
+                string tempIntern = row.Cells[3].Value.ToString();
+                if (monthOfMatching == month)
                 {
-                    string tempIntern = row.Cells[3].Value.ToString();
-                    if (devicesList.Contains(tempIntern))
-                    {
-                        MessageBox.Show("Es wurde ein bereits gezählter Eintrag gefunden.");
-                    }
-                    else
-                    {
                         arrayIndex++;
-                        devicesList[arrayIndex] = tempIntern;
-                        foreach (string device in devicesList)
-                        {
-                            File.WriteAllLines(path, devicesList);
-                        }
                         string checkValue = row.Cells[5].Value.ToString();
                         if (checkValue == "")
                         {
@@ -127,13 +117,13 @@ namespace EigenbelegToolAlpha
                             string checkValue3 = row.Cells[4].Value.ToString();
                             inputOfGoodsREG += Convert.ToDouble(EuroCheck(checkValue3));
                         }
-                    }
                 }
             }
             lbl_inputOfExternalCosts.Text = inputOfExternalCosts.ToString();
             lbl_inputOfGoodsDIFF.Text = inputOfGoodsDIFF.ToString();
             lbl_inputOfGoodsREG.Text = inputOfGoodsREG.ToString();
-            MessageBox.Show("Der Einsatz Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: " + rowsInTotal + "\r\n- Durchlaufen: " + approvedRows + "\r\n- Passende Einträge: " + addedRows);
+            checkValueDevicesCountedInput = arrayIndex;
+            MessageBox.Show("Der Einsatz Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: " + rowsInTotal + "\r\n- Durchlaufen: " + approvedRows + "\r\n- Passende Einträge: " + arrayIndex);
         }
         private void MatchingAlgorithm ()
         {
@@ -156,6 +146,8 @@ namespace EigenbelegToolAlpha
             int addedRows = 0;
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
             string month = eval.lineSearchAndGetValue("Monat:", 6);
+            string[] alreadyExisting = new string[100];
+            int alreadyExistsCounter = 0;
 
             //Abfrage wenn IMEI nicht vorhanden sein sollte!
             foreach (DataGridViewRow row in rep.reparaturenDGV.Rows)
@@ -182,16 +174,17 @@ namespace EigenbelegToolAlpha
                 progressBar1.Value = Convert.ToInt32(progress);
                 searchOrderID = row3.Cells[1].Value.ToString();
                 newMonth = row3.Cells[5].Value.ToString();
+                searchIntern = row3.Cells[3].Value.ToString();
                 var resultExistsInMatching = CRUDQueries.ExecuteQueryWithResult("Matching", "Id", "Bestellnummer", searchOrderID);
-                //Überprüfen ob der Datensatz schon in Matching vorhanden ist + Ob Monat relevant ist
-                if (resultExistsInMatching == 0 && newMonth == month)
+                var resultExistsInternInMatching = CRUDQueries.ExecuteQueryWithResult("Matching", "Id", "Intern", searchIntern);
+                //Überprüfen ob der Datensatz schon in Matching vorhanden ist + Ob Monat relevant ist + ob Intern schon vorhanden ist!
+                if (resultExistsInMatching == 0 && newMonth == month && resultExistsInternInMatching == 0)
                 {
                     foreach (DataGridViewRow row4 in match.matchingDGV.Rows)
                     {
                         //Data Pull aus Protokollierung
                         searchOrderID = row3.Cells[1].Value.ToString();
                         newIMEI = row3.Cells[2].Value.ToString();
-                        searchIntern = row3.Cells[3].Value.ToString();
                         marketplace = row3.Cells[4].Value.ToString();
                         related = "Ja";
                         //Data Pull aus Reparaturen
@@ -222,8 +215,14 @@ namespace EigenbelegToolAlpha
                         CRUDQueries.ExecuteQuery(query2);
                     }
                 }
+                else
+                {
+                    alreadyExisting[alreadyExistsCounter] = searchOrderID;
+                    alreadyExistsCounter++;
+                }
             }
-            MessageBox.Show("Der Matching Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: "+rowsInTotal+"\r\n- Durchlaufen: "+approvedRows+ "\r\n- Passende Einträge: " + addedRows);
+            checkValueAddedDevicesToMatching = addedRows;
+            MessageBox.Show("Der Matching Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: "+rowsInTotal+"\r\n- Durchlaufen: "+approvedRows+ "\r\n- Passende Einträge: " + addedRows+ "\r\n - Bereits existierende Aufträge: " + alreadyExistsCounter);
         }
         private void BackMarketInvoicesChecking ()
         {
@@ -799,6 +798,7 @@ namespace EigenbelegToolAlpha
             {
                 MessageBox.Show("Der Algorithmus für die Berechnung des Einsatzes hat ein Problem: " + ex.Message);
             }
+            MessageBox.Show("Zwischenüberprüfung: \r\n- Zu Matching hinzugefügte Einträge: "+checkValueAddedDevicesToMatching + "\r\n- Anzahl der Geräte Input gezählt: "+checkValueDevicesCountedInput + "\r\nDiese Werte müssen übereinstimmen, ansonsten ist ein Fehler unterlaufen.:");
             try
             {
                 BackMarketInvoicesChecking();

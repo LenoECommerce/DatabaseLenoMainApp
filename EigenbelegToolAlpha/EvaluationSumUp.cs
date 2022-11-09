@@ -22,7 +22,7 @@ namespace EigenbelegToolAlpha
                                                 + EvaluationSecondForm.B2BGrossSalesTotal;
         public static double moreExternalCostsInTotal = EvaluationSecondForm.moreExternalCostsNormalVat + EvaluationSecondForm.moreExternalCostsMarginalVat;
         //Hier wird Spender verändert!
-        public static double donorDevices = 934.97;
+        public static double donorDevices = EvaluationCalculation.donorDevicesAmount;
         public static double inputInTotal = EvaluationCalculation.inputOfGoodsREG + EvaluationCalculation.inputOfGoodsDIFF + EvaluationCalculation.inputOfExternalCosts + moreExternalCostsInTotal + donorDevices;
         public static double moreExternalCostsTaxGetBack = EvaluationSecondForm.moreExternalCostsNormalVat / 1.19 * 0.19;
         public static double taxesInTotal = EvaluationCalculation.taxesHaveToPay- EvaluationsFirstPage.ebayTaxGetBack -moreExternalCostsTaxGetBack;
