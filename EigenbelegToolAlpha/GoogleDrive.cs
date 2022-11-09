@@ -48,9 +48,20 @@ namespace EigenbelegToolAlpha
             {
                 UploadBasicPDF(path, service);
             }
-           
-
         }
+
+        public static void GetFile ()
+        {
+            UserCredential credential;
+            credential = GetCredentials();
+            // Create Drive API service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+        }
+
         public static void UploadBasicImage(string path, DriveService service)
         {
             //Objektfile von Google Drive
@@ -77,34 +88,7 @@ namespace EigenbelegToolAlpha
         }
         public static void UploadBasicPDF(string path, DriveService service)
         {
-            //Objektfile von Google Drive
-            //Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
-            //body.Name = System.IO.Path.GetFileName(path);
-            //body.MimeType = "pdf";
-
-            //byte[] byteArray = System.IO.File.ReadAllBytes(path);
-            //System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
-
-            //try
-            //{
-            //    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream, "pdf");
-            //    request.Fields = "permissionIds, id, webViewLink";
-            //    request.Upload();
-            //    var file = request.ResponseBody;
-            //    Permission perm = new Permission();
-            //    perm.Role = "reader";
-            //    perm.Type = "anyone";
-
-            //    var permissionId = file.PermissionIds;
-            //    service.Permissions.Create(perm, file.Id).Execute();
-
-            //    currentLink = file.WebViewLink;
-            //}
-            //catch (Exception e)
-            //{
-            //    MessageBox.Show(e.Message, "Error Occured");
-            //}
-            //Objektfile von Google Drive
+           
             var fileMetadata = new Google.Apis.Drive.v3.Data.File();
             fileMetadata.Name = Path.GetFileName(path);
             fileMetadata.MimeType = "application/pdf";
@@ -148,6 +132,11 @@ namespace EigenbelegToolAlpha
             }
             return credential;
         }
+
+
+
+
+
         private void GoogleDrive_Load(object sender, EventArgs e)
         {
 

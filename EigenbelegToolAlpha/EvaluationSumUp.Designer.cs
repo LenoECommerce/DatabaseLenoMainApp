@@ -80,6 +80,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.lbl_donorDevices = new System.Windows.Forms.Label();
             this.btn_CreatePDFDocument = new System.Windows.Forms.Button();
+            this.lbl_year = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_grossSalesEbayREG
@@ -596,11 +597,22 @@
             this.btn_CreatePDFDocument.UseVisualStyleBackColor = true;
             this.btn_CreatePDFDocument.Click += new System.EventHandler(this.btn_CreatePDFDocument_Click);
             // 
+            // lbl_year
+            // 
+            this.lbl_year.AutoSize = true;
+            this.lbl_year.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_year.Location = new System.Drawing.Point(421, 29);
+            this.lbl_year.Name = "lbl_year";
+            this.lbl_year.Size = new System.Drawing.Size(37, 18);
+            this.lbl_year.TabIndex = 226;
+            this.lbl_year.Text = "Jahr";
+            // 
             // EvaluationSumUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 694);
+            this.Controls.Add(this.lbl_year);
             this.Controls.Add(this.btn_CreatePDFDocument);
             this.Controls.Add(this.lbl_donorDevices);
             this.Controls.Add(this.label18);
@@ -717,5 +729,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lbl_donorDevices;
         private System.Windows.Forms.Button btn_CreatePDFDocument;
+        private System.Windows.Forms.Label lbl_year;
     }
 }

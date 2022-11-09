@@ -78,6 +78,7 @@
             this.comboBox_ReparaturEditColor = new System.Windows.Forms.ComboBox();
             this.comboBox_ReparaturEditTaxes = new System.Windows.Forms.ComboBox();
             this.comboBox_ReparaturEditCondition = new System.Windows.Forms.ComboBox();
+            this.lbl_donorMonth = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -373,12 +374,12 @@
             "",
             "BackMarket Gegenangebot",
             "Warten auf Teil",
-            "Spender",
-            "Entnahme"});
+            "Spender"});
             this.comboBox_ReparaturenReparaturStatus.Location = new System.Drawing.Point(589, 56);
             this.comboBox_ReparaturenReparaturStatus.Name = "comboBox_ReparaturenReparaturStatus";
             this.comboBox_ReparaturenReparaturStatus.Size = new System.Drawing.Size(256, 21);
             this.comboBox_ReparaturenReparaturStatus.TabIndex = 69;
+            this.comboBox_ReparaturenReparaturStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReparaturenReparaturStatus_SelectedIndexChanged);
             // 
             // label16
             // 
@@ -625,11 +626,21 @@
             this.comboBox_ReparaturEditCondition.Size = new System.Drawing.Size(256, 21);
             this.comboBox_ReparaturEditCondition.TabIndex = 88;
             // 
+            // lbl_donorMonth
+            // 
+            this.lbl_donorMonth.AutoSize = true;
+            this.lbl_donorMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_donorMonth.Location = new System.Drawing.Point(646, 20);
+            this.lbl_donorMonth.Name = "lbl_donorMonth";
+            this.lbl_donorMonth.Size = new System.Drawing.Size(0, 18);
+            this.lbl_donorMonth.TabIndex = 89;
+            // 
             // ReparaturenEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 600);
+            this.Controls.Add(this.lbl_donorMonth);
             this.Controls.Add(this.comboBox_ReparaturEditCondition);
             this.Controls.Add(this.comboBox_ReparaturEditTaxes);
             this.Controls.Add(this.comboBox_ReparaturEditColor);
@@ -741,5 +752,6 @@
         private System.Windows.Forms.ComboBox comboBox_ReparaturEditColor;
         private System.Windows.Forms.ComboBox comboBox_ReparaturEditTaxes;
         private System.Windows.Forms.ComboBox comboBox_ReparaturEditCondition;
+        private System.Windows.Forms.Label lbl_donorMonth;
     }
 }

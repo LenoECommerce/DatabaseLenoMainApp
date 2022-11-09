@@ -69,6 +69,7 @@
             this.btn_DownloadReport.TabIndex = 111;
             this.btn_DownloadReport.Text = "Downloaden";
             this.btn_DownloadReport.UseVisualStyleBackColor = true;
+            this.btn_DownloadReport.Click += new System.EventHandler(this.btn_DownloadReport_Click);
             // 
             // evaluationsDGV
             // 
@@ -89,6 +90,7 @@
             this.evaluationsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.evaluationsDGV.Size = new System.Drawing.Size(658, 309);
             this.evaluationsDGV.TabIndex = 112;
+            this.evaluationsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.evaluationsDGV_CellClick);
             // 
             // EvaluationHistory
             // 

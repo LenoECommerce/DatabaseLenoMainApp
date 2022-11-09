@@ -26,6 +26,7 @@ namespace EigenbelegToolAlpha
         public string newPath = "";
         string result = "";
         public string month = "";
+        public string year = "";
         public static double ebayOutCome = 0;
         public static double ebayTaxGetBack = 0;
         private void EvaluationsFirstPage_Load(object sender, EventArgs e)
@@ -40,13 +41,14 @@ namespace EigenbelegToolAlpha
             lbl_ebayReport.Text = lineSearchAndGetValue("Ebay Report:", 12);
             lbl_ebayInvoice.Text = lineSearchAndGetValue("Ebay Rechnung:",14);
             comboBox_MonthOfEvaluation.Text = lineSearchAndGetValue("Monat:", 6);
+            comboBox_Years.Text = lineSearchAndGetValue("Jahr:", 5);
         }
         public void CreateConfigTXT()
         {
             string path = "Evaluation_config.txt";
             FileStream stream = File.Create(path);
             stream.Close();
-            File.WriteAllText(path, "\r\nBackMarket normal 1: kein Wert\r\nBackMarket normal 2: kein Wert\r\nBackMarket normal 3: kein Wert\r\nBackMarket PayPal 1: kein Wert\r\nBackMarket PayPal 2: kein Wert\r\nBackMarket PayPal 3: kein Wert\r\nEbay Report: kein Wert\r\nEbay Rechnung: kein Wert\r\nMonat: kein Wert");
+            File.WriteAllText(path, "\r\nBackMarket normal 1: kein Wert\r\nBackMarket normal 2: kein Wert\r\nBackMarket normal 3: kein Wert\r\nBackMarket PayPal 1: kein Wert\r\nBackMarket PayPal 2: kein Wert\r\nBackMarket PayPal 3: kein Wert\r\nEbay Report: kein Wert\r\nEbay Rechnung: kein Wert\r\nMonat: kein Wert\r\nJahr: kein Wert");
             
         }
         public void lineSearchAndInsert(string searchValue)
@@ -272,6 +274,12 @@ namespace EigenbelegToolAlpha
             newPath = getOpenFileDialog();
             lineSearchAndInsert("Ebay Rechnung:");
             lbl_ebayInvoice.Text = newPath;
+        }
+
+        private void comboBox_Years_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            year = comboBox_Years.Text;
+            LineSearchAndInsertFixValue("Jahr:");
         }
     }
 }

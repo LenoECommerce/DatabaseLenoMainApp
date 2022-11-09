@@ -56,7 +56,86 @@ namespace EigenbelegToolAlpha
         public static double taxesGetBack = 0;
         public static double taxesHaveToPay = 0;
 
-        private void btn_CalcTest_Click(object sender, EventArgs e)
+        public static double donorDevicesAmount = 0;
+        public static int donorDevicesCounter = 0;
+        private void DonorDevicesAlgorithm()
+        {
+            Reparaturen rep = new Reparaturen();
+            EvaluationsFirstPage eval = new EvaluationsFirstPage();
+            string month = eval.lineSearchAndGetValue("Monat:", 6);
+            foreach (DataGridViewRow row in rep.reparaturenDGV.Rows)
+            {
+                string testingMonth = row.Cells[22].Value.ToString();
+                if (testingMonth == month)
+                {
+                    double tempAmountDevice = Convert.ToDouble(row.Cells[4].Value);
+                    donorDevicesAmount += tempAmountDevice;
+                    donorDevicesCounter++;
+                }
+            }
+            MessageBox.Show("Der Spender Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Betrag insgesamt: " + donorDevicesAmount + "\r\n- Geräte insgesamt: " + donorDevicesCounter);
+        }
+        private void CalculateInputAlgorithm()
+        {
+            progressBar1.Value = 0;
+            Matching match = new Matching();
+            EvaluationsFirstPage eval = new EvaluationsFirstPage();
+            string month = eval.lineSearchAndGetValue("Monat:", 6);
+            string path = "alreadyMatchedDevives.txt";
+            string[] devicesList = new string[1000];
+            int arrayIndex = 0;
+            double rowsInTotal = match.matchingDGV.RowCount;
+            double approvedRows = 0;
+            int addedRows = 0;
+            foreach (DataGridViewRow row in match.matchingDGV.Rows)
+            {
+                approvedRows++;
+                double progress = approvedRows / rowsInTotal * 100;
+                progressBar1.Value = Convert.ToInt32(progress);
+                if (row.Cells[8].Value.ToString() == month)
+                {
+                    string tempIntern = row.Cells[3].Value.ToString();
+                    if (devicesList.Contains(tempIntern))
+                    {
+                        MessageBox.Show("Es wurde ein bereits gezählter Eintrag gefunden.");
+                    }
+                    else
+                    {
+                        arrayIndex++;
+                        devicesList[arrayIndex] = tempIntern;
+                        foreach (string device in devicesList)
+                        {
+                            File.WriteAllLines(path, devicesList);
+                        }
+                        string checkValue = row.Cells[5].Value.ToString();
+                        if (checkValue == "")
+                        {
+                            inputOfExternalCosts += 0;
+                        }
+                        else
+                        {
+                            inputOfExternalCosts += Convert.ToDouble(EuroCheck(checkValue));
+                        }
+                        string checkTaxValue = Convert.ToString(row.Cells[7].Value);
+                        if (CheckTaxesForInputs(checkTaxValue) == true)
+                        {
+                            string checkValue2 = row.Cells[4].Value.ToString();
+                            inputOfGoodsDIFF += Convert.ToDouble(EuroCheck(checkValue2));
+                        }
+                        else
+                        {
+                            string checkValue3 = row.Cells[4].Value.ToString();
+                            inputOfGoodsREG += Convert.ToDouble(EuroCheck(checkValue3));
+                        }
+                    }
+                }
+            }
+            lbl_inputOfExternalCosts.Text = inputOfExternalCosts.ToString();
+            lbl_inputOfGoodsDIFF.Text = inputOfGoodsDIFF.ToString();
+            lbl_inputOfGoodsREG.Text = inputOfGoodsREG.ToString();
+            MessageBox.Show("Der Einsatz Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: " + rowsInTotal + "\r\n- Durchlaufen: " + approvedRows + "\r\n- Passende Einträge: " + addedRows);
+        }
+        private void MatchingAlgorithm ()
         {
             Protokollierung prot = new Protokollierung();
             Reparaturen rep = new Reparaturen();
@@ -72,7 +151,11 @@ namespace EigenbelegToolAlpha
             string marketplace = "";
             string taxes = "";
             string related = "";
-
+            double rowsInTotal = prot.protokollierungDGV.RowCount;
+            double approvedRows = 0;
+            int addedRows = 0;
+            EvaluationsFirstPage eval = new EvaluationsFirstPage();
+            string month = eval.lineSearchAndGetValue("Monat:", 6);
 
             //Abfrage wenn IMEI nicht vorhanden sein sollte!
             foreach (DataGridViewRow row in rep.reparaturenDGV.Rows)
@@ -94,32 +177,27 @@ namespace EigenbelegToolAlpha
             //Der eigentliche Matchingprozess
             foreach (DataGridViewRow row3 in prot.protokollierungDGV.Rows)
             {
-                //Überprüfen ob der Datensatz schon in Matching vorhanden ist
+                approvedRows++;
+                double progress = approvedRows / rowsInTotal*100;
+                progressBar1.Value = Convert.ToInt32(progress);
                 searchOrderID = row3.Cells[1].Value.ToString();
-                foreach (DataGridViewRow row4 in match.matchingDGV.Rows)
+                newMonth = row3.Cells[5].Value.ToString();
+                var resultExistsInMatching = CRUDQueries.ExecuteQueryWithResult("Matching", "Id", "Bestellnummer", searchOrderID);
+                //Überprüfen ob der Datensatz schon in Matching vorhanden ist + Ob Monat relevant ist
+                if (resultExistsInMatching == 0 && newMonth == month)
                 {
-                    if (row4.Cells[1].Value.Equals(searchOrderID))
+                    foreach (DataGridViewRow row4 in match.matchingDGV.Rows)
                     {
-                        //MessageBox.Show("Den Eintrag gibt es bereits.");
-                        break;
-                    }
-                    //Data Pull aus Protokollierung
-                    else
-                    {
+                        //Data Pull aus Protokollierung
                         searchOrderID = row3.Cells[1].Value.ToString();
                         newIMEI = row3.Cells[2].Value.ToString();
                         searchIntern = row3.Cells[3].Value.ToString();
-                        newMonth = row3.Cells[5].Value.ToString();
                         marketplace = row3.Cells[4].Value.ToString();
                         related = "Ja";
                         //Data Pull aus Reparaturen
                         foreach (DataGridViewRow row5 in rep.reparaturenDGV.Rows)
                         {
-                            if (!row5.Cells[1].Value.ToString().Equals(searchIntern))
-                            {
-
-                            }
-                            else if (row5.Cells[1].Value.ToString().Equals(searchIntern))
+                            if (row5.Cells[1].Value.ToString().Equals(searchIntern))
                             {
                                 //Unterscheidung ob € Zeichen vorhanden ist.
                                 string tempAmount = row5.Cells[4].Value.ToString();
@@ -136,18 +214,18 @@ namespace EigenbelegToolAlpha
                                 }
                                 taxes = row5.Cells[9].Value.ToString();
                             }
-                        }    
+
+                        }
+                        string query2 = String.Format("INSERT INTO `Matching`(`Bestellnummer`,`IMEI`,`Intern`,`Kaufbetrag`,`Externe Kosten`,`Marktplatz`,`Besteuerung`,`Monat`,`Zugeordnet?`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
+                                        , searchOrderID, newIMEI, searchIntern, newAmount.ToString(), newExternalCosts.ToString(), marketplace, taxes, newMonth, related);
+                        addedRows++;
+                        CRUDQueries.ExecuteQuery(query2);
                     }
                 }
             }
-            string query2 = String.Format("INSERT INTO `Matching`(`Bestellnummer`,`IMEI`,`Intern`,`Kaufbetrag`,`Externe Kosten`,`Marktplatz`,`Besteuerung`,`Monat`,`Zugeordnet?`) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')"
-                            , searchOrderID, newIMEI, searchIntern, newAmount.ToString(), newExternalCosts.ToString(), marketplace, taxes, newMonth, related);
-            CRUDQueries.ExecuteQuery(query2);
-            MessageBox.Show("Deine Anfrage wurde bearbeitet");
-
+            MessageBox.Show("Der Matching Algorithmus wurde mit folgendem Ergebnis ausgeführt: \r\n- Einträge insgesamt: "+rowsInTotal+"\r\n- Durchlaufen: "+approvedRows+ "\r\n- Passende Einträge: " + addedRows);
         }
-
-        private void btn_backmarketInvoicesChecking_Click(object sender, EventArgs e)
+        private void BackMarketInvoicesChecking ()
         {
             BackMarketNormalInvoicesAlgorithm();
             BackMarketPayPalInvoicesAlgorithm();
@@ -157,6 +235,7 @@ namespace EigenbelegToolAlpha
             backMarketPayPalGrossSalesVolumeNormalVat = backMarketPayPalGrossSalesVolumeNormalVat + backMarketPayPalReturnsNormalVat;
             backMarketGrossSalesTotal = backMarketGrossSalesTotal + backMarketReturnsTotal;
         }
+
         public void BackMarketPayPalInvoicesAlgorithm()
         {
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
@@ -170,6 +249,7 @@ namespace EigenbelegToolAlpha
 
             string searchValueHeadingGrossSalesList = "MONTANT DES COMMANDES EXPEDIÉES DU";
             string searchValueForGrossSalesList = " 1 ";
+            string searchValueForGrossSalesList2 = " 2 ";
             string searchValueMainGrossSalesTotal = "Montant des commandes expédiées par le marchand";
             string searchValueForReturnsList = "MONTANT DES COMMANDES REMBOURSÉES AVANT";
             string searchValueMainReturnsTotal = "Commandes remboursées";
@@ -224,6 +304,14 @@ namespace EigenbelegToolAlpha
                         }
                         arrayIndex++;
                     }
+                    else if (allLines[i].Contains(searchValueForGrossSalesList2))
+                    {
+                        if (checkReg(allLines, i) == true)
+                        {
+                            salesList[arrayIndex] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList2, "€").ToString();
+                        }
+                        arrayIndex++;
+                    }
                     else
                     {
                         break;
@@ -240,6 +328,14 @@ namespace EigenbelegToolAlpha
                         if (checkReg(allLines, i) == true)
                         {
                             returnsList[arrayIndex2] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList, "€").ToString();
+                        }
+                        arrayIndex2++;
+                    }
+                    else if (allLines[i].Contains(searchValueForGrossSalesList2))
+                    {
+                        if (checkReg(allLines, i) == true)
+                        {
+                            returnsList[arrayIndex2] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList2, "€").ToString();
                         }
                         arrayIndex2++;
                     }
@@ -278,10 +374,13 @@ namespace EigenbelegToolAlpha
             lbl_backMarketPayPalReturnsDIFF.Text = backMarketPayPalReturnsMarginalVat.ToString();
             lbl_backMarketPayPalOutcome.Text = backMarketPayPalOutcome.ToString();
             lbl_backMarketPayPalFees.Text = backMarketPayPalFees.ToString();
+            progressBar1.Value = 100;
+            MessageBox.Show("Der BackMarket Algorithmus wurde erfolgreich ausgeführt.");
         }
 
         public void BackMarketNormalInvoicesAlgorithm()
         {
+            progressBar1.Value = 0;
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
             string[] numbers = new string[3] { "1", "2", "3" };
             string pathPreset = "BackMarket normal ";
@@ -292,6 +391,7 @@ namespace EigenbelegToolAlpha
 
             string searchValueHeadingGrossSalesList = "MONTANT DES COMMANDES EXPEDIÉES DU";
             string searchValueForGrossSalesList = " 1 ";
+            string searchValueForGrossSalesList2 = " 2 ";
             string searchValueMainGrossSalesTotal = "Montant des commandes expédiées par le marchand";
             string searchValueForReturnsList = "MONTANT DES COMMANDES REMBOURSÉES AVANT";
             string searchValueMainReturnsTotal = "Commandes remboursées";
@@ -385,6 +485,14 @@ namespace EigenbelegToolAlpha
                         }
                         arrayIndex++;
                     }
+                    else if (allLines[i].Contains(searchValueForGrossSalesList2))
+                    {
+                        if (checkReg(allLines, i) == true)
+                        {
+                            salesList[arrayIndex] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList2, "€").ToString();
+                        }
+                        arrayIndex++;
+                    }
                     else
                     {
                         break;
@@ -401,6 +509,14 @@ namespace EigenbelegToolAlpha
                         if (checkReg(allLines, i) == true)
                         {
                             returnsList[arrayIndex2] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList, "€").ToString();
+                        }
+                        arrayIndex2++;
+                    }
+                    else if (allLines[i].Contains(searchValueForGrossSalesList2))
+                    {
+                        if (checkReg(allLines, i) == true)
+                        {
+                            returnsList[arrayIndex2] = getValueOfOneLine(i, allLines, 3, searchValueForGrossSalesList2, "€").ToString();
                         }
                         arrayIndex2++;
                     }
@@ -438,6 +554,7 @@ namespace EigenbelegToolAlpha
             lbl_BackMarketErstattungDIFF.Text = backMarketReturnsMarginalVat.ToString();
             lbl_BackMarketDefferedPayout.Text = backMarketDefferedPayout.ToString();
             lbl_BackMarketOutcome.Text = backMarketOutcome.ToString();
+            progressBar1.Value = 50;
         }
 
             public double getValueOfOneLine(int index, string[] array,int lengthOfTheFirstPos, string firstPos, string secondPos)
@@ -575,59 +692,6 @@ namespace EigenbelegToolAlpha
             } 
         }
 
-        private void btn_InputCalculate_Click(object sender, EventArgs e)
-        {
-            Matching match = new Matching();
-            EvaluationsFirstPage eval = new EvaluationsFirstPage();
-            string month = eval.lineSearchAndGetValue("Monat:",6);
-            string path = "alreadyMatchedDevives.txt";
-            string[] devicesList = new string[1000];
-            int arrayIndex = 0;
-            foreach (DataGridViewRow row in match.matchingDGV.Rows)
-            {
-                    if (row.Cells[8].Value.ToString() == month)
-                    {
-                        string tempIntern = row.Cells[3].Value.ToString();
-                        if (devicesList.Contains(tempIntern))
-                        {
-                            MessageBox.Show("Es wurde ein bereits gezählter Eintrag gefunden.");
-                        }
-                        else
-                        {
-                            arrayIndex++;
-                            devicesList[arrayIndex] = tempIntern;
-                            foreach (string device in devicesList)
-                            {
-                                File.WriteAllLines(path, devicesList);
-                            }
-                            string checkValue = row.Cells[5].Value.ToString();
-                            if (checkValue == "")
-                            {
-                                inputOfExternalCosts += 0;
-                            }
-                            else
-                            {
-                                inputOfExternalCosts += Convert.ToDouble(EuroCheck(checkValue));
-                            }
-                            string checkTaxValue = Convert.ToString(row.Cells[7].Value);
-                            if (CheckTaxesForInputs(checkTaxValue) == true)
-                            {
-                                string checkValue2 = row.Cells[4].Value.ToString();
-                                inputOfGoodsDIFF += Convert.ToDouble(EuroCheck(checkValue2));
-                            }
-                            else
-                            {
-                            string checkValue3 = row.Cells[4].Value.ToString();
-                            inputOfGoodsREG += Convert.ToDouble(EuroCheck(checkValue3));
-                            }
-                        }
-                }
-            }
-            lbl_inputOfExternalCosts.Text = inputOfExternalCosts.ToString();
-            lbl_inputOfGoodsDIFF.Text = inputOfGoodsDIFF.ToString();
-            lbl_inputOfGoodsREG.Text = inputOfGoodsREG.ToString();
-        }
-
         public string EuroCheck (string checkValue)
         {
             if (checkValue.Contains("€"))
@@ -652,30 +716,32 @@ namespace EigenbelegToolAlpha
                 return false;
             }
         }
-
-        private void btn_TaxCalculation_Click(object sender, EventArgs e)
+        private void TaxCalculationAlgorithm ()
         {
+            progressBar1.Value = 0;
             double tempBMNormalREG = backMarketGrossSalesVolumeNormalVat;
             double tempBMPayPalREG = backMarketPayPalGrossSalesVolumeNormalVat;
             double tempEbayREG = EvaluationSecondForm.ebayGrossSalesMarginalVat;
             double tempSparePartsREG = EvaluationSecondForm.sparepartsGrossSalesNormalVat;
-            double tempSumREG = tempBMNormalREG+tempBMPayPalREG+tempEbayREG+tempSparePartsREG;
-
+            double tempSumREG = tempBMNormalREG + tempBMPayPalREG + tempEbayREG + tempSparePartsREG;
+            progressBar1.Value = 25;
             double tempBMNormalDIFF = backMarketGrossSalesVolumeMarginalVat;
             double tempBMPayPalDIFF = backMarketPayPalGrossSalesVolumeMarginalVat;
             double tempEbayDIFF = EvaluationSecondForm.ebayGrossSalesMarginalVat;
             double tempSparePartsDIFF = EvaluationSecondForm.sparepartsGrossSalesMarginalVat;
-            double tempSumDIFF = tempBMNormalDIFF+tempBMPayPalDIFF+tempEbayDIFF+tempSparePartsDIFF;
-
+            double tempSumDIFF = tempBMNormalDIFF + tempBMPayPalDIFF + tempEbayDIFF + tempSparePartsDIFF;
+            progressBar1.Value = 50;
             double tempInputOfGoodsDIFF = inputOfGoodsDIFF;
             double tempInputOfGoodsREG = inputOfGoodsREG;
             double tempInputExternalCosts = inputOfExternalCosts;
             double tempMoreExternal = 0;
             //Endberechnungen
-            double finalREG = tempSumREG/1.19*0.19;
-            double finalDIFF = (tempSumDIFF-tempInputOfGoodsDIFF)/1.19*0.19;
+            progressBar1.Value = 75;
+            double finalREG = tempSumREG / 1.19 * 0.19;
+            double finalDIFF = (tempSumDIFF - tempInputOfGoodsDIFF) / 1.19 * 0.19;
             double finalGetBack = tempInputExternalCosts + tempInputOfGoodsREG + tempMoreExternal;
             double finalHaveToPay = finalREG + finalDIFF - finalGetBack;
+            progressBar1.Value = 100;
             //Runden + Label ändern
             string newFinalREG = RoundNumber(finalREG.ToString());
             lbl_TaxesREG.Text = newFinalREG.ToString();
@@ -686,6 +752,11 @@ namespace EigenbelegToolAlpha
             string newFinalHaveToPay = RoundNumber(finalHaveToPay.ToString());
             taxesHaveToPay = Convert.ToDouble(newFinalHaveToPay);
             lbl_TaxesTaxesHaveToPay.Text = newFinalHaveToPay.ToString();
+            MessageBox.Show("Der Steuerberechnung Algorithmus wurde erfolgreich ausgeführt.");
+        }
+        private void btn_TaxCalculation_Click(object sender, EventArgs e)
+        {
+            
         }
 
         public string RoundNumber(string tempNumber)
@@ -708,6 +779,50 @@ namespace EigenbelegToolAlpha
             EvaluationSumUp window = new EvaluationSumUp();
             window.Show();
             this.Hide();
+        }
+
+        private void btn_ExecuteAllAlgorithms_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MatchingAlgorithm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der Matching Algorithmus hat ein Problem: " + ex.Message);
+            }
+            try
+            {
+                CalculateInputAlgorithm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der Algorithmus für die Berechnung des Einsatzes hat ein Problem: " + ex.Message);
+            }
+            try
+            {
+                BackMarketInvoicesChecking();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der BackMarket Algorithmus hat ein Problem: " + ex.Message);
+            }
+            try
+            {
+                TaxCalculationAlgorithm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der Steuerberechnung Algorithmus hat ein Problem: " + ex.Message);
+            }
+            try
+            {
+                DonorDevicesAlgorithm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Der Spendergeräte Algorithmus hat ein Problem: " + ex.Message);
+            }
         }
     }
 }

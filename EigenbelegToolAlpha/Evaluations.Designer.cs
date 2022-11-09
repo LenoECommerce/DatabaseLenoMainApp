@@ -54,6 +54,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.comboBox_Years = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label20
@@ -321,12 +323,38 @@
             this.label10.TabIndex = 108;
             this.label10.Text = "Monat";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(380, 26);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 18);
+            this.label14.TabIndex = 109;
+            this.label14.Text = "Jahr";
+            // 
+            // comboBox_Years
+            // 
+            this.comboBox_Years.FormattingEnabled = true;
+            this.comboBox_Years.Items.AddRange(new object[] {
+            "2022",
+            "2023",
+            "2024",
+            "2025"});
+            this.comboBox_Years.Location = new System.Drawing.Point(427, 26);
+            this.comboBox_Years.Name = "comboBox_Years";
+            this.comboBox_Years.Size = new System.Drawing.Size(92, 21);
+            this.comboBox_Years.TabIndex = 110;
+            this.comboBox_Years.SelectedIndexChanged += new System.EventHandler(this.comboBox_Years_SelectedIndexChanged);
+            // 
             // EvaluationsFirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(826, 495);
+            this.Controls.Add(this.comboBox_Years);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -388,5 +416,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox comboBox_Years;
     }
 }

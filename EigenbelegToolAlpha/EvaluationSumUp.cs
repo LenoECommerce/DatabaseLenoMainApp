@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,13 +30,16 @@ namespace EigenbelegToolAlpha
         public static double runningCostsInTotal = EvaluationThirdForm.RunningCostsFinal;
         public static double revenueInTotal = outComeInTotal +EvaluationSecondForm.B2BRevenue- inputInTotal - rateConsumptionTotal - taxesInTotal;
         public static double revenieInTotalAfterRunningCosts = revenueInTotal - runningCostsInTotal;
+        public string year = "";
         public string month = "";
         public EvaluationSumUp()
         {
             InitializeComponent();
             EvaluationsFirstPage eval = new EvaluationsFirstPage();
             EvaluationCalculation eval2 = new EvaluationCalculation();
-            month = eval.lineSearchAndGetValue("Monat:", 6);
+            month = eval.month;
+            year = eval.year;
+            lbl_year.Text = year;
             lbl_MonthOfEvaluationo.Text = month;
             lbl_grossSalesBackMarketNormalDIFF.Text = EvaluationCalculation.backMarketGrossSalesVolumeMarginalVat.ToString();
             lbl_grossSalesBackMarketNormalREG.Text = EvaluationCalculation.backMarketGrossSalesVolumeNormalVat.ToString();
@@ -86,7 +90,7 @@ namespace EigenbelegToolAlpha
             if (returnValue == 0)
             {
                 string query = string.Format("INSERT INTO `Evaluations` (`Monat`,`Jahr`,`Link`) VALUES ('{0}','{1}','{2}')"
-                                , month, "2022", GoogleDrive.currentLink);
+                                , month, year, GoogleDrive.currentLink);
                 CRUDQueries.ExecuteQuery(query);
                 MessageBox.Show("Der Monat " + month + " wurde erstmalig angelegt.");
             }

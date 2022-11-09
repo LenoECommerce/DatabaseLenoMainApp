@@ -19,7 +19,7 @@ namespace EigenbelegToolAlpha
         {
             InitializeComponent();
         }
-
+        public string donorMonth = "";
         private void button1_Click(object sender, EventArgs e)
         {
             string internalNumber = textBox_ReparaturenInternalNumber.Text;
@@ -64,8 +64,8 @@ namespace EigenbelegToolAlpha
             {
                 try
                 {
-                    string query = string.Format("UPDATE `Reparaturen` SET `Intern` = '{0}',`Kaufdatum` = '{1}', `Geraet` = '{2}', `Kaufbetrag` = '{3}', `IMEI` = '{4}', `Marke` = '{5}', `Speicher` = '{6}', `Defekt` = '{7}', `ExterneKosten` = '{8}', `Kommentar` = '{9}', `Meldungen?` = '{10}', `Getestet?` = '{11}', `Reparaturstatus` = '{12}', `Quelle` = '{13}', `Risikostufe` = '{14}', `LohntSich?` = '{15}', `EBReferenz` = '{16}' , `Hauptteile` = '{17}', `Farbe` = '{18}', `Besteuerung` = '{19}', `Zustand` = '{20}' WHERE `Id` = {21}"
-                , internalNumber, dateBought, device, transactionAmount, imei, make, storage, defect, externalCosts, comment, notifications, tested, state, source, riskLevel, worthIt, referenceToEB, maindefects, color, taxes, condition, Reparaturen.lastSelectedProductKey);
+                    string query = string.Format("UPDATE `Reparaturen` SET `Intern` = '{0}',`Kaufdatum` = '{1}', `Geraet` = '{2}', `Kaufbetrag` = '{3}', `IMEI` = '{4}', `Marke` = '{5}', `Speicher` = '{6}', `Defekt` = '{7}', `ExterneKosten` = '{8}', `Kommentar` = '{9}', `Meldungen?` = '{10}', `Getestet?` = '{11}', `Reparaturstatus` = '{12}', `Quelle` = '{13}', `Risikostufe` = '{14}', `LohntSich?` = '{15}', `EBReferenz` = '{16}' , `Hauptteile` = '{17}', `Farbe` = '{18}', `Besteuerung` = '{19}', `Zustand` = '{20}', `Spendermonat` = '{21}' WHERE `Id` = {22}"
+                , internalNumber, dateBought, device, transactionAmount, imei, make, storage, defect, externalCosts, comment, notifications, tested, state, source, riskLevel, worthIt, referenceToEB, maindefects, color, taxes, condition, donorMonth, Reparaturen.lastSelectedProductKey);
                     Reparaturen.ExecuteQuery(query);
                 }
                 catch (Exception ex)
@@ -101,6 +101,7 @@ namespace EigenbelegToolAlpha
             comboBox_ReparaturEditColor.Text = Reparaturen.color;
             comboBox_ReparaturEditTaxes.Text = Reparaturen.taxes;
             comboBox_ReparaturEditCondition.Text = Reparaturen.condition;
+            lbl_donorMonth.Text = Reparaturen.donorMonth;
 
             //Externe Kosten Feld nicht leer lassen, da sonst Fehlermeldung bei Kosten hinzufügen.
             if (textBox_reparaturenExternalCosts.Text.Equals(""))
@@ -352,7 +353,29 @@ namespace EigenbelegToolAlpha
         {
 
         }
-
-       
+        Dictionary<string, string> monthOverview = new Dictionary<string, string>
+        {
+            { "01", "Januar" },
+            { "02", "Februar" },
+            { "03", "März" },
+            { "04", "April" },
+            { "05", "Mai" },
+            { "06", "Juni" },
+            { "07", "Juli" },
+            { "08", "August" },
+            { "09", "September" },
+            { "10", "Oktober" },
+            { "11", "November" },
+            { "12", "Dezember" },
+        };
+        private void comboBox_ReparaturenReparaturStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_ReparaturenReparaturStatus.Text == "Spender")
+            {
+                string currentMonth = DateTime.Now.ToString().Substring(3,2);
+                donorMonth = monthOverview[currentMonth];
+                lbl_donorMonth.Text = donorMonth;
+            }
+        }
     }
 }

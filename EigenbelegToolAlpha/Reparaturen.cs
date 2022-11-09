@@ -44,9 +44,7 @@ namespace EigenbelegToolAlpha
         public static string color = "";
         public static string taxes = "";
         public static string condition = "";
-
-
-
+        public static string donorMonth = "";
 
         public Reparaturen()
         {
@@ -73,6 +71,7 @@ namespace EigenbelegToolAlpha
             reparaturenDGV.DataSource = dataSet.Tables[0];
             //Column verstecken
             reparaturenDGV.Columns[0].Visible = false;
+            reparaturenDGV.Columns[22].Visible = false;
             //Sortierte Ansicht
             reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Descending);
             conn.Close();
@@ -96,6 +95,7 @@ namespace EigenbelegToolAlpha
             reparaturenDGV.DataSource = dataSet.Tables[0];
             //Column verstecken
             reparaturenDGV.Columns[0].Visible = false;
+            reparaturenDGV.Columns[22].Visible = false;
             //Sortierte Ansicht
             reparaturenDGV.Sort(reparaturenDGV.Columns[1], ListSortDirection.Descending);
             //Filtern
@@ -274,7 +274,7 @@ namespace EigenbelegToolAlpha
             riskLevel = reparaturenDGV.SelectedRows[0].Cells[19].Value.ToString();
             worthIt = reparaturenDGV.SelectedRows[0].Cells[20].Value.ToString();
             referenceToEB = reparaturenDGV.SelectedRows[0].Cells[21].Value.ToString();
-
+            donorMonth = reparaturenDGV.SelectedRows[0].Cells[22].Value.ToString();
 
             lastSelectedProductKey = (int)reparaturenDGV.SelectedRows[0].Cells[0].Value;
 
