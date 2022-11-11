@@ -53,6 +53,7 @@
             this.eigenbelegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.protokollierungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proofingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auswertungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -302,7 +303,8 @@
             this.fensterwechselToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eigenbelegeToolStripMenuItem,
             this.protokollierungToolStripMenuItem,
-            this.proofingToolStripMenuItem});
+            this.proofingToolStripMenuItem,
+            this.serviceToolStripMenuItem});
             this.fensterwechselToolStripMenuItem.Image = global::EigenbelegToolAlpha.Properties.Resources.windowsvg;
             this.fensterwechselToolStripMenuItem.Name = "fensterwechselToolStripMenuItem";
             this.fensterwechselToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
@@ -328,6 +330,13 @@
             this.proofingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proofingToolStripMenuItem.Text = "Proofing";
             this.proofingToolStripMenuItem.Click += new System.EventHandler(this.proofingToolStripMenuItem_Click);
+            // 
+            // serviceToolStripMenuItem
+            // 
+            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
+            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviceToolStripMenuItem.Text = "Service";
+            this.serviceToolStripMenuItem.Click += new System.EventHandler(this.serviceToolStripMenuItem_Click);
             // 
             // sucheToolStripMenuItem
             // 
@@ -424,7 +433,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbl_foundPath;
-        private System.Windows.Forms.DataGridView eigenbelegeDGV;
+        public System.Windows.Forms.DataGridView eigenbelegeDGV;
         private System.Windows.Forms.Button btn_eigenbelegCreate;
         private System.Windows.Forms.Button btn_eigenbelegEdit;
         private System.Windows.Forms.Button btn_eigenbelegRemove;
@@ -451,6 +460,7 @@
         private System.Windows.Forms.ToolStripMenuItem proofingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auswertungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sucheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
     }
 }
 

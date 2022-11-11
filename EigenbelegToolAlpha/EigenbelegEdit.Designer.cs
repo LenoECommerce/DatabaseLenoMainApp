@@ -254,7 +254,8 @@
             this.comboBox_eigenbelegPlatform.Items.AddRange(new object[] {
             "Ebay Kleinanzeigen",
             "Ebay",
-            "BackMarket"});
+            "BackMarket",
+            "Extern"});
             this.comboBox_eigenbelegPlatform.Location = new System.Drawing.Point(169, 235);
             this.comboBox_eigenbelegPlatform.Name = "comboBox_eigenbelegPlatform";
             this.comboBox_eigenbelegPlatform.Size = new System.Drawing.Size(205, 21);

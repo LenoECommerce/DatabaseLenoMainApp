@@ -483,6 +483,36 @@ namespace EigenbelegToolAlpha
                     {
                         reparaturenDGV.ClearSelection();
                         reparaturenDGV.Rows[rowIndex].Selected = true;
+                        internalNumber = reparaturenDGV.Rows[rowIndex].Cells[1].Value.ToString();
+                        dateBought = reparaturenDGV.Rows[rowIndex].Cells[2].Value.ToString();
+                        device = reparaturenDGV.Rows[rowIndex].Cells[3].Value.ToString();
+                        transactionAmount = reparaturenDGV.Rows[rowIndex].Cells[4].Value.ToString();
+                        imei = reparaturenDGV.Rows[rowIndex].Cells[5].Value.ToString();
+                        make = reparaturenDGV.Rows[rowIndex].Cells[6].Value.ToString();
+                        color = reparaturenDGV.Rows[rowIndex].Cells[7].Value.ToString();
+                        storage = reparaturenDGV.Rows[rowIndex].Cells[8].Value.ToString();
+                        taxes = reparaturenDGV.Rows[rowIndex].Cells[9].Value.ToString();
+                        condition = reparaturenDGV.Rows[rowIndex].Cells[10].Value.ToString();
+                        defect = reparaturenDGV.Rows[rowIndex].Cells[11].Value.ToString();
+                        maindefects = reparaturenDGV.Rows[rowIndex].Cells[12].Value.ToString();
+                        externalCosts = reparaturenDGV.Rows[rowIndex].Cells[13].Value.ToString();
+                        comment = reparaturenDGV.Rows[rowIndex].Cells[14].Value.ToString();
+                        notifications = reparaturenDGV.Rows[rowIndex].Cells[15].Value.ToString();
+                        tested = reparaturenDGV.Rows[rowIndex].Cells[16].Value.ToString();
+                        state = reparaturenDGV.Rows[rowIndex].Cells[17].Value.ToString();
+                        source = reparaturenDGV.Rows[rowIndex].Cells[18].Value.ToString();
+                        riskLevel = reparaturenDGV.Rows[rowIndex].Cells[19].Value.ToString();
+                        worthIt = reparaturenDGV.Rows[rowIndex].Cells[20].Value.ToString();
+                        referenceToEB = reparaturenDGV.Rows[rowIndex].Cells[21].Value.ToString();
+                        lastSelectedProductKey = (int)reparaturenDGV.Rows[rowIndex].Cells[0].Value;
+                        using (var form2 = new ReparaturenEdit())
+                        {
+                            var result2 = form2.ShowDialog();
+                            if (result2 == DialogResult.OK)
+                            {
+                                ShowReparaturen();
+                            }
+                        }
                     }
                     else
                     {

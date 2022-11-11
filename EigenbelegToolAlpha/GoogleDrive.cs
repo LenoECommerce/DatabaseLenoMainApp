@@ -48,6 +48,10 @@ namespace EigenbelegToolAlpha
             {
                 UploadBasicPDF(path, service);
             }
+            else if (fileFormat == "sql")
+            {
+                UploadBasicSQL(path, service);
+            }
         }
 
         public static void GetFile ()
@@ -108,7 +112,30 @@ namespace EigenbelegToolAlpha
             service.Permissions.Create(perm, file.Id).Execute();
 
             currentLink = file.WebViewLink;
+        }
 
+        public static void UploadBasicSQL(string path, DriveService service)
+        {
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File();
+            fileMetadata.Name = Path.GetFileName(path);
+            fileMetadata.MimeType = "text/plain";
+            FilesResource.CreateMediaUpload request;
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                request = service.Files.Create(fileMetadata, stream, "text/plain");
+                request.Fields = "permissionIds, id, webViewLink";
+                request.Upload();
+            }
+            Permission perm = new Permission();
+            perm.Role = "reader";
+            perm.Type = "anyone";
+
+            var file = request.ResponseBody;
+            var permissionId = file.PermissionIds;
+            service.Permissions.Create(perm, file.Id).Execute();
+
+            currentLink = file.WebViewLink;
         }
 
         private static UserCredential GetCredentials()

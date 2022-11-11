@@ -93,6 +93,16 @@ namespace EigenbelegToolAlpha.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lenologo {
+            get {
+                object obj = ResourceManager.GetObject("lenologo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap office_gfeb180cfc_1280 {
             get {
                 object obj = ResourceManager.GetObject("office-gfeb180cfc_1280", resourceCulture);

@@ -52,6 +52,9 @@
             this.lbl_SaveLocationPDF = new System.Windows.Forms.Label();
             this.lbl_SourceImages = new System.Windows.Forms.Label();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBox_PreferdStartWindow = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label8
@@ -68,7 +71,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(48, 79);
+            this.label1.Location = new System.Drawing.Point(310, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 18);
             this.label1.TabIndex = 41;
@@ -76,7 +79,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(363, 548);
+            this.button1.Location = new System.Drawing.Point(383, 548);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 29);
             this.button1.TabIndex = 64;
@@ -86,7 +89,7 @@
             // 
             // textBox_SettingsInternalNumber
             // 
-            this.textBox_SettingsInternalNumber.Location = new System.Drawing.Point(215, 50);
+            this.textBox_SettingsInternalNumber.Location = new System.Drawing.Point(182, 50);
             this.textBox_SettingsInternalNumber.Name = "textBox_SettingsInternalNumber";
             this.textBox_SettingsInternalNumber.Size = new System.Drawing.Size(110, 20);
             this.textBox_SettingsInternalNumber.TabIndex = 65;
@@ -94,7 +97,7 @@
             // 
             // textBox_SettingsEigenbelegNummer
             // 
-            this.textBox_SettingsEigenbelegNummer.Location = new System.Drawing.Point(215, 80);
+            this.textBox_SettingsEigenbelegNummer.Location = new System.Drawing.Point(425, 49);
             this.textBox_SettingsEigenbelegNummer.Name = "textBox_SettingsEigenbelegNummer";
             this.textBox_SettingsEigenbelegNummer.Size = new System.Drawing.Size(110, 20);
             this.textBox_SettingsEigenbelegNummer.TabIndex = 66;
@@ -103,7 +106,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(48, 147);
+            this.label2.Location = new System.Drawing.Point(48, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 18);
             this.label2.TabIndex = 67;
@@ -115,7 +118,7 @@
             // 
             // lbl_currentPathModellTemplate
             // 
-            this.lbl_currentPathModellTemplate.Location = new System.Drawing.Point(212, 151);
+            this.lbl_currentPathModellTemplate.Location = new System.Drawing.Point(212, 122);
             this.lbl_currentPathModellTemplate.Name = "lbl_currentPathModellTemplate";
             this.lbl_currentPathModellTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathModellTemplate.TabIndex = 69;
@@ -125,7 +128,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 381);
+            this.label3.Location = new System.Drawing.Point(48, 278);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(307, 13);
             this.label3.TabIndex = 70;
@@ -135,7 +138,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(49, 203);
+            this.label4.Location = new System.Drawing.Point(49, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 18);
             this.label4.TabIndex = 71;
@@ -145,7 +148,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(49, 259);
+            this.label5.Location = new System.Drawing.Point(49, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 18);
             this.label5.TabIndex = 72;
@@ -155,7 +158,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(48, 324);
+            this.label6.Location = new System.Drawing.Point(48, 235);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(157, 18);
             this.label6.TabIndex = 73;
@@ -163,7 +166,7 @@
             // 
             // lbl_currentPathDisplayTemplate
             // 
-            this.lbl_currentPathDisplayTemplate.Location = new System.Drawing.Point(212, 207);
+            this.lbl_currentPathDisplayTemplate.Location = new System.Drawing.Point(212, 161);
             this.lbl_currentPathDisplayTemplate.Name = "lbl_currentPathDisplayTemplate";
             this.lbl_currentPathDisplayTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathDisplayTemplate.TabIndex = 74;
@@ -172,7 +175,7 @@
             // 
             // lbl_currentPathPlatinenTemplate
             // 
-            this.lbl_currentPathPlatinenTemplate.Location = new System.Drawing.Point(212, 259);
+            this.lbl_currentPathPlatinenTemplate.Location = new System.Drawing.Point(212, 200);
             this.lbl_currentPathPlatinenTemplate.Name = "lbl_currentPathPlatinenTemplate";
             this.lbl_currentPathPlatinenTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathPlatinenTemplate.TabIndex = 75;
@@ -181,7 +184,7 @@
             // 
             // lbl_currentPathSonstigesTemplate
             // 
-            this.lbl_currentPathSonstigesTemplate.Location = new System.Drawing.Point(212, 328);
+            this.lbl_currentPathSonstigesTemplate.Location = new System.Drawing.Point(212, 239);
             this.lbl_currentPathSonstigesTemplate.Name = "lbl_currentPathSonstigesTemplate";
             this.lbl_currentPathSonstigesTemplate.Size = new System.Drawing.Size(345, 39);
             this.lbl_currentPathSonstigesTemplate.TabIndex = 76;
@@ -190,7 +193,7 @@
             // 
             // btn_LocationTemplates
             // 
-            this.btn_LocationTemplates.Location = new System.Drawing.Point(52, 458);
+            this.btn_LocationTemplates.Location = new System.Drawing.Point(52, 355);
             this.btn_LocationTemplates.Name = "btn_LocationTemplates";
             this.btn_LocationTemplates.Size = new System.Drawing.Size(190, 30);
             this.btn_LocationTemplates.TabIndex = 77;
@@ -214,7 +217,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label7.Location = new System.Drawing.Point(47, 108);
+            this.label7.Location = new System.Drawing.Point(47, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(111, 29);
             this.label7.TabIndex = 83;
@@ -225,7 +228,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label9.Location = new System.Drawing.Point(47, 416);
+            this.label9.Location = new System.Drawing.Point(47, 313);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 29);
             this.label9.TabIndex = 84;
@@ -233,7 +236,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(291, 458);
+            this.button2.Location = new System.Drawing.Point(311, 355);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(224, 30);
             this.button2.TabIndex = 85;
@@ -243,7 +246,7 @@
             // 
             // lbl_SaveLocationPDF
             // 
-            this.lbl_SaveLocationPDF.Location = new System.Drawing.Point(52, 491);
+            this.lbl_SaveLocationPDF.Location = new System.Drawing.Point(52, 388);
             this.lbl_SaveLocationPDF.Name = "lbl_SaveLocationPDF";
             this.lbl_SaveLocationPDF.Size = new System.Drawing.Size(190, 39);
             this.lbl_SaveLocationPDF.TabIndex = 86;
@@ -251,17 +254,54 @@
             // 
             // lbl_SourceImages
             // 
-            this.lbl_SourceImages.Location = new System.Drawing.Point(291, 491);
+            this.lbl_SourceImages.Location = new System.Drawing.Point(311, 388);
             this.lbl_SourceImages.Name = "lbl_SourceImages";
             this.lbl_SourceImages.Size = new System.Drawing.Size(224, 39);
             this.lbl_SourceImages.TabIndex = 87;
             this.lbl_SourceImages.Text = "label3";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label10.Location = new System.Drawing.Point(48, 427);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(107, 29);
+            this.label10.TabIndex = 88;
+            this.label10.Text = "Sonstiges";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(52, 470);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(127, 18);
+            this.label11.TabIndex = 89;
+            this.label11.Text = "Standardfenster";
+            // 
+            // comboBox_PreferdStartWindow
+            // 
+            this.comboBox_PreferdStartWindow.FormattingEnabled = true;
+            this.comboBox_PreferdStartWindow.Items.AddRange(new object[] {
+            "Eigenbelege",
+            "Reparaturen",
+            "Protokollierung",
+            "Beweise"});
+            this.comboBox_PreferdStartWindow.Location = new System.Drawing.Point(215, 471);
+            this.comboBox_PreferdStartWindow.Name = "comboBox_PreferdStartWindow";
+            this.comboBox_PreferdStartWindow.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_PreferdStartWindow.TabIndex = 90;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 589);
+            this.Controls.Add(this.comboBox_PreferdStartWindow);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.lbl_SourceImages);
             this.Controls.Add(this.lbl_SaveLocationPDF);
             this.Controls.Add(this.button2);
@@ -320,5 +360,8 @@
         private System.Windows.Forms.Label lbl_SaveLocationPDF;
         private System.Windows.Forms.Label lbl_SourceImages;
         private System.Windows.Forms.FolderBrowserDialog folderDialog;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox_PreferdStartWindow;
     }
 }

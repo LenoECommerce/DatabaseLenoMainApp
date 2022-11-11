@@ -21,6 +21,8 @@ namespace EigenbelegToolAlpha
         public EvaluationsFirstPage()
         {
             InitializeComponent();
+            month = lineSearchAndGetValue("Monat:", 6);
+            year = lineSearchAndGetValue("Jahr:", 5);
         }
         public string fileName = "Evaluation_config.txt";
         public string newPath = "";
@@ -89,6 +91,38 @@ namespace EigenbelegToolAlpha
             string[] lines = File.ReadAllLines(fileName);
             int lineToEdit = 2;
             string lineToWrite = month;
+
+            for (int i = 1; i < lines.Count(); i++)
+            {
+                if (lines[i].Contains(searchValue))
+                {
+                    lineToEdit = i + 1;
+                }
+            }
+
+            //Neuen Path eintragen
+            string line = null;
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                for (int currentLine = 1; currentLine <= lines.Length; ++currentLine)
+                {
+                    if (currentLine == lineToEdit)
+                    {
+                        writer.WriteLine(searchValue + lineToWrite);
+                    }
+                    else
+                    {
+                        writer.WriteLine(lines[currentLine - 1]);
+                    }
+                }
+            }
+
+        }
+        public void LineSearchAndInsertFixValue2(string searchValue)
+        {
+            string[] lines = File.ReadAllLines(fileName);
+            int lineToEdit = 2;
+            string lineToWrite = year;
 
             for (int i = 1; i < lines.Count(); i++)
             {
@@ -279,7 +313,7 @@ namespace EigenbelegToolAlpha
         private void comboBox_Years_SelectedIndexChanged(object sender, EventArgs e)
         {
             year = comboBox_Years.Text;
-            LineSearchAndInsertFixValue("Jahr:");
+            LineSearchAndInsertFixValue2("Jahr:");
         }
     }
 }

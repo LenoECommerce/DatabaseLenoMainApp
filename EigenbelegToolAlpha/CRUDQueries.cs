@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections;
 using System.IO;
+using MySqlX.XDevAPI.Common;
 
 namespace EigenbelegToolAlpha
 {
@@ -15,32 +16,46 @@ namespace EigenbelegToolAlpha
     {
         public static MySqlConnection conn;
         public static string connString = "SERVER=sql11.freesqldatabase.com;PORT=3306;Initial Catalog='sql11525524';username=sql11525524;password=d3ByMHVgie";
+        public static int backupCounter = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "BackUpsToday");
         public string saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        public string fileName = @"\\Backup for " + DateTime.Today.ToString().Substring(0,10)+".sql";
+        public string fileName = @"\\Backup for " + DateTime.Today.ToString().Substring(0,10)+" "+backupCounter+" Version.sql";
+
 
         public void Backup()
         {
-            if (File.Exists(saveLocation + fileName) == true)
+            try
             {
-                return;
-            }
-            else
-            {
-                using (MySqlConnection conn = new MySqlConnection(connString))
+                if (File.Exists(saveLocation + fileName) == true)
                 {
-                    using (MySqlCommand cmd = new MySqlCommand())
+                    return;
+                }
+                else
+                {
+                    using (MySqlConnection conn = new MySqlConnection(connString))
                     {
-                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        using (MySqlCommand cmd = new MySqlCommand())
                         {
-                            cmd.Connection = conn;
-                            conn.Open();
-                            mb.ExportToFile(saveLocation + fileName);
-                            conn.Close();
+                            using (MySqlBackup mb = new MySqlBackup(cmd))
+                            {
+                                cmd.Connection = conn;
+                                conn.Open();
+                                string pathComplete = saveLocation + fileName;
+                                mb.ExportToFile(pathComplete);
+                                GoogleDrive drive = new GoogleDrive(pathComplete, "sql");
+                                conn.Close();
+                                File.Delete(pathComplete);
+                                backupCounter++;
+                                CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = " + backupCounter + " WHERE `Typ` = 'BackUpsToday'");
+                            }
                         }
                     }
                 }
-                MessageBox.Show("Es wurde erfolgreich ein BackUp für heute erstellt.");
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
         }
         public static int ExecuteQueryWithResult(string table, string searchingColumn, string getValueOfWhere, string equalValue)
         {
@@ -74,7 +89,15 @@ namespace EigenbelegToolAlpha
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 //zwischenspeichern und danach umformen um Fehlerquelle zu vermeiden
                 var firstValueGetBack = cmd.ExecuteScalar();
-                string result = firstValueGetBack.ToString();
+                string result = "";
+                if (firstValueGetBack == null)
+                {
+                    result = "0";
+                }
+                else
+                {
+                    result = firstValueGetBack.ToString();
+                }
                 conn.Close();
                 return result;
             }

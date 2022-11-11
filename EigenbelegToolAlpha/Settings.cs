@@ -15,10 +15,11 @@ namespace EigenbelegToolAlpha
 {
     public partial class Settings : Form
     {
+        public static string currentUser = File.ReadAllText("user.txt");
         public string valueIntern = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "InterneNummer").ToString();
         public string valueEigenbelegNumber = CRUDQueries.ExecuteQueryWithResult("Config", "Nummer", "Typ", "Eigenbelegnummer").ToString();
+        public string defaultStartingWindow = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "Standardfenster", "Nutzer", currentUser).ToString();
         public string folderLocation;
-        public static string currentUser = File.ReadAllText("user.txt");
 
         public Settings()
         {
@@ -29,6 +30,8 @@ namespace EigenbelegToolAlpha
         {
             textBox_SettingsEigenbelegNummer.Text = valueEigenbelegNumber;
             textBox_SettingsInternalNumber.Text = valueIntern;
+            comboBox_PreferdStartWindow.Text = defaultStartingWindow;
+
             string modellTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser","TemplateModell","Nutzer", currentUser);
             lbl_currentPathModellTemplate.Text = modellTemplate;
             string displayTemplate = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "TemplateDisplay", "Nutzer", currentUser);
@@ -45,8 +48,9 @@ namespace EigenbelegToolAlpha
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + valueEigenbelegNumber + "' WHERE `Typ` = 'Eigenbelegnummer'");
-            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = '" + valueIntern + "' WHERE `Typ` = 'InterneNummer'");
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = " + textBox_SettingsEigenbelegNummer.Text + " WHERE `Typ` = 'Eigenbelegnummer'");
+            CRUDQueries.ExecuteQuery("UPDATE `Config` SET `Nummer` = " + textBox_SettingsInternalNumber.Text + " WHERE `Typ` = 'InterneNummer'");
+            CRUDQueries.ExecuteQuery("UPDATE `ConfigUser` SET `Standardfenster` = '" + comboBox_PreferdStartWindow.Text + "' WHERE `Nutzer` = '"+currentUser+"'");
             MessageBox.Show("Deine Einstellungen wurden gespeichert.");
             this.Hide();
         }
