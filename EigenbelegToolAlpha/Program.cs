@@ -17,12 +17,11 @@ namespace EigenbelegToolAlpha
         
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             CRUDQueries window = new CRUDQueries();
             StartMenu window2 = new StartMenu();
-            window.Backup();
+            //window.Backup();
             try
             {
                 if (window2.CheckUser() == false)
