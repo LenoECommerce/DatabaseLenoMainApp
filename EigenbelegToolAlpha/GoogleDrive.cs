@@ -140,8 +140,9 @@ namespace EigenbelegToolAlpha
         private static UserCredential GetCredentials()
         {
             UserCredential credential;
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
-            string path = desktopPath + "credentials.json";
+            //string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
+            //string path = desktopPath + "credentials.json";
+            string path = @"C:\\Users\\lenna\\source\\repos\\GitHub\\Leno All In One\\EigenbelegToolAlpha\\Resources\\credentials.json";
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
