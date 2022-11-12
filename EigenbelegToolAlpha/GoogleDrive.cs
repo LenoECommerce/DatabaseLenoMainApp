@@ -24,8 +24,6 @@ namespace EigenbelegToolAlpha
 {
     public partial class GoogleDrive : Form
     {
-        public static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
-        private string PathToServiceAccountKeyFile = desktopPath + "credentials.json";
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "DriveAccessLeno";
         public static string currentLink = "";
@@ -142,8 +140,8 @@ namespace EigenbelegToolAlpha
         private static UserCredential GetCredentials()
         {
             UserCredential credential;
-
-            string path = @"C:\\Users\\lenna\\source\\repos\\GitHub\\Leno All In One\\EigenbelegToolAlpha\\Resources\\credentials.json";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\";
+            string path = desktopPath + "credentials.json";
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created

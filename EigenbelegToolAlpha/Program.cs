@@ -21,16 +21,23 @@ namespace EigenbelegToolAlpha
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             CRUDQueries window = new CRUDQueries();
-            window.Backup();
             StartMenu window2 = new StartMenu();
-            if (window2.CheckUser() == false)
+            window.Backup();
+            try
             {
-                Application.Run(new StartMenu());
+                if (window2.CheckUser() == false)
+                {
+                    Application.Run(new StartMenu());
+                }
+                else
+                {
+                    string preferedWindow = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "Standardfenster", "Nutzer", currentUser).ToString();
+                    RunWindow(preferedWindow);
+                }
             }
-            else
+            catch (Exception e)
             {
-                string preferedWindow = CRUDQueries.ExecuteQueryWithResultString("ConfigUser", "Standardfenster", "Nutzer", currentUser).ToString();
-                RunWindow(preferedWindow);
+                MessageBox.Show(e.Message);
             }
 
         }
