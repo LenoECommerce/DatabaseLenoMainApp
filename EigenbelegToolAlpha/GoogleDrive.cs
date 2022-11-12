@@ -24,6 +24,7 @@ namespace EigenbelegToolAlpha
 {
     public partial class GoogleDrive : Form
     {
+        private const string PathToServiceAccountKeyFile = @"C:\Users\lenna\Desktop\credentials.json";
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "DriveAccessLeno";
         public static string currentLink = "";
